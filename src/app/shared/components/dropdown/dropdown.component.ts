@@ -19,4 +19,8 @@ export class DropdownComponent {
   toggle() {
     this.opened = !this.opened;
   }
+
+  close() {
+    this.opened = false;
+  }
 }

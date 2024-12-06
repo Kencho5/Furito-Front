@@ -1,6 +1,6 @@
 <ng-content select="button"></ng-content>
 @if (opened) {
-  <div>
+  <div (outsideClick)="close()">
     <ng-content select="[dropDownContent]"></ng-content>
   </div>
 }
