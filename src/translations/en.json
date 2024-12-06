@@ -1,0 +1,10 @@
+{
+  "HOME": {
+    "TITLE": "Welcome to Our App",
+    "DESCRIPTION": "This is the home page"
+  },
+  "NAVBAR": {
+    "HOME": "Home",
+    "LOGIN": "Login"
+  }
+}

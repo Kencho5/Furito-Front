@@ -1,0 +1,11 @@
+<div class="mt-10 text-center">
+  <h1
+    class="text-2xl font-bold"
+    [ngClass]="{
+      'text-lime-500': isLoggedIn,
+      'text-orange-500': !isLoggedIn,
+    }"
+  >
+    {{ isLoggedIn ? "Authorized" : "Not Authorized" }}
+  </h1>
+</div>
