@@ -1,5 +1,6 @@
 {
   "HOME": {
+    "home": "Home",
     "authorized": "Authorized",
     "not_authorized": "Not authorized"
   },

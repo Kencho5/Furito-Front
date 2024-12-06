@@ -1,3 +1,12 @@
-<button type="button" (click)="changeLanguage('ge')">GE</button>
-<br />
-<button type="button" (click)="changeLanguage('en')">EN</button>
+<app-dropdown #dropdown>
+  <button
+    (click)="dropdown.toggle()"
+    class="flex h-10 items-center rounded-2xl border border-neutral-300 p-2.5 text-neutral-400 sm:h-11 sm:px-3 sm:py-2.5"
+  >
+    <span className="mr-0.5 text-sm font-semibold">GE</span>
+  </button>
+
+  <div dropDownContent class="dropdown-content">
+    <p>Dropdown Content</p>
+  </div>
+</app-dropdown>

@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "SF-Geo";
+  src: url('assets/fonts/SF-Geo.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GEOMedium";
+  src: url('assets/fonts/GEORegular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GEOMedium";
+  src: url('assets/fonts/GEOMedium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+* {
+  font-family: "SF-Geo", "GEOMedium";
+  font-weight: 500;
+  letter-spacing: 1.2px;
+}
+
+body {
+  overscroll-behavior-y: none;
+  background-color: #f6f6f6;
+}
+
+@layer utilities {
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
