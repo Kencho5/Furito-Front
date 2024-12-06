@@ -6,6 +6,10 @@
       'text-orange-500': !isLoggedIn,
     }"
   >
-    {{ isLoggedIn ? "Authorized" : "Not Authorized" }}
+    {{
+      isLoggedIn
+        ? ("HOME.authorized" | translate)
+        : ("HOME.not_authorized" | translate)
+    }}
   </h1>
 </div>

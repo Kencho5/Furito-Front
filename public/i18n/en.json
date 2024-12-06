@@ -1,0 +1,10 @@
+{
+  "HOME": {
+    "authorized": "Authorized",
+    "not_authorized": "Not authorized"
+  },
+  "NAVBAR": {
+    "upload": "Upload",
+    "login": "Login"
+  }
+}
