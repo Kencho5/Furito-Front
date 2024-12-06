@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-language-selector',
@@ -9,22 +10,21 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent {
-  constructor(private translate: TranslateService) {}
+  constructor(public languageService: LanguageService) {}
 
   opened: boolean = false;
-  lang: string = '';
+  LANGUAGES = [
+    { code: 'ge', label: 'ქართული', shortLabel: 'ქარ' },
+    { code: 'en', label: 'English', shortLabel: 'Eng' },
+  ];
 
-  ngOnInit() {
-    const currentLang = this.translate.currentLang;
-    this.lang = currentLang == 'ge' ? 'ქარ' : 'Eng';
-  }
-
-  toggle() {
-    this.opened = !this.opened;
+  get shortLabel() {
+    return this.LANGUAGES.find(
+      (lang) => lang.code === this.languageService.currentLang,
+    )?.shortLabel;
   }
 
   public changeLanguage(lang: string) {
-    this.translate.use(lang);
-    localStorage.setItem('lang', lang);
+    this.languageService.setLanguage(lang);
   }
 }
