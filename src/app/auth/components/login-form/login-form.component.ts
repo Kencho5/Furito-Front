@@ -6,8 +6,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { LoginFields } from '../../types/login';
+import { AuthService } from '../../../auth/services/auth.service';
+import { LoginFields } from '../../../auth/types/login';
 
 @Component({
   selector: 'app-login-form',

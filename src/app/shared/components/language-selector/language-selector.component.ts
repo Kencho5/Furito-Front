@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { DropdownComponent } from '../dropdown/dropdown.component';
+import { DropdownComponent } from '../ui/dropdown/dropdown.component';
 import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
