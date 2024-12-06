@@ -3,7 +3,9 @@
     (click)="dropdown.toggle()"
     class="flex h-10 items-center rounded-2xl border border-neutral-300 p-2.5 text-neutral-400 sm:h-11 sm:px-3 sm:py-2.5"
   >
-    <span class="mr-0.5 text-sm font-semibold">GE</span>
+    <img src="/icons/global.svg" width="24" height="24" class="mr-1.5" />
+    <span class="mr-0.5 text-sm font-semibold">{{ lang }}</span>
+    <img src="/icons/arrowDown.svg" width="20" height="20" />
   </button>
 
   <div dropDownContent class="absolute">

@@ -12,6 +12,12 @@ export class LanguageSelectorComponent {
   constructor(private translate: TranslateService) {}
 
   opened: boolean = false;
+  lang: string = '';
+
+  ngOnInit() {
+    const currentLang = this.translate.currentLang;
+    this.lang = currentLang == 'ge' ? 'ქარ' : 'Eng';
+  }
 
   toggle() {
     this.opened = !this.opened;
