@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "GEOMedium";
+  font-family: "GEORegular";
   src: url('assets/fonts/GEORegular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
@@ -23,7 +23,7 @@
 }
 
 * {
-  font-family: "SF-Geo", "GEOMedium";
+  font-family: "SF-Geo", "GEOMedium", "GEORegular";
   font-weight: 500;
   letter-spacing: 1.2px;
 }
