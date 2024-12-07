@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
-import {
-  ReactiveFormsModule,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { LoginFields } from '../../../auth/types/login';
 import { SharedModule } from '../../../shared/shared.module';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
+import { InputComponent } from '../../../shared/components/ui/input/input.component';
 
 @Component({
   selector: 'app-login-form',
-  imports: [SharedModule, AuthFormComponent],
+  imports: [SharedModule, AuthFormComponent, InputComponent],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
