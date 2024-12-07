@@ -4,20 +4,20 @@
 
 @font-face {
   font-family: "SF-Geo";
-  src: url('assets/fonts/SF-Geo.woff2') format('woff2');
+  src: url('/assets/fonts/SF-Geo.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-family: "GEORegular";
-  src: url('assets/fonts/GEORegular.woff2') format('woff2');
+  src: url('/assets/fonts/GEORegular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
   font-family: "GEOMedium";
-  src: url('assets/fonts/GEOMedium.woff2') format('woff2');
+  src: url('/assets/fonts/GEOMedium.woff2') format('woff2');
   font-weight: 500;
   font-display: swap;
 }
