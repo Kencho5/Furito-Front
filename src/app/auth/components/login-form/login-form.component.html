@@ -9,5 +9,15 @@
     [placeholder]="'AUTH.email' | translate"
   />
 
+  <div class="relative">
+    <app-input
+      [control]="loginForm.controls.password"
+      [type]="showPassword ? 'text' : 'password'"
+      [placeholder]="'AUTH.password' | translate"
+    />
+
+    <app-password-toggle (showPasswordChange)="showPassword = $event" />
+  </div>
+
   <input type="submit" value="submit" />
 </app-auth-form>

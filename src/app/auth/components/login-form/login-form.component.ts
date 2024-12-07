@@ -10,6 +10,7 @@ import { LoginFields } from '../../../auth/types/login';
 import { SharedModule } from '../../../shared/shared.module';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
 import { InputComponent } from '../../../shared/components/ui/input/input.component';
+import { PasswordToggleComponent } from '../../../shared/components/ui/password-toggle/password-toggle.component';
 
 @Component({
   selector: 'app-login-form',
@@ -18,6 +19,7 @@ import { InputComponent } from '../../../shared/components/ui/input/input.compon
     AuthFormComponent,
     InputComponent,
     ReactiveFormsModule,
+    PasswordToggleComponent,
   ],
   templateUrl: './login-form.component.html',
 })
@@ -31,6 +33,7 @@ export class LoginFormComponent {
       Validators.minLength(6),
     ]),
   });
+  showPassword: boolean = false;
 
   onSubmit() {
     console.log(this.loginForm.value);
