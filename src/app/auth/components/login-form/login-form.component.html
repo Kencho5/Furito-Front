@@ -31,4 +31,14 @@
   >
     {{ "AUTH.submit" | translate }}
   </button>
+
+  <a
+    routerLink="../register"
+    class="text-center text-sm font-normal text-neutral-400"
+  >
+    {{ "AUTH.no_account" | translate }}
+    <span class="text-orange-500">
+      {{ "AUTH.register" | translate }}
+    </span>
+  </a>
 </app-auth-form>
