@@ -12,7 +12,7 @@ import { AuthFormComponent } from '../auth-form/auth-form.component';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule, SharedModule, AuthFormComponent],
+  imports: [SharedModule, AuthFormComponent],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
@@ -25,10 +25,8 @@ export class LoginFormComponent {
       Validators.minLength(6),
     ]),
   });
-  submitted: boolean = false;
 
   onSubmit() {
-    this.submitted = true;
     if (this.loginForm.invalid) return;
 
     const credentials = this.loginForm.value as LoginFields;

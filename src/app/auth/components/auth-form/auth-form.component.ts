@@ -8,7 +8,7 @@ import { CirclesComponent } from '../../../shared/components/ui/circles/circles.
   templateUrl: './auth-form.component.html',
 })
 export class AuthFormComponent {
-  @Input() loginForm!: FormGroup;
+  @Input() authForm!: FormGroup;
   @Input() onSubmit!: () => void;
   @Input() authTitle!: string;
 }
