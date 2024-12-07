@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthHeaderComponent } from '../auth-header/auth-header.component';
-import { RouterOutlet } from '@angular/router';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-auth-layout',
-  imports: [AuthHeaderComponent, RouterOutlet],
+  imports: [AuthHeaderComponent, SharedModule],
   templateUrl: './auth-layout.component.html',
 })
 export class AuthLayoutComponent {}

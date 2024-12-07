@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { OutsideClickDirective } from '../core/directives/outside-click.directive';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NavbarComponent,
-    TranslateModule,
-    OutsideClickDirective,
-  ],
-  exports: [NavbarComponent, TranslateModule, OutsideClickDirective],
+  imports: [RouterOutlet, RouterLink, CommonModule, TranslatePipe],
+  exports: [RouterOutlet, RouterLink, CommonModule, TranslatePipe],
 })
 export class SharedModule {}

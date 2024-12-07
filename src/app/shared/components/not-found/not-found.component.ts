@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { SharedModule } from '../../shared.module';
 
 @Component({
   selector: 'app-not-found',
-  imports: [RouterLink],
+  imports: [SharedModule],
   templateUrl: './not-found.component.html',
 })
 export class NotFoundComponent {}

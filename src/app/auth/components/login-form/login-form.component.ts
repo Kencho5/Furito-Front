@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
   FormControl,
@@ -8,10 +7,11 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { LoginFields } from '../../../auth/types/login';
+import { SharedModule } from '../../../shared/shared.module';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, SharedModule],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
