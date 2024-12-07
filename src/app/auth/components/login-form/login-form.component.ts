@@ -8,10 +8,11 @@ import {
 import { AuthService } from '../../../auth/services/auth.service';
 import { LoginFields } from '../../../auth/types/login';
 import { SharedModule } from '../../../shared/shared.module';
+import { AuthFormComponent } from '../auth-form/auth-form.component';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule, SharedModule],
+  imports: [ReactiveFormsModule, SharedModule, AuthFormComponent],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {

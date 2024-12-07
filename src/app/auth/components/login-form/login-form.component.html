@@ -1,45 +1,6 @@
-<form
-  class="relative flex w-full max-w-[550px] flex-col gap-6 overflow-hidden rounded-3xl bg-white px-4 py-8 shadow-sm sm:px-10"
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit()"
+<app-auth-form
+  [authTitle]="'NAVBAR.login' | translate"
+  [loginForm]="loginForm"
+  [onSubmit]="onSubmit"
 >
-  <div class="mb-4">
-    <label for="email" class="mb-2 block text-sm font-bold text-gray-700"
-      >Email</label
-    >
-    <input
-      type="email"
-      class="w-full rounded-lg border px-3 py-2 focus:outline-none"
-      formControlName="email"
-      [ngClass]="{
-        'border-red-500': loginForm.get('email')?.invalid && submitted,
-      }"
-    />
-  </div>
-  <div class="mb-6">
-    <label for="password" class="mb-2 block text-sm font-bold text-gray-700"
-      >Password</label
-    >
-    <input
-      type="password"
-      class="w-full rounded-lg border px-3 py-2 focus:outline-none"
-      formControlName="password"
-      [ngClass]="{
-        'border-red-500': loginForm.get('password')?.invalid && submitted,
-      }"
-    />
-  </div>
-  <button
-    type="submit"
-    class="w-full rounded-lg bg-blue-500 py-2 text-white transition duration-300 hover:bg-blue-600"
-  >
-    Login
-  </button>
-
-  <div
-    *ngIf="loginForm.invalid && submitted"
-    class="mt-4 text-center text-red-500"
-  >
-    Fill in the form.
-  </div>
-</form>
+</app-auth-form>
