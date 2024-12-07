@@ -5,11 +5,10 @@
     {{ "HOME.home" | translate }}
   </h3>
 
-  <p class="mb-4 text-lg text-orange-600">
-    {{
-      isLoggedIn
-        ? ("HOME.authorized" | translate)
-        : ("HOME.not_authorized" | translate)
-    }}
+  <p
+    class="mb-4 text-lg"
+    [ngClass]="isLoggedIn ? 'text-lime-500' : 'text-orange-500'"
+  >
+    Authenticated
   </p>
 </div>

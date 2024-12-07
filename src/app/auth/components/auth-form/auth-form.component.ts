@@ -11,8 +11,4 @@ export class AuthFormComponent {
   @Input() authForm!: FormGroup;
   @Input() authTitle!: string;
   @Output() submitForm = new EventEmitter<void>();
-
-  onSubmit() {
-    this.submitForm.emit();
-  }
 }
