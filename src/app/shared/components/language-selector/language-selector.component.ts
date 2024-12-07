@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '../ui/dropdown/dropdown.component';
 import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
   selector: 'app-language-selector',
-  imports: [CommonModule, TranslatePipe, DropdownComponent],
+  imports: [CommonModule, DropdownComponent],
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent {
