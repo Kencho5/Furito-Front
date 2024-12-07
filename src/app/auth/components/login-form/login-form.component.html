@@ -1,12 +1,12 @@
 <app-auth-form
   [authTitle]="'NAVBAR.login' | translate"
   [authForm]="loginForm"
-  [onSubmit]="onSubmit"
+  (submitForm)="onSubmit()"
 >
-  <app-input [type]="'text'" formControlName="email" [placeholder]="'Email'" />
   <app-input
-    [type]="'password'"
-    formControlName="password"
-    [placeholder]="'Password'"
+    [control]="loginForm.controls.email"
+    [type]="'text'"
+    [placeholder]="'Email'"
   />
+  <input type="submit" value="submit" />
 </app-auth-form>

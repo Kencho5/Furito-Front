@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
 import { LoginFields } from '../../../auth/types/login';
 import { SharedModule } from '../../../shared/shared.module';
@@ -8,7 +13,12 @@ import { InputComponent } from '../../../shared/components/ui/input/input.compon
 
 @Component({
   selector: 'app-login-form',
-  imports: [SharedModule, AuthFormComponent, InputComponent],
+  imports: [
+    SharedModule,
+    AuthFormComponent,
+    InputComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
@@ -23,6 +33,7 @@ export class LoginFormComponent {
   });
 
   onSubmit() {
+    console.log(this.loginForm.value);
     if (this.loginForm.invalid) return;
 
     const credentials = this.loginForm.value as LoginFields;
