@@ -17,5 +17,9 @@ export const routes: Routes = [
     children: [{ path: 'login', component: LoginComponent }],
   },
 
-  { path: '**', component: NotFoundComponent },
+  {
+    path: '**',
+    component: LayoutComponent,
+    children: [{ path: '**', component: NotFoundComponent }],
+  },
 ];

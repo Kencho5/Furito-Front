@@ -53,18 +53,5 @@
       "services": "My services",
       "logout": "Log out"
     }
-  },
-
-  "COUNTRIES": {
-    "china": "China",
-    "india": "India",
-    "united_states": "United States",
-    "indonesia": "Indonesia",
-    "pakistan": "Pakistan",
-    "brazil": "Brazil",
-    "nigeria": "Nigeria",
-    "bangladesh": "Bangladesh",
-    "russia": "Russia",
-    "mexico": "Mexico"
   }
 }
