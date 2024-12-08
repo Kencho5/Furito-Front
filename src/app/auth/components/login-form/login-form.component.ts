@@ -11,6 +11,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
 import { InputComponent } from '../../../shared/components/ui/input/input.component';
 import { PasswordToggleComponent } from '../../../shared/components/ui/password-toggle/password-toggle.component';
+import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
 
 @Component({
   selector: 'app-login-form',
@@ -20,6 +21,7 @@ import { PasswordToggleComponent } from '../../../shared/components/ui/password-
     InputComponent,
     ReactiveFormsModule,
     PasswordToggleComponent,
+    ErrorMessageComponent,
   ],
   templateUrl: './login-form.component.html',
 })

@@ -22,9 +22,9 @@
   </div>
 
   @if (authError) {
-    <div class="text-red-500 mb-4 text-sm">
+    <app-error-message>
       {{ authError | translate }}
-    </div>
+    </app-error-message>
   }
 
   <div class="text-right text-sm text-neutral-900">
