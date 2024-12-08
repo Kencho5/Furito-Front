@@ -7,6 +7,7 @@
     [control]="loginForm.controls.email"
     [type]="'text'"
     [placeholder]="'AUTH.email' | translate"
+    [error]="submitted && loginForm.controls.email.invalid"
   />
 
   <div class="relative">
@@ -14,10 +15,17 @@
       [control]="loginForm.controls.password"
       [type]="showPassword ? 'text' : 'password'"
       [placeholder]="'AUTH.password' | translate"
+      [error]="submitted && loginForm.controls.password.invalid"
     />
 
     <app-password-toggle (showPasswordChange)="showPassword = $event" />
   </div>
+
+  @if (authError) {
+    <div class="text-red-500 mb-4 text-sm">
+      {{ authError | translate }}
+    </div>
+  }
 
   <div class="text-right text-sm text-neutral-900">
     <a routerLink="../reset-password">{{

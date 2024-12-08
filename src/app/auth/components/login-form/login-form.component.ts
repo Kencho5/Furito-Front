@@ -34,15 +34,25 @@ export class LoginFormComponent {
     ]),
   });
   showPassword: boolean = false;
+  submitted: boolean = false;
+  authError: string | null = null;
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    this.authError = null;
+    this.submitted = true;
     if (this.loginForm.invalid) return;
 
     const credentials = this.loginForm.value as LoginFields;
     this.authService.loginRequest(credentials).subscribe({
       next: (res) => {
         this.authService.login(res['token']);
+      },
+      error: (err) => {
+        if (err.status === 401) {
+          this.authError = 'AUTH.ERROR.wrong_credentials';
+        } else {
+          this.authError = 'AUTH.ERROR.unforseen';
+        }
       },
     });
   }
