@@ -35,9 +35,19 @@
 
   <button
     type="submit"
-    class="rounded-2xl bg-yellow-400 px-5 py-2.5 text-base font-semibold text-neutral-900"
+    class="flex max-h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-5 py-2.5 text-base font-semibold text-neutral-900"
+    [ngClass]="loading ? 'animate-pulse' : ''"
+    [disabled]="loading"
   >
-    {{ "AUTH.submit" | translate }}
+    @if (!loading) {
+      {{ "AUTH.submit" | translate }}
+    } @else {
+      <app-spinner
+        [size]="28"
+        [textColor]="'text-white'"
+        [fillColor]="'fill-orange-500'"
+      />
+    }
   </button>
 
   <a

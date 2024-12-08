@@ -6,12 +6,15 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
-import { LoginFields } from '../../../auth/types/login';
+import { LoginFields, LoginResponse } from '../../../auth/types/login';
 import { SharedModule } from '../../../shared/shared.module';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
 import { InputComponent } from '../../../shared/components/ui/input/input.component';
 import { PasswordToggleComponent } from '../../../shared/components/ui/password-toggle/password-toggle.component';
 import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
+import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-login-form',
@@ -22,6 +25,7 @@ import { ErrorMessageComponent } from '../../../shared/components/ui/error-messa
     ReactiveFormsModule,
     PasswordToggleComponent,
     ErrorMessageComponent,
+    SpinnerComponent,
   ],
   templateUrl: './login-form.component.html',
 })
@@ -37,25 +41,42 @@ export class LoginFormComponent {
   });
   showPassword: boolean = false;
   submitted: boolean = false;
+  loading: boolean = false;
   authError: string | null = null;
 
-  onSubmit() {
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      this.submitted = true;
+      return;
+    }
+
     this.authError = null;
-    this.submitted = true;
-    if (this.loginForm.invalid) return;
+    this.loading = true;
 
     const credentials = this.loginForm.value as LoginFields;
-    this.authService.loginRequest(credentials).subscribe({
-      next: (res) => {
-        this.authService.login(res['token']);
-      },
-      error: (err) => {
-        if (err.status === 401) {
-          this.authError = 'AUTH.ERROR.wrong_credentials';
-        } else {
-          this.authError = 'AUTH.ERROR.unforseen';
-        }
-      },
-    });
+
+    this.authService
+      .loginRequest(credentials)
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.submitted = true;
+        }),
+      )
+      .subscribe({
+        next: (response: LoginResponse) => {
+          this.authService.login(response.token);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.handleLoginError(error);
+        },
+      });
+  }
+
+  private handleLoginError(error: HttpErrorResponse): void {
+    this.authError =
+      error.status === 401
+        ? 'AUTH.ERROR.wrong_credentials'
+        : 'AUTH.ERROR.unforseen';
   }
 }
