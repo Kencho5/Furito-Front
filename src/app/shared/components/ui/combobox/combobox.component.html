@@ -1,0 +1,71 @@
+<div class="relative">
+  <button
+    type="button"
+    class="flex max-h-[44px] w-full items-center justify-between rounded-2xl border px-3 py-2.5 text-sm font-normal text-neutral-400 sm:text-base"
+    [ngClass]="{
+      'border-orange-500': error,
+      'border-neutral-200': !error,
+      'text-neutral-900': selectedValue,
+    }"
+    (click)="opened.set(!opened())"
+  >
+    {{ selectedValue ? itemLabel : placeholder }}
+
+    <img src="/icons/arrowsUpDown.svg" class="opacity-50" />
+  </button>
+
+  @if (opened()) {
+    <div
+      (outsideClick)="opened.set(false)"
+      class="absolute z-10 mt-2 w-full rounded-2xl border border-neutral-200 bg-white text-sm shadow-sm sm:text-base"
+    >
+      <div
+        class="flex items-center justify-between border-b border-neutral-300"
+      >
+        <img src="/icons/search.svg" class="ml-3 flex-shrink-0" />
+        <input
+          autoFocus
+          type="text"
+          [placeholder]="searchPlaceholder"
+          class="w-full rounded-t-md px-3 py-2 pl-2 outline-none"
+          [(ngModel)]="searchValue"
+        />
+        <div class="mr-3 flex-shrink-0">
+          <button
+            type="button"
+            class="flex cursor-pointer items-center justify-center"
+            (click)="clearSearch()"
+            [ngClass]="searchValue() ? 'visible' : 'hidden'"
+          >
+            <img src="/icons/close.svg" />
+          </button>
+        </div>
+      </div>
+
+      <div class="max-h-40 overflow-y-auto p-2 font-normal">
+        @for (item of filteredItems(); track item.value) {
+          <button
+            type="button"
+            class="mx-auto mt-1 flex w-full items-center rounded-md px-2 py-2 text-center font-normal transition-colors hover:bg-neutral-100"
+            [ngClass]="
+              selectedValue == item.value ? 'bg-neutral-100 font-medium' : ''
+            "
+            (click)="selectItem(item.value)"
+          >
+            <span class="mr-2">
+              <img
+                src="/icons/checkOrange.svg"
+                [ngClass]="selectedValue == item.value ? 'visible' : 'hidden'"
+              />
+            </span>
+            {{ item.label }}
+          </button>
+        } @empty {
+          <div class="flex items-center justify-center p-2 text-center">
+            {{ notFoundText }}
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

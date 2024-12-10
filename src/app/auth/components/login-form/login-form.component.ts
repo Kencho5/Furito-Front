@@ -6,7 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../auth/services/auth.service';
-import { LoginFields, LoginResponse } from '../../../auth/types/login';
+import {
+  LoginResponse,
+  LoginFields,
+} from '../../../core/modules/interfaces/login';
 import { SharedModule } from '../../../shared/shared.module';
 import { AuthFormComponent } from '../auth-form/auth-form.component';
 import { InputComponent } from '../../../shared/components/ui/input/input.component';
@@ -15,6 +18,8 @@ import { ErrorMessageComponent } from '../../../shared/components/ui/error-messa
 import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
+import { ComboboxComponent } from '../../../shared/components/ui/combobox/combobox.component';
+import { phoneCodes } from '../../../utils/phoneCodes';
 
 @Component({
   selector: 'app-login-form',
@@ -26,6 +31,7 @@ import { finalize } from 'rxjs';
     PasswordToggleComponent,
     ErrorMessageComponent,
     SpinnerComponent,
+    ComboboxComponent,
   ],
   templateUrl: './login-form.component.html',
 })
@@ -43,6 +49,7 @@ export class LoginFormComponent {
   submitted: boolean = false;
   loading: boolean = false;
   authError: string | null = null;
+  phoneCodes = phoneCodes;
 
   onSubmit(): void {
     if (this.loginForm.invalid) {

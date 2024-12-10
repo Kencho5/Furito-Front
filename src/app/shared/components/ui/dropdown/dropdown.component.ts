@@ -1,20 +1,13 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { OutsideClickDirective } from '../../../../core/directives/outside-click.directive';
 
 @Component({
   selector: 'app-dropdown',
+  imports: [OutsideClickDirective],
   templateUrl: './dropdown.component.html',
 })
 export class DropdownComponent {
   opened = false;
-
-  constructor(private elementRef: ElementRef) {}
-
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: MouseEvent) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.opened = false;
-    }
-  }
 
   toggle() {
     this.opened = !this.opened;

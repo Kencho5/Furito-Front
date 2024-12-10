@@ -21,6 +21,13 @@
     <app-password-toggle (showPasswordChange)="showPassword = $event" />
   </div>
 
+  <app-combobox
+    [items]="phoneCodes"
+    [placeholder]="'მომსახურების კატეგორია'"
+    [searchPlaceholder]="'COMBOBOX.search' | translate"
+    [notFoundText]="'COMBOBOX.not_found' | translate"
+  />
+
   @if (authError) {
     <app-error-message>
       {{ authError | translate }}
