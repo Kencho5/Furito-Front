@@ -1,6 +1,9 @@
-<img
-  src="/bgPattern.svg"
-  class="absolute inset-0 -z-10 h-screen w-screen object-cover"
-/>
+<app-navbar />
 
-<router-outlet />
+@if (!loading()) {
+  <router-outlet />
+} @else {
+  <app-loading-dots
+    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
+  />
+}
