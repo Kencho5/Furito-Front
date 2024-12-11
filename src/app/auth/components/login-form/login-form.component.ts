@@ -19,7 +19,7 @@ import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
 import { ComboboxComponent } from '../../../shared/components/ui/combobox/combobox.component';
-import { phoneCodes } from '../../../utils/phoneCodes';
+import { servicesList } from '../../../utils/servicesList';
 
 @Component({
   selector: 'app-login-form',
@@ -49,7 +49,7 @@ export class LoginFormComponent {
   submitted: boolean = false;
   loading: boolean = false;
   authError: string | null = null;
-  phoneCodes = phoneCodes;
+  servicesList = servicesList;
 
   onSubmit(): void {
     if (this.loginForm.invalid) {

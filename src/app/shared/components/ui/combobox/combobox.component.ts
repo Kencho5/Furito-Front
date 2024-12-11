@@ -34,7 +34,9 @@ export class ComboboxComponent {
     this.searchValue.set('');
   }
 
-  get itemLabel(): string | undefined {
-    return this.items.find((item) => item.value === this.selectedValue)?.label;
+  get itemLabel(): string {
+    return (
+      this.items.find((item) => item.value === this.selectedValue)?.label || ''
+    );
   }
 }
