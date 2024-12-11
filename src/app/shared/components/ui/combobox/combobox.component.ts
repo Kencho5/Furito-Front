@@ -3,6 +3,7 @@ import { SharedModule } from '../../../shared.module';
 import { FormsModule } from '@angular/forms';
 import { ComboboxItems } from '../../../../core/modules/interfaces/comboboxItems';
 import { OutsideClickDirective } from '../../../../core/directives/outside-click.directive';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-combobox',
@@ -10,6 +11,8 @@ import { OutsideClickDirective } from '../../../../core/directives/outside-click
   templateUrl: './combobox.component.html',
 })
 export class ComboboxComponent {
+  constructor(private translate: TranslateService) {}
+
   @Input() selectedValue?: string;
   @Input() placeholder?: string;
   @Input() searchPlaceholder!: string;
@@ -21,7 +24,10 @@ export class ComboboxComponent {
   searchValue = signal('');
   filteredItems = computed(() =>
     this.items.filter((item) =>
-      item.label.toLowerCase().includes(this.searchValue().toLowerCase()),
+      this.translate
+        .instant(item.label)
+        .toLowerCase()
+        .includes(this.searchValue().toLowerCase()),
     ),
   );
 

@@ -19,8 +19,8 @@ import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
 import { ComboboxComponent } from '../../../shared/components/ui/combobox/combobox.component';
-import { servicesList } from '../../../utils/servicesList';
 import { ComboboxItems } from '../../../core/modules/interfaces/comboboxItems';
+import { servicesList } from '../../../utils/servicesList';
 
 @Component({
   selector: 'app-login-form',
