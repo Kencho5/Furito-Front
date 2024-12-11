@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoadingDotsComponent } from '../ui/loading-dots/loading-dots.component';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent, LoadingDotsComponent],
   templateUrl: './layout.component.html',
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  loading: () => boolean;
+
+  constructor(private loadingService: LoadingService) {
+    this.loading = this.loadingService.loading;
+  }
+}
