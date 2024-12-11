@@ -9,7 +9,8 @@
     }"
     (click)="opened.set(!opened())"
   >
-    {{ selectedValue ? (itemLabel | translate) : placeholder }}
+    {{ selectedValue ? itemLabel : placeholder }}
+
     <img src="/icons/arrowsUpDown.svg" class="opacity-50" />
   </button>
 
@@ -57,7 +58,7 @@
                 [ngClass]="selectedValue == item.value ? 'visible' : 'hidden'"
               />
             </span>
-            {{ item.label | translate }}
+            {{ item.label }}
           </button>
         } @empty {
           <div class="flex items-center justify-center p-2 text-center">

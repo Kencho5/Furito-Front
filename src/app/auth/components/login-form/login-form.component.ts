@@ -20,6 +20,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
 import { ComboboxComponent } from '../../../shared/components/ui/combobox/combobox.component';
 import { servicesList } from '../../../utils/servicesList';
+import { ComboboxItems } from '../../../core/modules/interfaces/comboboxItems';
 
 @Component({
   selector: 'app-login-form',
@@ -49,7 +50,7 @@ export class LoginFormComponent {
   submitted: boolean = false;
   loading: boolean = false;
   authError: string | null = null;
-  servicesList = servicesList;
+  servicesList: ComboboxItems[] = servicesList;
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
