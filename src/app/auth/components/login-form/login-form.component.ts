@@ -18,9 +18,6 @@ import { ErrorMessageComponent } from '../../../shared/components/ui/error-messa
 import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
-import { ComboboxComponent } from '../../../shared/components/ui/combobox/combobox.component';
-import { ComboboxItems } from '../../../core/modules/interfaces/comboboxItems';
-import { servicesList } from '../../../utils/servicesList';
 
 @Component({
   selector: 'app-login-form',
@@ -32,7 +29,6 @@ import { servicesList } from '../../../utils/servicesList';
     PasswordToggleComponent,
     ErrorMessageComponent,
     SpinnerComponent,
-    ComboboxComponent,
   ],
   templateUrl: './login-form.component.html',
 })
@@ -50,7 +46,6 @@ export class LoginFormComponent {
   submitted: boolean = false;
   loading: boolean = false;
   authError: string | null = null;
-  servicesList: ComboboxItems[] = servicesList;
 
   onSubmit(): void {
     if (this.loginForm.invalid) {

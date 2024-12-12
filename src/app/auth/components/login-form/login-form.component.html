@@ -21,12 +21,12 @@
     <app-password-toggle (showPasswordChange)="showPassword = $event" />
   </div>
 
-  <app-combobox
-    [items]="servicesList"
-    [placeholder]="'AUTH.service_category' | translate"
-    [searchPlaceholder]="'COMBOBOX.search' | translate"
-    [notFoundText]="'COMBOBOX.not_found' | translate"
-  />
+  <!--<app-combobox-->
+  <!--  [items]="servicesList"-->
+  <!--  [placeholder]="'AUTH.service_category' | translate"-->
+  <!--  [searchPlaceholder]="'COMBOBOX.search' | translate"-->
+  <!--  [notFoundText]="'COMBOBOX.not_found' | translate"-->
+  <!--/>-->
 
   @if (authError) {
     <app-error-message>
