@@ -34,7 +34,7 @@
 
       @if (authService.loggedIn) {
         <button></button>
-        <button></button>
+        <button type="button" (click)="authService.logout()">Logout</button>
         <button type="button">UserMenu</button>
       } @else {
         <a

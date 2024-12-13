@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -44,7 +44,7 @@ export class LoginFormComponent {
   });
   showPassword: boolean = false;
   submitted: boolean = false;
-  loading: boolean = false;
+  loading: WritableSignal<boolean> = signal(false);
   authError: string | null = null;
 
   onSubmit(): void {
@@ -54,7 +54,7 @@ export class LoginFormComponent {
     }
 
     this.authError = null;
-    this.loading = true;
+    this.loading.set(true);
 
     const credentials = this.loginForm.value as LoginFields;
 
@@ -62,7 +62,7 @@ export class LoginFormComponent {
       .loginRequest(credentials)
       .pipe(
         finalize(() => {
-          this.loading = false;
+          this.loading.set(false);
           this.submitted = true;
         }),
       )

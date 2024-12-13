@@ -21,13 +21,6 @@
     <app-password-toggle (showPasswordChange)="showPassword = $event" />
   </div>
 
-  <!--<app-combobox-->
-  <!--  [items]="servicesList"-->
-  <!--  [placeholder]="'AUTH.service_category' | translate"-->
-  <!--  [searchPlaceholder]="'COMBOBOX.search' | translate"-->
-  <!--  [notFoundText]="'COMBOBOX.not_found' | translate"-->
-  <!--/>-->
-
   @if (authError) {
     <app-error-message>
       {{ authError | translate }}
@@ -43,10 +36,10 @@
   <button
     type="submit"
     class="flex max-h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-5 py-2.5 text-base font-semibold text-neutral-900"
-    [ngClass]="loading ? 'animate-pulse' : ''"
-    [disabled]="loading"
+    [ngClass]="loading() ? 'animate-pulse' : ''"
+    [disabled]="loading()"
   >
-    @if (!loading) {
+    @if (!loading()) {
       {{ "AUTH.submit" | translate }}
     } @else {
       <app-spinner
