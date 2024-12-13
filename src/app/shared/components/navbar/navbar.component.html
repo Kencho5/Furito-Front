@@ -33,9 +33,19 @@
       <div class="hidden h-6 w-px bg-neutral-300 sm:flex"></div>
 
       @if (authService.loggedIn) {
-        <button></button>
-        <button type="button" (click)="authService.logout()">Logout</button>
-        <button type="button">UserMenu</button>
+        <button type="button">
+          <img src="/icons/favorite.svg" alt="Favorite" />
+        </button>
+        <button type="button"><img src="/icons/cart.svg" alt="Cart" /></button>
+        @defer {
+          <app-user-menu class="flex items-center" />
+        } @placeholder (minimum 200ms) {
+          <app-spinner
+            [size]="22"
+            [textColor]="'text-white'"
+            [fillColor]="'fill-sky-500'"
+          />
+        }
       } @else {
         <a
           routerLink="/auth/login"

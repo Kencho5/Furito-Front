@@ -12,13 +12,13 @@
     {{ authService.loggedIn ? "Authenticated" : "Unauthorized" }}
   </p>
 
-  @defer {
-    <app-combobox
-      [items]="servicesList"
-      [placeholder]="'AUTH.service_category' | translate"
-      [searchPlaceholder]="'COMBOBOX.search' | translate"
-      [notFoundText]="'COMBOBOX.not_found' | translate"
-      class="w-full max-w-md"
-    ></app-combobox>
-  }
+  <!--@defer {-->
+  <!--  <app-combobox-->
+  <!--    [items]="servicesList"-->
+  <!--    [placeholder]="'AUTH.service_category' | translate"-->
+  <!--    [searchPlaceholder]="'COMBOBOX.search' | translate"-->
+  <!--    [notFoundText]="'COMBOBOX.not_found' | translate"-->
+  <!--    class="w-full max-w-md"-->
+  <!--  ></app-combobox>-->
+  <!--}-->
 </div>
