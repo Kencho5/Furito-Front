@@ -1,1 +1,59 @@
-<button type="button"><img src="/icons/user.svg" alt="User" /></button>
+<app-dropdown #dropdown class="flex items-center">
+  <button type="button" (click)="dropdown.toggle()">
+    <img src="/icons/user.svg" alt="User" />
+  </button>
+
+  <div
+    dropDownContent
+    (click)="dropdown.toggle()"
+    class="absolute -right-28 z-10 mt-14 w-[300px] origin-top-right rounded-2xl bg-white shadow-md"
+  >
+    <div class="flex items-center gap-3 p-4">
+      <img src="/icons/userPaw.svg" class="h-12 w-12" />
+
+      <div class="min-w-0 flex-1">
+        <h1 class="truncate text-lg">გიორგი კენჭაძე</h1>
+        <p class="truncate text-sm font-normal text-neutral-500">
+          giokenchadzegmail.com
+        </p>
+      </div>
+    </div>
+
+    <div class="h-px bg-neutral-200"></div>
+
+    <div class="text-sm font-semibold">
+      <a
+        routerLink="/profile"
+        class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
+      >
+        <img src="/icons/userMenuProfile.svg" />
+        {{ "NAV.MENU.profile" | translate }}
+      </a>
+      <a
+        routerLink="/profile"
+        class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
+      >
+        <img src="/icons/userMenuPic.svg" class="h-[18px] w-5" />
+        {{ "NAV.MENU.posts" | translate }}
+      </a>
+      <a
+        routerLink="profile"
+        class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
+      >
+        <img src="/icons/userMenuSuitcase.svg" />
+        {{ "NAV.MENU.services" | translate }}
+      </a>
+    </div>
+
+    <div class="h-px bg-neutral-200"></div>
+
+    <button
+      type="button"
+      class="flex w-full items-center gap-3.5 rounded-b-2xl p-4 text-sm transition hover:bg-neutral-50"
+      (click)="authService.logout()"
+    >
+      <img src="/icons/logout.svg" />
+      {{ "NAV.MENU.logout" | translate }}
+    </button>
+  </div>
+</app-dropdown>

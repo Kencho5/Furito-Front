@@ -11,7 +11,6 @@ import { LanguageService } from '../../../core/services/language.service';
 export class LanguageSelectorComponent {
   constructor(public languageService: LanguageService) {}
 
-  opened: boolean = false;
   LANGUAGES = [
     { code: 'ge', label: 'ქართული', shortLabel: 'ქარ' },
     { code: 'en', label: 'English', shortLabel: 'Eng' },
