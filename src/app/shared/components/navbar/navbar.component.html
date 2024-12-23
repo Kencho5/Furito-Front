@@ -34,9 +34,16 @@
 
       @if (authService.loggedIn) {
         <button type="button">
-          <img src="/icons/favorite.svg" alt="Favorite" />
+          <img
+            src="/icons/favorite.svg"
+            width="22"
+            height="22"
+            alt="Favorite"
+          />
         </button>
-        <button type="button"><img src="/icons/cart.svg" alt="Cart" /></button>
+        <button type="button">
+          <img src="/icons/cart.svg" width="22" height="22" alt="Cart" />
+        </button>
         @defer {
           <app-user-menu />
         } @placeholder (minimum 200ms) {
