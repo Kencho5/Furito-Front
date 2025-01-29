@@ -5,6 +5,7 @@ import {
   LoginFields,
   LoginResponse,
 } from '../../core/modules/interfaces/login';
+import { apiUrl } from '../../utils/buildUrl';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   loginRequest(loginFields: LoginFields): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>('/api/login', loginFields);
+    return this.http.post<LoginResponse>(apiUrl('login'), loginFields);
   }
 
   login(token: string): void {
