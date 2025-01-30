@@ -12,7 +12,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       {
-        path: '**',
+        path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile.component').then(
             (m) => m.ProfileComponent,
