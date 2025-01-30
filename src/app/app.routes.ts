@@ -9,7 +9,16 @@ export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [{ path: '', component: HomeComponent }],
+    children: [
+      { path: '', component: HomeComponent },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('./pages/profile/profile.component').then(
+            (m) => m.ProfileComponent,
+          ),
+      },
+    ],
   },
   {
     path: 'auth',
