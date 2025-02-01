@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthHeaderComponent } from '../auth-header/auth-header.component';
-import { SharedModule } from '../../../shared/shared.module';
+import { AuthHeaderComponent } from '@auth/components/auth-header/auth-header.component';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-auth-layout',

@@ -1,1 +1,5 @@
-<p>register-form works!</p>
+<app-auth-form
+  [authTitle]="'AUTH.register' | translate"
+  [authForm]="registerForm"
+  (submitForm)="onSubmit()"
+></app-auth-form>

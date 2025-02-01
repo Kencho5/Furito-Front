@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthSkeletonComponent } from '../../auth/components/auth-skeleton/auth-skeleton.component';
-import { LoginFormComponent } from '../../auth/components/login-form/login-form.component';
+import { AuthSkeletonComponent } from '@auth/components/auth-skeleton/auth-skeleton.component';
+import { LoginFormComponent } from '@auth/components/login-form/login-form.component';
 
 @Component({
   selector: 'app-login',

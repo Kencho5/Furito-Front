@@ -5,17 +5,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../../auth/services/auth.service';
-import {
-  LoginResponse,
-  LoginFields,
-} from '../../../core/modules/interfaces/login';
-import { SharedModule } from '../../../shared/shared.module';
-import { AuthFormComponent } from '../auth-form/auth-form.component';
-import { InputComponent } from '../../../shared/components/ui/input/input.component';
-import { PasswordToggleComponent } from '../../../shared/components/ui/password-toggle/password-toggle.component';
-import { ErrorMessageComponent } from '../../../shared/components/ui/error-message/error-message.component';
-import { SpinnerComponent } from '../../../shared/components/ui/spinner/spinner.component';
+import { AuthService } from '@auth/services/auth.service';
+import { LoginResponse, LoginFields } from '@core/modules/interfaces/login';
+import { SharedModule } from '@shared/shared.module';
+import { AuthFormComponent } from '@auth/components/auth-form/auth-form.component';
+import { InputComponent } from '@shared/components/ui/input/input.component';
+import { PasswordToggleComponent } from '@shared/components/ui/password-toggle/password-toggle.component';
+import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
+import { SpinnerComponent } from '@shared/components/ui/spinner/spinner.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize } from 'rxjs';
 

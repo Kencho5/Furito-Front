@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
-import { SharedModule } from '../../../shared/shared.module';
+import { LanguageSelectorComponent } from '@shared/components/language-selector/language-selector.component';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-auth-header',

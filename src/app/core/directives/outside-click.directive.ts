@@ -1,4 +1,3 @@
-// outside-click.directive.ts
 import {
   Directive,
   ElementRef,

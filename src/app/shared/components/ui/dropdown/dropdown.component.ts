@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OutsideClickDirective } from '../../../../core/directives/outside-click.directive';
+import { OutsideClickDirective } from '@core/directives/outside-click.directive';
 
 @Component({
   selector: 'app-dropdown',

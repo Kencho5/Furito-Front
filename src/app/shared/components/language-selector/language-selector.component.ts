@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DropdownComponent } from '../ui/dropdown/dropdown.component';
-import { LanguageService } from '../../../core/services/language.service';
+import { DropdownComponent } from '@ui/dropdown/dropdown.component';
+import { LanguageService } from '@core/services/language.service';
 
 @Component({
   selector: 'app-language-selector',

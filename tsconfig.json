@@ -3,6 +3,19 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
+   "paths": {
+      "@app/*": ["app/*"],
+      "@auth/*": ["app/auth/*"],
+      "@core/*": ["app/core/*"],
+      "@pages/*": ["app/pages/*"],
+      "@shared/*": ["app/shared/*"],
+      "@components/*": ["app/shared/components/*"],
+      "@ui/*": ["app/shared/components/ui/*"],
+      "@utils/*": ["app/utils/*"],
+      "@environments/*": ["environments/*"],
+      "@assets/*": ["assets/*"]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

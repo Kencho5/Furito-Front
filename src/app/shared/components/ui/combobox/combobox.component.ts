@@ -1,8 +1,8 @@
 import { Component, Input, signal, computed } from '@angular/core';
-import { SharedModule } from '../../../shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { ComboboxItems } from '../../../../core/modules/interfaces/comboboxItems';
-import { OutsideClickDirective } from '../../../../core/directives/outside-click.directive';
+import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
+import { OutsideClickDirective } from '@core/directives/outside-click.directive';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -20,8 +20,8 @@ export class ComboboxComponent {
   @Input() error?: boolean;
   @Input() items!: ComboboxItems[];
 
-  opened = signal(false);
-  searchValue = signal('');
+  opened = signal<boolean>(false);
+  searchValue = signal<string>('');
   filteredItems = computed(() =>
     this.items.filter((item) =>
       this.translate

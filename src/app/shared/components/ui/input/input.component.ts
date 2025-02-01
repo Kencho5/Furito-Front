@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../../shared.module';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-input',
