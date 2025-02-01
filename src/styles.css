@@ -1,138 +1,37 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --color-*: initial;
-  --color-neutral-50: #f6f6f6;
-  --color-neutral-100: #e7e7e7;
-  --color-neutral-200: #d1d1d1;
-  --color-neutral-300: #b0b0b0;
-  --color-neutral-400: #888888;
-  --color-neutral-500: #6d6d6d;
-  --color-neutral-600: #5d5d5d;
-  --color-neutral-700: #4f4f4f;
-  --color-neutral-800: #3d3d3d;
-  --color-neutral-900: #151515;
 
-  --color-orange-50: #fff5ed;
-  --color-orange-100: #ffe9d4;
-  --color-orange-200: #ffcca3;
-  --color-orange-300: #ffad72;
-  --color-orange-400: #fe8039;
-  --color-orange-500: #fd590d;
-  --color-orange-600: #ee4208;
-  --color-orange-700: #c52f09;
-  --color-orange-800: #9c2610;
-  --color-orange-900: #440d06;
-
-  --color-yellow-50: #fef8ec;
-  --color-yellow-100: #faeacb;
-  --color-yellow-200: #f5d592;
-  --color-yellow-300: #f0b959;
-  --color-yellow-400: #eb9d2a;
-  --color-yellow-500: #e5811b;
-  --color-yellow-600: #ca5f15;
-  --color-yellow-700: #893408;
-  --color-yellow-800: #893408;
-  --color-yellow-900: #401408;
-
-  --color-lime-50: #f0fce9;
-  --color-lime-100: #def7d0;
-  --color-lime-200: #bfe09a;
-  --color-lime-300: #98e472;
-  --color-lime-400: #74d546;
-  --color-lime-500: #4ca824;
-  --color-lime-600: #3e943c;
-  --color-lime-700: #327132;
-  --color-lime-800: #2b5a1a;
-  --color-lime-900: #102a09;
-
-  --color-sky-50: #effcfc;
-  --color-sky-100: #d6f2f7;
-  --color-sky-200: #aee5ee;
-  --color-sky-300: #7dd2e3;
-  --color-sky-400: #3150c6;
-  --color-sky-500: #2599b5;
-  --color-sky-600: #217c99;
-  --color-sky-700: #21657d;
-  --color-sky-800: #235467;
-  --color-sky-900: #112d3b;
-
-  --color-indigo-50: #eff6ff;
-  --color-indigo-100: #daeaff;
-  --color-indigo-200: #b8d9ff;
-  --color-indigo-300: #91c7ff;
-  --color-indigo-400: #5da8fd;
-  --color-indigo-500: #2f80fa;
-  --color-indigo-600: #2165ef;
-  --color-indigo-700: #1950dc;
-  --color-indigo-800: #1b41b2;
-  --color-indigo-900: #162555;
-
-  --color-pink-50: #fcf4ff;
-  --color-pink-100: #f8e8ff;
-  --color-pink-200: #eabef0;
-  --color-pink-300: #e8abfc;
-  --color-pink-400: #dc79f9;
-  --color-pink-500: #c946ef;
-  --color-pink-600: #b52ada;
-  --color-pink-700: #941cb0;
-  --color-pink-800: #7b1990;
-  --color-pink-900: #43044e;
-
-  --color-white: #ffffff;
-
-  --shadow-*: initial;
-  --shadow-xs: 0 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-sm: 0 1px 2px 0px rgba(16, 24, 40, 0.06);
-  --shadow-md: 0 2px 4px 0px rgba(16, 24, 40, 0.1);
-  --shadow-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-  --shadow-2xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-  --shadow-3xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+@font-face {
+  font-family: 'SF-Geo';
+  src: url('/assets/fonts/SF-Geo.woff2') format('woff2');
+  font-display: swap;
 }
 
-/*@layer base {*/
-/**/
-/*  *,*/
-/*  ::after,*/
-/*  ::before,*/
-/*  ::backdrop,*/
-/*  ::file-selector-button {*/
-/*    border-color: var(--color-gray-200, currentColor);*/
-/*  }*/
-/*}*/
+@font-face {
+  font-family: 'GEOMedium';
+  src: url('/assets/fonts/GEORegular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
 
-@layer utilities {
-  @font-face {
-    font-family: 'SF-Geo';
-    src: url('/assets/fonts/SF-Geo.woff2') format('woff2');
-    font-display: swap;
-  }
+@font-face {
+  font-family: 'GEOMedium';
+  src: url('/assets/fonts/GEOMedium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'GEOMedium';
-    src: url('/assets/fonts/GEORegular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
-  }
+* {
+  font-family: 'SF-Geo', 'GEOMedium';
+  font-weight: 500;
+  letter-spacing: 1.2px;
+}
 
-  @font-face {
-    font-family: 'GEOMedium';
-    src: url('/assets/fonts/GEOMedium.woff2') format('woff2');
-    font-weight: 500;
-    font-display: swap;
-  }
-
-  * {
-    font-family: 'SF-Geo', 'GEOMedium';
-    font-weight: 500;
-    letter-spacing: 1.2px;
-  }
-
-  body {
-    overscroll-behavior-y: none;
-    background-color: #f6f6f6;
-  }
+body {
+  overscroll-behavior-y: none;
+  background-color: #f6f6f6;
 }
 
 @layer utilities {
@@ -147,7 +46,4 @@
     -moz-appearance: textfield;
   }
 
-  button {
-    cursor: pointer;
-  }
 }

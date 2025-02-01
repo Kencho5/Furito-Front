@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CirclesComponent } from '@app/shared/components/ui/circles/circles.component';
+import { CirclesComponent } from '@shared/components/ui/circles/circles.component';
 
 @Component({
   selector: 'app-auth-form',

@@ -15,6 +15,7 @@
     "register": "Register",
     "submit": "Log in",
     "name": "Name",
+    "surname": "Surname",
     "get_code": "Get code",
     "phone": "Phone number",
     "password_requirement": "Must contain at least 6 characters",

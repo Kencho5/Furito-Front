@@ -2,4 +2,35 @@
   [authTitle]="'AUTH.register' | translate"
   [authForm]="registerForm"
   (submitForm)="onSubmit()"
-></app-auth-form>
+>
+  <div class="flex justify-between gap-4">
+    <app-input
+      class="w-full"
+      [control]="registerForm.controls.name"
+      [type]="'text'"
+      [placeholder]="'AUTH.name' | translate"
+      [error]="submitted && registerForm.controls.name.invalid"
+    />
+
+    <app-input
+      class="w-full"
+      [control]="registerForm.controls.surname"
+      [type]="'text'"
+      [placeholder]="'AUTH.surname' | translate"
+      [error]="submitted && registerForm.controls.surname.invalid"
+    />
+  </div>
+
+  <div class="relative">
+    <app-input
+      [control]="registerForm.controls.email"
+      [type]="'text'"
+      [placeholder]="'AUTH.email' | translate"
+      [error]="submitted && registerForm.controls.email.invalid"
+    />
+
+    <app-get-code
+      class="absolute right-1.5 top-1/2 -translate-y-1/2"
+    ></app-get-code>
+  </div>
+</app-auth-form>
