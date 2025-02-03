@@ -53,7 +53,7 @@ export class RegisterFormComponent {
         Validators.minLength(6),
       ]),
     },
-    { validators: this.passwordMatchValidator },
+    { validators: [this.passwordMatchValidator] },
   );
 
   phoneCodes: ComboboxItems[] = phoneCodes;
@@ -61,6 +61,7 @@ export class RegisterFormComponent {
   submitted: boolean = false;
   showPassword: boolean = false;
   showRepeatPassword: boolean = false;
+  termsChecked: boolean = false;
   loading = signal<boolean>(false);
 
   onSubmit(): void {
