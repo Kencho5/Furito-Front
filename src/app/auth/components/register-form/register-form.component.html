@@ -34,9 +34,9 @@
     ></app-get-code>
   </div>
 
-  <div class="flex justify-between gap-4">
+  <div class="flex flex-col justify-between gap-4 sm:flex-row">
     <app-combobox
-      class="w-[128px]"
+      class="w-full sm:w-[128px]"
       [items]="phoneCodes"
       [selectedValue]="'995'"
       [searchPlaceholder]="'...'"
@@ -58,7 +58,7 @@
   </div>
 
   <div class="space-y-3">
-    <div class="flex justify-between gap-4">
+    <div class="flex flex-col justify-between gap-4 sm:flex-row">
       <div class="relative w-full">
         <app-input
           [control]="registerForm.controls.password"
@@ -72,7 +72,7 @@
       <div class="relative w-full">
         <app-input
           [control]="registerForm.controls.repeatPassword"
-          [type]="showRepeatPassword ? 'text' : 'password'"
+          [type]="showPassword ? 'text' : 'password'"
           [placeholder]="'AUTH.repeat_password' | translate"
           [error]="
             submitted &&
@@ -81,13 +81,13 @@
           "
         />
 
-        <app-password-toggle
-          (showPasswordChange)="showRepeatPassword = $event"
-        />
+        <app-password-toggle (showPasswordChange)="showPassword = $event" />
       </div>
     </div>
 
-    <p class="flex items-center gap-2 text-sm font-normal text-neutral-500">
+    <p
+      class="flex items-center gap-2 text-xs font-normal text-neutral-500 sm:text-sm"
+    >
       @if (
         registerForm.controls.password.value &&
         registerForm.controls.password.value.length >= 6
@@ -112,11 +112,11 @@
       }
     </div>
 
-    <p class="font-normal text-neutral-500">
+    <p class="text-sm font-normal text-neutral-500 sm:text-base">
       {{ "AUTH.agree" | translate }}
-      <span class="text-neutral-900 underline">{{
+      <a routerLink="/terms" class="text-neutral-900 underline">{{
         "AUTH.terms" | translate
-      }}</span>
+      }}</a>
     </p>
   </div>
 

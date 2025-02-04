@@ -60,7 +60,6 @@ export class RegisterFormComponent {
 
   submitted: boolean = false;
   showPassword: boolean = false;
-  showRepeatPassword: boolean = false;
   termsChecked: boolean = false;
   loading = signal<boolean>(false);
 
