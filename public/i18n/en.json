@@ -37,7 +37,17 @@
       "wrong_credentials": "Wrong credentials",
       "missing_credentials": "Please fill in the form",
       "unforseen": "Unforseen error",
-      "email_taken": "Email taken"
+      "email_taken": "Email taken",
+
+      "FORM": {
+        "name": "Enter your name",
+        "surname": "Enter your surname",
+        "email": "Enter your email",
+        "phone": "Enter your phone",
+        "password": "Enter your password",
+        "repeatPassword": "Repeat your password",
+        "terms": "Accept terms and conditions"
+      }
     }
   },
   "COMBOBOX": {

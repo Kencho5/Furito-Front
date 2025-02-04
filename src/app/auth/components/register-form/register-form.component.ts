@@ -15,6 +15,7 @@ import { phoneCodes } from '@utils/phoneCodes';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import { PasswordToggleComponent } from '@shared/components/ui/password-toggle/password-toggle.component';
 import { SpinnerComponent } from '@shared/components/ui/spinner/spinner.component';
+import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
 
 @Component({
   selector: 'app-register-form',
@@ -26,6 +27,7 @@ import { SpinnerComponent } from '@shared/components/ui/spinner/spinner.componen
     ComboboxComponent,
     PasswordToggleComponent,
     SpinnerComponent,
+    ErrorMessageComponent,
   ],
   templateUrl: './register-form.component.html',
 })
@@ -52,6 +54,7 @@ export class RegisterFormComponent {
         Validators.required,
         Validators.minLength(6),
       ]),
+      terms: new FormControl(false, [Validators.requiredTrue]),
     },
     { validators: [this.passwordMatchValidator] },
   );
@@ -61,14 +64,31 @@ export class RegisterFormComponent {
   submitted: boolean = false;
   showPassword: boolean = false;
   termsChecked: boolean = false;
+  formError: string = '';
   loading = signal<boolean>(false);
 
+  toggleTerms(): void {
+    this.termsChecked = !this.termsChecked;
+    this.registerForm.controls.terms.setValue(this.termsChecked);
+  }
+
   onSubmit(): void {
+    this.handleErrors();
     if (this.registerForm.invalid) {
       this.submitted = true;
       return;
     }
 
     this.loading.set(true);
+  }
+
+  handleErrors() {
+    for (const control in this.registerForm.controls) {
+      if (this.registerForm.get(control)?.errors) {
+        this.formError = `AUTH.ERROR.FORM.${control}`;
+        break;
+      }
+      this.formError = '';
+    }
   }
 }

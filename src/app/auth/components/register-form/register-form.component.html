@@ -105,7 +105,7 @@
     <div
       class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-md border border-neutral-200"
       [ngClass]="termsChecked ? 'border-none bg-lime-400' : ''"
-      (click)="termsChecked = !termsChecked"
+      (click)="toggleTerms()"
     >
       @if (termsChecked) {
         <img src="/icons/circleCheckGreen.svg" width="18" height="18" />
@@ -119,6 +119,12 @@
       }}</a>
     </p>
   </div>
+
+  @if (formError) {
+    <app-error-message>
+      {{ formError | translate }}
+    </app-error-message>
+  }
 
   <button
     type="submit"
