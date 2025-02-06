@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { CirclesComponent } from '@shared/components/ui/circles/circles.component';
 
 @Component({
   selector: 'app-auth-form',
-  imports: [ReactiveFormsModule, CirclesComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './auth-form.component.html',
 })
 export class AuthFormComponent {
