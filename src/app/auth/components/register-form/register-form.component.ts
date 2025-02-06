@@ -33,9 +33,10 @@ import { ErrorMessageComponent } from '@shared/components/ui/error-message/error
 })
 export class RegisterFormComponent {
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
-    const password = control.get('password');
-    const repeatPassword = control.get('repeatPassword');
-    return password && repeatPassword && password.value === repeatPassword.value
+    const password = control.get('password')?.value;
+    const repeatPassword = control.get('repeatPassword')?.value;
+
+    return password === repeatPassword && password !== null
       ? null
       : { passwordMismatch: true };
   };
@@ -73,9 +74,10 @@ export class RegisterFormComponent {
   }
 
   onSubmit(): void {
+    this.submitted = true;
     this.handleErrors();
+
     if (this.registerForm.invalid) {
-      this.submitted = true;
       return;
     }
 
