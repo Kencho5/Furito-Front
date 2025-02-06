@@ -1,0 +1,20 @@
+<img
+  src="/bgPattern.svg"
+  class="absolute inset-0 -z-10 h-screen w-screen object-cover"
+/>
+
+<app-navbar />
+
+<div class="flex">
+  <app-profile-sidebar />
+
+  <div
+    class="relative h-[calc(100vh-72px)] w-full bg-white sm:h-[calc(100vh-80px)]"
+  >
+    @if (!loading()) {
+      <router-outlet />
+    } @else {
+      <app-loading-dots class="absolute left-1/2 top-1/2 -translate-x-1/2" />
+    }
+  </div>
+</div>

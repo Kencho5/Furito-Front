@@ -4,19 +4,13 @@ import { LoginComponent } from '@pages/login/login.component';
 import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.component';
 import { LayoutComponent } from '@shared/layouts/layout/layout.component';
 import { RegisterComponent } from '@pages/register/register.component';
-import { ProfileComponent } from '@pages/profile/profile.component';
+import { ProfileLayoutComponent } from '@shared/layouts/profile-layout/profile-layout.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-    ],
+    children: [{ path: '', component: HomeComponent }],
   },
   {
     path: 'auth',
@@ -24,6 +18,19 @@ export const routes: Routes = [
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+    ],
+  },
+  {
+    path: 'profile',
+    component: ProfileLayoutComponent,
+    children: [
+      {
+        path: 'add-org',
+        loadComponent: () =>
+          import('./shared/components/profile/add-org/add-org.component').then(
+            (m) => m.AddOrgComponent,
+          ),
+      },
     ],
   },
 
