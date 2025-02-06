@@ -90,5 +90,10 @@ export class RegisterFormComponent {
       }
       this.formError = '';
     }
+
+    if (this.registerForm.errors?.['passwordMismatch']) {
+      this.formError = 'AUTH.ERROR.FORM.password_mismatch';
+      return;
+    }
   }
 }

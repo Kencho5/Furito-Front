@@ -46,7 +46,8 @@
         "phone": "Enter your phone",
         "password": "Enter your password",
         "repeatPassword": "Repeat your password",
-        "terms": "Accept terms and conditions"
+        "terms": "Accept terms and conditions",
+        "password_mismatch": "Passwords do not match"
       }
     }
   },
