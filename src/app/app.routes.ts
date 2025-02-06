@@ -2,23 +2,16 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '@pages/home/home.component';
 import { LoginComponent } from '@pages/login/login.component';
 import { AuthLayoutComponent } from '@auth/components/auth-layout/auth-layout.component';
-import { LayoutComponent } from '@shared/components/layout/layout.component';
+import { LayoutComponent } from '@shared/layouts/layout/layout.component';
 import { RegisterComponent } from '@pages/register/register.component';
+import { ProfileLayoutComponent } from '@shared/layouts/profile-layout/profile-layout.component';
+import { ProfileComponent } from '@pages/profile/profile.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    children: [
-      { path: '', component: HomeComponent },
-      {
-        path: 'profile',
-        loadComponent: () =>
-          import('./pages/profile/profile.component').then(
-            (m) => m.ProfileComponent,
-          ),
-      },
-    ],
+    children: [{ path: '', component: HomeComponent }],
   },
   {
     path: 'auth',
@@ -27,6 +20,11 @@ export const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
     ],
+  },
+  {
+    path: 'profile',
+    component: ProfileLayoutComponent,
+    children: [{ path: '', component: ProfileComponent }],
   },
 
   {

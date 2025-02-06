@@ -60,7 +60,7 @@
     "login": "Login",
 
     "MENU": {
-      "profile": "Profile",
+      "profile": "My Profile",
       "posts": "My posts",
       "services": "My services",
       "logout": "Log out"
