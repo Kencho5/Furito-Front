@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import GE from '../../public/i18n/ge.json';
 import EN from '../../public/i18n/en.json';
@@ -14,6 +14,7 @@ export class AppComponent {
   constructor(
     private translate: TranslateService,
     private languageService: LanguageService,
+    private router: Router,
   ) {
     this.translate.setTranslation('ge', GE);
     this.translate.setTranslation('en', EN);
@@ -21,5 +22,14 @@ export class AppComponent {
 
     this.translate.setDefaultLang('ge');
     this.translate.use(this.languageService.currentLang);
+  }
+
+  ngOnInit() {
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }

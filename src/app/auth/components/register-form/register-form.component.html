@@ -46,7 +46,7 @@
     <div class="relative w-full">
       <app-input
         [control]="registerForm.controls.phone"
-        [type]="'text'"
+        [type]="'number'"
         [placeholder]="'AUTH.phone' | translate"
         [error]="submitted && registerForm.controls.phone.invalid"
       />
@@ -101,7 +101,7 @@
     </p>
   </div>
 
-  <div class="flex items-center gap-2">
+  <div class="mt-3 flex items-center gap-2">
     <div
       class="flex h-5 w-5 cursor-pointer items-center justify-center rounded-md border border-neutral-200"
       [ngClass]="termsChecked ? 'border-none bg-lime-400' : ''"
@@ -133,7 +133,7 @@
     [disabled]="loading()"
   >
     @if (!loading()) {
-      {{ "AUTH.submit" | translate }}
+      {{ "AUTH.register" | translate }}
     } @else {
       <app-spinner
         [size]="28"
