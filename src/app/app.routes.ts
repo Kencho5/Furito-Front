@@ -25,6 +25,14 @@ export const routes: Routes = [
     component: ProfileLayoutComponent,
     children: [
       {
+        path: 'organizations',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/organizations/organizations.component'
+          ).then((m) => m.OrganizationsComponent),
+      },
+
+      {
         path: 'add-org',
         loadComponent: () =>
           import('./shared/components/profile/add-org/add-org.component').then(
