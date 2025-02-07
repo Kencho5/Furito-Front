@@ -7,12 +7,16 @@ import {
   RegisterFields,
   RegisterResponse,
 } from '@core/modules/interfaces/register';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   loginRequest(loginFields: LoginFields): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(apiUrl('login'), loginFields);
@@ -30,6 +34,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/auth/login']);
   }
 
   get loggedIn(): boolean {

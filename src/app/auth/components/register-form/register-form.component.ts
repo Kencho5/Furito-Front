@@ -77,6 +77,7 @@ export class RegisterFormComponent {
   termsChecked: boolean = false;
   formError: string | null = '';
   loading = signal<boolean>(false);
+  success: boolean = false;
 
   toggleTerms(): void {
     this.termsChecked = !this.termsChecked;
@@ -114,6 +115,7 @@ export class RegisterFormComponent {
       )
       .subscribe({
         next: (response: RegisterResponse) => {
+          this.success = true;
           this.authService.login(response.token);
         },
         error: (response: HttpErrorResponse) => {
