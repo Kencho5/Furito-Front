@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
 import { SharedModule } from '@shared/shared.module';
 
@@ -9,5 +9,24 @@ import { SharedModule } from '@shared/shared.module';
   templateUrl: './profile-sidebar.component.html',
 })
 export class ProfileSidebarComponent {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+  ) {}
+
+  activeTab: string = '';
+
+  ngOnInit() {
+    this.activeTab = this.router.url;
+
+    this.router.events.subscribe((e) => {
+      if (e instanceof NavigationEnd) {
+        this.activeTab = this.router.url;
+      }
+    });
+  }
+
+  setActive(route: string) {
+    this.activeTab = route;
+  }
 }
