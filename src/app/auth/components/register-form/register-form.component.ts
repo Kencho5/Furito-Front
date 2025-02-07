@@ -116,7 +116,7 @@ export class RegisterFormComponent {
       .subscribe({
         next: (response: RegisterResponse) => {
           this.success = true;
-          this.authService.login(response.token);
+          this.authService.login(response.token, false);
         },
         error: (response: HttpErrorResponse) => {
           this.formError = response.error.message;

@@ -28,8 +28,9 @@ export class AuthService {
     return this.http.post<RegisterResponse>(apiUrl('register'), registerFields);
   }
 
-  login(token: string): void {
+  login(token: string, redirect: boolean): void {
     localStorage.setItem('token', token);
+    if (redirect) this.router.navigate(['/profile']);
   }
 
   logout(): void {

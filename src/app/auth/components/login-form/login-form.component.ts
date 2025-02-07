@@ -65,7 +65,7 @@ export class LoginFormComponent {
       )
       .subscribe({
         next: (response: LoginResponse) => {
-          this.authService.login(response.token);
+          this.authService.login(response.token, true);
         },
         error: (error: HttpErrorResponse) => {
           this.handleLoginError(error);
