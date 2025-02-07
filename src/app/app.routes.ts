@@ -5,6 +5,7 @@ import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.com
 import { LayoutComponent } from '@shared/layouts/layout/layout.component';
 import { RegisterComponent } from '@pages/register/register.component';
 import { ProfileLayoutComponent } from '@shared/layouts/profile-layout/profile-layout.component';
+import { AuthGuard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
   {
     path: 'profile',
     component: ProfileLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'organizations',
