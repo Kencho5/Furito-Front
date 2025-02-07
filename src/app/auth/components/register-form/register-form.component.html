@@ -39,6 +39,7 @@
       class="w-full sm:w-[128px]"
       [items]="phoneCodes"
       [selectedValue]="'995'"
+      (selectedValueChange)="registerForm.controls.phone_code.setValue($event)"
       [searchPlaceholder]="'...'"
       [notFoundText]="'COMBOBOX.not_found' | translate"
     ></app-combobox>

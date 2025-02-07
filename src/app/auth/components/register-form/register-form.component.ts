@@ -16,6 +16,13 @@ import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import { PasswordToggleComponent } from '@shared/components/ui/password-toggle/password-toggle.component';
 import { SpinnerComponent } from '@shared/components/ui/spinner/spinner.component';
 import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
+import {
+  RegisterFields,
+  RegisterResponse,
+} from '@core/modules/interfaces/register';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '@auth/services/auth.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-register-form',
@@ -32,6 +39,8 @@ import { ErrorMessageComponent } from '@shared/components/ui/error-message/error
   templateUrl: './register-form.component.html',
 })
 export class RegisterFormComponent {
+  constructor(private authService: AuthService) {}
+
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password')?.value;
     const repeatPassword = control.get('repeatPassword')?.value;
@@ -47,6 +56,7 @@ export class RegisterFormComponent {
       surname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
+      phone_code: new FormControl('995', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
@@ -65,7 +75,7 @@ export class RegisterFormComponent {
   submitted: boolean = false;
   showPassword: boolean = false;
   termsChecked: boolean = false;
-  formError: string = '';
+  formError: string | null = '';
   loading = signal<boolean>(false);
 
   toggleTerms(): void {
@@ -74,14 +84,42 @@ export class RegisterFormComponent {
   }
 
   onSubmit(): void {
-    this.submitted = true;
     this.handleErrors();
 
     if (this.registerForm.invalid) {
+      this.submitted = true;
       return;
     }
 
+    this.formError = null;
     this.loading.set(true);
+
+    const formValue = this.registerForm.value;
+    const credentials: RegisterFields = {
+      name: formValue.name!,
+      surname: formValue.surname!,
+      email: formValue.email!,
+      phone_code: formValue.phone_code!,
+      phone: formValue.phone!,
+      password: formValue.password!,
+    };
+
+    this.authService
+      .registerRequest(credentials)
+      .pipe(
+        finalize(() => {
+          this.loading.set(false);
+          this.submitted = true;
+        }),
+      )
+      .subscribe({
+        next: (response: RegisterResponse) => {
+          this.authService.login(response.token);
+        },
+        error: (response: HttpErrorResponse) => {
+          this.formError = response.error.message;
+        },
+      });
   }
 
   handleErrors() {

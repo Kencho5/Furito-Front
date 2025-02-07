@@ -1,4 +1,11 @@
-import { Component, Input, signal, computed } from '@angular/core';
+import {
+  Component,
+  Input,
+  signal,
+  computed,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
@@ -20,6 +27,8 @@ export class ComboboxComponent {
   @Input() error?: boolean;
   @Input() items!: ComboboxItems[];
 
+  @Output() selectedValueChange = new EventEmitter<string>();
+
   opened = signal<boolean>(false);
   searchValue = signal<string>('');
   filteredItems = computed(() =>
@@ -32,6 +41,7 @@ export class ComboboxComponent {
   );
 
   selectItem(value: string) {
+    this.selectedValueChange.emit(value);
     this.selectedValue = value;
     this.opened.set(false);
   }

@@ -44,6 +44,7 @@
         "surname": "Enter your surname",
         "email": "Enter your email",
         "phone": "Enter your phone",
+        "phone_code": "Select your phone code",
         "password": "Enter your password",
         "repeatPassword": "Repeat your password",
         "terms": "Accept terms and conditions",
