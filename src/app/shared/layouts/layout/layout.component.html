@@ -5,9 +5,9 @@
 
 <app-navbar />
 
-@if (!loading()) {
+@defer {
   <router-outlet />
-} @else {
+} @placeholder (minimum 200ms) {
   <app-loading-dots
     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
   />

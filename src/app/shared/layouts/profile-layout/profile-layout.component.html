@@ -6,9 +6,9 @@
   <div
     class="relative h-[calc(100vh-72px)] w-full bg-white sm:h-[calc(100vh-80px)]"
   >
-    @if (!loading()) {
+    @defer {
       <router-outlet />
-    } @else {
+    } @placeholder (minimum 200ms) {
       <app-loading-dots class="absolute left-1/2 top-1/2 -translate-x-1/2" />
     }
   </div>
