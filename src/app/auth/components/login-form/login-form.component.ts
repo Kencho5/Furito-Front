@@ -42,15 +42,17 @@ export class LoginFormComponent {
   showPassword: boolean = false;
   submitted: boolean = false;
   loading: WritableSignal<boolean> = signal(false);
-  authError: string | null = null;
+  formError: string | null = null;
 
   onSubmit(): void {
+    this.handleErrors();
+
     if (this.loginForm.invalid) {
       this.submitted = true;
       return;
     }
 
-    this.authError = null;
+    this.formError = null;
     this.loading.set(true);
 
     const credentials = this.loginForm.value as LoginFields;
@@ -67,16 +69,20 @@ export class LoginFormComponent {
         next: (response: LoginResponse) => {
           this.authService.login(response.token, true);
         },
-        error: (error: HttpErrorResponse) => {
-          this.handleLoginError(error);
+        error: (response: HttpErrorResponse) => {
+          console.log(response);
+          this.formError = response.error.message;
         },
       });
   }
 
-  private handleLoginError(error: HttpErrorResponse): void {
-    this.authError =
-      error.status === 401
-        ? 'AUTH.ERROR.wrong_credentials'
-        : 'AUTH.ERROR.unforseen';
+  handleErrors() {
+    for (const control in this.loginForm.controls) {
+      if (this.loginForm.get(control)?.errors) {
+        this.formError = `AUTH.ERROR.FORM.${control}`;
+        break;
+      }
+      this.formError = '';
+    }
   }
 }

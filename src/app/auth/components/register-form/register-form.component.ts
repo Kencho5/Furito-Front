@@ -75,7 +75,7 @@ export class RegisterFormComponent {
   submitted: boolean = false;
   showPassword: boolean = false;
   termsChecked: boolean = false;
-  formError: string | null = '';
+  formError: string | null = null;
   loading = signal<boolean>(false);
   success: boolean = false;
 
