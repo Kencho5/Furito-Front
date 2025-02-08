@@ -70,7 +70,6 @@ export class LoginFormComponent {
           this.authService.login(response.token, true);
         },
         error: (response: HttpErrorResponse) => {
-          console.log(response);
           this.formError = response.error.message;
         },
       });
