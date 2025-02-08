@@ -2,6 +2,13 @@
   "HOME": {
     "home": "Home"
   },
+  "PROFILE": {
+    "organizations": "My organizations",
+    "services": "My services",
+    "posts": "My posts",
+    "cards": "cards",
+    "info": "Account information"
+  },
   "AUTH": {
     "login": "Authorization",
     "individual": "Individual",

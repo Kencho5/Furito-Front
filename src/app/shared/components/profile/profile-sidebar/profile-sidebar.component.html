@@ -35,7 +35,7 @@
           "
         />
       </svg>
-      ჩემი ორგანიზაციები</a
+      {{ "PROFILE.organizations" | translate }}</a
     >
     <a
       routerLink="services"
@@ -61,7 +61,7 @@
           stroke-linecap="round"
         />
       </svg>
-      ჩემი სერვისები</a
+      {{ "PROFILE.services" | translate }}</a
     >
 
     <a
@@ -90,7 +90,7 @@
           stroke-linecap="round"
         />
       </svg>
-      ჩემი განცხადებები
+      {{ "PROFILE.posts" | translate }}
       <p class="ml-auto rounded-lg bg-neutral-50 px-1.5 py-0.5 text-sm">10</p>
     </a>
 
@@ -116,8 +116,8 @@
           stroke-linecap="round"
         />
       </svg>
-      ბარათები</a
-    >
+      {{ "PROFILE.cards" | translate }}
+    </a>
 
     <a
       routerLink="info"
@@ -140,8 +140,8 @@
           stroke-width="1.5"
         />
       </svg>
-      პირადი ინფორმაცია</a
-    >
+      {{ "PROFILE.info" | translate }}
+    </a>
   </div>
 
   <button
@@ -150,6 +150,6 @@
     (click)="authService.logout()"
   >
     <img src="/icons/logout.svg" alt="Log Out" />
-    გასვლა
+    {{ "NAV.MENU.logout" | translate }}
   </button>
 </div>
