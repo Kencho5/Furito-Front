@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { AuthService } from '@auth/services/auth.service';
+import { DropdownComponent } from '@shared/components/ui/dropdown/dropdown.component';
 import { SharedModule } from '@shared/shared.module';
+import { TABS } from '@utils/sidebarTabs';
 
 @Component({
   selector: 'app-profile-sidebar',
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, DropdownComponent],
   templateUrl: './profile-sidebar.component.html',
 })
 export class ProfileSidebarComponent {
@@ -15,6 +17,7 @@ export class ProfileSidebarComponent {
   ) {}
 
   activeTab: string = '';
+  TABS = TABS;
 
   ngOnInit() {
     this.activeTab = this.router.url;
@@ -28,5 +31,13 @@ export class ProfileSidebarComponent {
 
   setActive(route: string) {
     this.activeTab = route;
+  }
+
+  get label() {
+    return this.TABS.find((tab) => tab.url === this.router.url)?.label || '';
+  }
+
+  get icon() {
+    return this.TABS.find((tab) => tab.url === this.router.url)?.icon;
   }
 }

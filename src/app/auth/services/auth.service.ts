@@ -30,7 +30,7 @@ export class AuthService {
 
   login(token: string, redirect: boolean): void {
     localStorage.setItem('token', token);
-    if (redirect) this.router.navigate(['/profile']);
+    if (redirect) this.router.navigate(['/profile/info']);
   }
 
   logout(): void {

@@ -26,6 +26,7 @@ export const routes: Routes = [
     component: ProfileLayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo: 'info', pathMatch: 'full' },
       {
         path: 'organizations',
         loadComponent: () =>
@@ -33,13 +34,19 @@ export const routes: Routes = [
             './shared/components/profile/organizations/organizations.component'
           ).then((m) => m.OrganizationsComponent),
       },
-
       {
         path: 'add-org',
         loadComponent: () =>
           import('./shared/components/profile/add-org/add-org.component').then(
             (m) => m.AddOrgComponent,
           ),
+      },
+      {
+        path: 'info',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/user-info/user-info.component'
+          ).then((m) => m.UserInfoComponent),
       },
     ],
   },

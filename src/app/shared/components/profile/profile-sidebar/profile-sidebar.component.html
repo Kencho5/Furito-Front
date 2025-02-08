@@ -1,5 +1,5 @@
 <div
-  class="flex h-[calc(100vh-72px)] w-[300px] flex-col gap-6 border-r border-r-neutral-100 bg-white px-4 py-6 sm:h-[calc(100vh-80px)]"
+  class="hidden h-[calc(100vh-72px)] w-[300px] flex-col gap-6 border-r border-r-neutral-100 bg-white px-4 py-6 sm:h-[calc(100vh-80px)] md:flex"
 >
   <div class="flex gap-3 rounded-2xl bg-neutral-50 p-4">
     <img src="/icons/userPaw.svg" width="44" height="44" alt="Avatar" />
@@ -153,3 +153,49 @@
     {{ "NAV.MENU.logout" | translate }}
   </button>
 </div>
+
+<app-dropdown #dropdown class="m-2 block px-3 md:hidden">
+  <button
+    (click)="dropdown.toggle()"
+    class="flex max-h-[44px] w-full items-center justify-between rounded-2xl border border-neutral-200 bg-white px-3.5 py-2.5"
+  >
+    <span class="flex items-center gap-2">
+      <img src="{{ icon }}" />
+      {{ label | translate }}
+    </span>
+
+    <img src="/icons/arrowDown.svg" alt="Arrow Down" />
+  </button>
+
+  <div
+    dropDownContent
+    class="absolute left-1/2 z-10 mt-2 w-full origin-top-right -translate-x-1/2 rounded-2xl border border-neutral-200 bg-white shadow-md"
+    (click)="dropdown.toggle()"
+  >
+    <div class="flex flex-col gap-2 p-2">
+      @for (tab of TABS; track tab.url) {
+        <a
+          [routerLink]="tab.url"
+          class="flex items-center gap-2 rounded-xl px-2 py-2.5 text-left font-normal"
+          [ngClass]="{
+            'bg-orange-50 font-semibold text-orange-500': activeTab === tab.url,
+          }"
+        >
+          <img [src]="activeTab == tab.url ? tab.iconActive : tab.icon" />
+          {{ tab.label | translate }}
+        </a>
+      }
+
+      <div class="h-px bg-neutral-100"></div>
+
+      <button
+        type="button"
+        class="flex items-center gap-2 rounded-xl px-2 py-2.5 text-left font-normal"
+        (click)="authService.logout()"
+      >
+        <img src="/icons/sidebar/logout.svg" alt="Log Out" />
+        {{ "NAV.MENU.logout" | translate }}
+      </button>
+    </div>
+  </div>
+</app-dropdown>
