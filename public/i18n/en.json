@@ -73,5 +73,11 @@
       "services": "My services",
       "logout": "Log out"
     }
+  },
+  "FOOTER": {
+    "services": "Services",
+    "contact": "Contact",
+    "help": "Help",
+    "terms": "Terms and conditions"
   }
 }
