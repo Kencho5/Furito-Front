@@ -68,7 +68,7 @@
             <h1 class="font-semibold sm:text-lg">
               {{ service.title | translate }}
             </h1>
-            <p class="text-sm font-normal text-neutral-500">
+            <p class="text-xs font-normal text-neutral-500 sm:text-sm">
               {{ service.subtext }}
             </p>
           </div>
@@ -88,13 +88,13 @@
     </div>
 
     <div
-      class="flex min-w-0 justify-between gap-6 overflow-x-auto pl-4 pr-0 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 [&::-webkit-scrollbar]:hidden"
+      class="flex min-w-0 snap-x snap-mandatory justify-between gap-6 overflow-x-auto px-4 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 [&::-webkit-scrollbar]:hidden"
     >
       @for (category of CATEGORIES; track $index) {
         <a
           routerLink=""
           [class]="category.color"
-          class="relative flex h-60 w-60 flex-none flex-col-reverse rounded-[20px] p-3"
+          class="relative flex h-60 w-60 flex-none snap-center flex-col-reverse rounded-[20px] p-3"
         >
           <app-image
             [src]="category.icon"
