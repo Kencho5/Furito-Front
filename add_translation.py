@@ -30,9 +30,9 @@ def update_json(en_path, ge_path, key_path, en_value, ge_value):
     with open(ge_path, "w", encoding="utf-8") as file:
         json.dump(ge_data, file, ensure_ascii=False, separators=(",", ":"))
 
-    print(f"Successfully added {path_parts[-1]}")
-    print(f"EN: {en_value}")
-    print(f"GE: {ge_value}")
+    # print(f"Successfully added {path_parts[-1]}")
+    # print(f"EN: {en_value}")
+    # print(f"GE: {ge_value}")
 
 
 def main():
