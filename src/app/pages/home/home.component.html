@@ -11,7 +11,7 @@
         შემოგვიერთდი და იპოვე შენი ახალი საუკეთესო მეგობარი ჩვენთან
       </p>
 
-      <form class="space-y-6">
+      <form [formGroup]="searchForm" (ngSubmit)="search()" class="space-y-6">
         <div class="relative">
           <img
             src="/icons/home/search.svg"
@@ -19,6 +19,7 @@
           />
           <input
             type="text"
+            formControlName="text"
             placeholder="მაგ: ცხოველის ჯიში"
             class="h-[60px] w-full rounded-3xl border-[1.5px] border-yellow-300 px-1.5 py-2.5 pl-14 font-normal text-neutral-900 outline-none placeholder:text-neutral-400 sm:text-lg"
           />
