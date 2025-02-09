@@ -7,9 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ImageComponent {
   @Input() src!: string;
-  @Input() width?: string;
-  @Input() height?: string;
-  @Input() alt: string = '';
+  @Input() width?: string = '200';
+  @Input() height?: string = '200';
+  @Input() loading?: string;
+  @Input() alt?: string;
 
   imageLoaded = false;
 
