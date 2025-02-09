@@ -1,7 +1,5 @@
 {
-  "HOME": {
-    "home": "Home"
-  },
+  "HOME": {},
   "PROFILE": {
     "organizations": "My organizations",
     "services": "My services",
@@ -31,21 +29,18 @@
     "company_code": "Company ID",
     "company_name": "Company name",
     "service_category": "Service category",
-
     "SERVICES": {
       "veterinary": "Veterinary",
       "food": "Food and accessories",
       "training": "Training",
       "grooming": "Grooming"
     },
-
     "ERROR": {
       "terms_error": "You must agree to the terms",
       "wrong_credentials": "Wrong credentials",
       "missing_credentials": "Please fill in the form",
       "unforseen": "Unforseen error",
       "email_taken": "Email taken",
-
       "FORM": {
         "name": "Enter your name",
         "surname": "Enter your surname",
@@ -59,14 +54,10 @@
       }
     }
   },
-  "COMBOBOX": {
-    "search": "Search...",
-    "not_found": "Not found."
-  },
+  "COMBOBOX": { "search": "Search...", "not_found": "Not found." },
   "NAV": {
     "upload": "Upload",
     "login": "Login",
-
     "MENU": {
       "profile": "My Profile",
       "posts": "My posts",
@@ -81,3 +72,4 @@
     "terms": "Terms and conditions"
   }
 }
+
