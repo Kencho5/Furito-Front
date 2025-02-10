@@ -93,9 +93,7 @@
         </div>
       </div>
 
-      <p
-        class="flex items-center gap-2 text-xs font-normal text-neutral-500 sm:text-sm"
-      >
+      <p class="subtext flex items-center gap-2 text-xs sm:text-sm">
         @if (
           registerForm.controls.password.value &&
           registerForm.controls.password.value.length >= 6
@@ -120,7 +118,7 @@
         }
       </div>
 
-      <p class="text-sm font-normal text-neutral-500 sm:text-base">
+      <p class="subtext text-sm sm:text-base">
         {{ "AUTH.agree" | translate }}
         <a routerLink="/terms" class="text-neutral-900 underline">{{
           "AUTH.terms" | translate
