@@ -1,15 +1,17 @@
-<div class="mt-32 flex items-center justify-center">
-  <div class="text-center">
-    <h1 class="text-9xl font-bold text-neutral-900">404</h1>
-    <p class="mt-4 text-2xl font-semibold text-neutral-800">Page Not Found</p>
-    <p class="mt-2 text-neutral-500">
-      Sorry, the page you're looking for doesn't exist.
-    </p>
-    <a
-      routerLink="/"
-      class="mt-6 inline-block rounded-lg bg-orange-500 px-6 py-3 text-white transition hover:bg-orange-600"
-    >
-      Go Home
-    </a>
+<div
+  class="mt-28 flex w-full flex-col items-center justify-center gap-8 text-center"
+>
+  <app-image src="/404.webp" width="286" />
+
+  <div class="space-y-3">
+    <h1 class="text-3xl font-bold">{{ "404.title" | translate }}</h1>
+    <p class="subtext text-base">{{ "404.subtext" | translate }}</p>
   </div>
+
+  <a
+    routerLink=""
+    (click)="back()"
+    class="rounded-2xl bg-yellow-400 px-5 py-3 font-bold"
+    >{{ "404.back" | translate }}</a
+  >
 </div>
