@@ -1,7 +1,5 @@
-<div class="px-4 py-8 sm:px-20 sm:py-16">
-  <div
-    class="flex flex-col items-center justify-between xl:flex-row xl:items-start"
-  >
+<div class="m-auto max-w-[1800px] px-4 pb-20 sm:px-20">
+  <div class="flex flex-col items-center justify-between xl:flex-row">
     <div class="relative space-y-5 text-center xl:text-left">
       <h1 class="text-4xl font-bold leading-tight xl:text-6xl">
         {{ "HOME.main_text" | translate }} <br />
@@ -78,7 +76,7 @@
   </div>
 
   <div
-    class="relative -mx-4 space-y-20 bg-neutral-100 py-16 text-center sm:-mx-20"
+    class="relative left-[50%] right-[50%] -mx-[50vw] w-screen space-y-20 bg-neutral-100 py-16 text-center"
   >
     <div class="m-auto max-w-72 space-y-5 sm:max-w-full">
       <h1 class="text-2xl font-bold sm:text-4xl">კატეგორიები</h1>
@@ -88,7 +86,7 @@
     </div>
 
     <div
-      class="flex min-w-0 snap-x snap-mandatory justify-between gap-6 overflow-x-auto px-4 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 [&::-webkit-scrollbar]:hidden"
+      class="m-auto flex min-w-0 max-w-[1800px] snap-x snap-mandatory justify-between gap-6 overflow-x-auto px-4 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 [&::-webkit-scrollbar]:hidden"
     >
       @for (category of CATEGORIES; track $index) {
         <a
