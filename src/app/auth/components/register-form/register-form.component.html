@@ -37,7 +37,10 @@
 
     <div class="flex flex-col justify-between gap-4 sm:flex-row">
       <app-combobox
-        class="w-full sm:w-[128px]"
+        class="absolute z-10 w-[90px] sm:w-[100px]"
+        [customClass]="
+          'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base'
+        "
         [items]="phoneCodes"
         [selectedValue]="'995'"
         (selectedValueChange)="
@@ -49,6 +52,7 @@
 
       <div class="relative w-full">
         <app-input
+          [customClass]="'pl-24 sm:pl-28'"
           [control]="registerForm.controls.phone"
           [type]="'number'"
           [placeholder]="'AUTH.phone' | translate"

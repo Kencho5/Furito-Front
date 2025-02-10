@@ -12,4 +12,5 @@ export class InputComponent {
   @Input() type!: string;
   @Input() placeholder!: string;
   @Input() error?: boolean;
+  @Input() customClass: string = '';
 }

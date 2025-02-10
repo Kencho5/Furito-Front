@@ -25,6 +25,7 @@ export class ComboboxComponent {
   @Input() searchPlaceholder!: string;
   @Input() notFoundText!: string;
   @Input() error?: boolean;
+  @Input() customClass: string = '';
   @Input() items!: ComboboxItems[];
 
   @Output() selectedValueChange = new EventEmitter<string>();

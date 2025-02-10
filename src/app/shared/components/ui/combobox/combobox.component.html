@@ -3,8 +3,9 @@
 
 <div class="relative">
   <button
+    [class]="customClass"
     type="button"
-    class="flex max-h-[44px] w-full items-center justify-between rounded-2xl border bg-white px-3 py-2.5 text-sm font-normal text-neutral-400 sm:text-base"
+    class="flex max-h-[44px] w-full items-center justify-between"
     [ngClass]="{
       'border-orange-500': error,
       'border-neutral-200': !error,
