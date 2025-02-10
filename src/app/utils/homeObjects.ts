@@ -45,31 +45,36 @@ export const HOME_SERVICES = [
 
 export const HOME_CATEGORIES = [
   {
-    animal: 'ANIMALS.dog',
+    animal: 'dog',
+    animal_translate: 'ANIMALS.dog',
     color: 'bg-pink-200',
     icon: '/home/dog.webp',
     shapes: '/icons/home/shapes_pink.svg',
   },
   {
-    animal: 'ANIMALS.cat',
+    animal: 'cat',
+    animal_translate: 'ANIMALS.cat',
     color: 'bg-indigo-200',
     icon: '/home/cat.webp',
     shapes: '/icons/home/shapes_indigo.svg',
   },
   {
-    animal: 'ANIMALS.bird',
+    animal: 'bird',
+    animal_translate: 'ANIMALS.bird',
     color: 'bg-lime-200',
     icon: '/home/bird.webp',
     shapes: '/icons/home/shapes_lime.svg',
   },
   {
-    animal: 'ANIMALS.fish',
+    animal: 'fish',
+    animal_translate: 'ANIMALS.fish',
     color: 'bg-sky-200',
     icon: '/home/fish.webp',
     shapes: '/icons/home/shapes_sky.svg',
   },
   {
-    animal: 'ANIMALS.other',
+    animal: 'other',
+    animal_translate: 'ANIMALS.other',
     color: 'bg-orange-200',
     icon: '/home/other.webp',
     shapes: '/icons/home/shapes_orange.svg',

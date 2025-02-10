@@ -91,7 +91,8 @@
     >
       @for (category of CATEGORIES; track $index) {
         <a
-          routerLink=""
+          [routerLink]="['/search']"
+          [queryParams]="{ animal: category.animal }"
           [class]="category.color"
           class="relative flex h-60 w-60 flex-none snap-center flex-col-reverse rounded-[20px] p-3"
         >
@@ -107,7 +108,7 @@
           >
             <div class="text-left">
               <h1 class="font-semibold sm:text-lg">
-                {{ category.animal | translate }}
+                {{ category.animal_translate | translate }}
               </h1>
               <p class="subtext text-sm">20 განცხადება</p>
             </div>
