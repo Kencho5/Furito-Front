@@ -42,7 +42,7 @@ export class LoginFormComponent {
   showPassword: boolean = false;
   submitted: boolean = false;
   loading: WritableSignal<boolean> = signal(false);
-  formError = signal<string>('');
+  formError: string | null = null;
 
   onSubmit(): void {
     this.handleErrors();
@@ -52,7 +52,7 @@ export class LoginFormComponent {
       return;
     }
 
-    this.formError.set('');
+    this.formError = null;
     this.loading.set(true);
 
     const credentials = this.loginForm.value as LoginFields;
@@ -70,7 +70,7 @@ export class LoginFormComponent {
           this.authService.login(response.token, true);
         },
         error: (response: HttpErrorResponse) => {
-          this.formError.set(response.error.message);
+          this.formError = response.error.message;
         },
       });
   }
@@ -78,10 +78,10 @@ export class LoginFormComponent {
   handleErrors() {
     for (const control in this.loginForm.controls) {
       if (this.loginForm.get(control)?.errors) {
-        this.formError.set(`AUTH.ERROR.FORM.${control}`);
+        this.formError = `AUTH.ERROR.FORM.${control}`;
         break;
       }
-      this.formError.set('');
+      this.formError = '';
     }
   }
 }

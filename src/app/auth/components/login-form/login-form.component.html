@@ -21,9 +21,9 @@
     <app-password-toggle (showPasswordChange)="showPassword = $event" />
   </div>
 
-  @if (formError()) {
+  @if (formError) {
     <app-error-message>
-      {{ formError() | translate }}
+      {{ formError | translate }}
     </app-error-message>
   }
 
