@@ -1,4 +1,7 @@
 import json
+import sys
+
+sys.stdin.reconfigure(encoding="utf-8")
 
 
 def update_json(en_path, ge_path, key_path, en_value, ge_value):

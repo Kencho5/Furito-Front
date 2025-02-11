@@ -8,7 +8,7 @@
         }}</span>
       </h1>
       <p class="subtext max-w-[485px] xl:text-lg">
-        შემოგვიერთდი და იპოვე შენი ახალი საუკეთესო მეგობარი ჩვენთან
+        {{ "HOME.main_subtext" | translate }}
       </p>
 
       <form [formGroup]="searchForm" (ngSubmit)="search()" class="space-y-6">
@@ -20,7 +20,7 @@
           <input
             type="text"
             formControlName="text"
-            placeholder="მაგ: ცხოველის ჯიში"
+            [placeholder]="'HOME.search' | translate"
             class="h-[60px] w-full rounded-3xl border-[1.5px] border-yellow-300 px-1.5 py-2.5 pl-14 font-normal text-neutral-900 outline-none placeholder:text-neutral-400 sm:text-lg"
           />
         </div>
@@ -30,7 +30,7 @@
           value="ძებნა"
           class="flex h-[60px] w-full items-center justify-center rounded-3xl bg-yellow-400 px-5 py-3 font-bold sm:text-lg"
         >
-          ძებნა
+          {{ "HOME.submit" | translate }}
         </button>
       </form>
 
@@ -48,9 +48,11 @@
 
   <div class="space-y-12 py-16 text-center">
     <div class="space-y-5">
-      <h1 class="text-2xl font-bold sm:text-4xl">ჩვენი სერვისები</h1>
+      <h1 class="text-2xl font-bold sm:text-4xl">
+        {{ "HOME.services" | translate }}
+      </h1>
       <p class="subtext text-base sm:text-lg">
-        გაეცანი ჩვენ შეთავაზებულ სერვისებს
+        {{ "HOME.services_subtext" | translate }}
       </p>
     </div>
 
@@ -80,9 +82,11 @@
     class="relative left-[50%] right-[50%] -mx-[50vw] w-screen space-y-20 bg-neutral-100 py-16 text-center"
   >
     <div class="m-auto max-w-72 space-y-5 sm:max-w-full">
-      <h1 class="text-2xl font-bold sm:text-4xl">კატეგორიები</h1>
+      <h1 class="text-2xl font-bold sm:text-4xl">
+        {{ "HOME.categories" | translate }}
+      </h1>
       <p class="subtext text-base sm:text-lg">
-        გაეცანი ჩვენს ყველა კატეგორიას დეტალურად
+        {{ "HOME.categories_subtext" | translate }}
       </p>
     </div>
 
