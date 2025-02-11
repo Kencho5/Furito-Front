@@ -37,9 +37,9 @@
 
     <div class="flex flex-col justify-between gap-4 sm:flex-row">
       <app-combobox
-        class="absolute z-10 w-[90px] sm:w-[100px]"
+        class="absolute w-[90px] sm:w-[100px]"
         [customClass]="
-          'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base'
+          'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base border-r-0'
         "
         [items]="phoneCodes"
         [selectedValue]="'995'"
@@ -50,9 +50,9 @@
         [notFoundText]="'COMBOBOX.not_found' | translate"
       ></app-combobox>
 
-      <div class="relative w-full">
+      <div class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]">
         <app-input
-          [customClass]="'pl-24 sm:pl-28'"
+          [customClass]="'rounded-l-none'"
           [control]="registerForm.controls.phone"
           [type]="'number'"
           [placeholder]="'AUTH.phone' | translate"
