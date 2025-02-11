@@ -4,6 +4,7 @@
   [width]="width"
   [height]="height"
   class="transition-opacity duration-200"
+  [class]="customClass"
   [class.opacity-0]="!imageLoaded"
   [class.opacity-100]="imageLoaded"
   (load)="onImageLoad()"

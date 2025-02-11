@@ -1,4 +1,4 @@
-<div class="m-auto max-w-[1800px] px-4 py-8 pb-20 sm:px-20 xl:pt-0">
+<div class="container m-auto mb-24 space-y-12 px-4 py-8 sm:px-0">
   <div class="flex flex-col items-center justify-between xl:flex-row">
     <div class="relative space-y-5 text-center xl:text-left">
       <h1 class="text-4xl font-bold leading-tight xl:text-6xl">
@@ -43,7 +43,7 @@
       />
     </div>
 
-    <app-image src="/home/pets.webp" width="593" height="560" loading="lazy" />
+    <app-image src="/home/pets.webp" width="500" height="500" loading="lazy" />
   </div>
 
   <div class="space-y-12 py-16 text-center">
@@ -91,14 +91,14 @@
     </div>
 
     <div
-      class="m-auto flex min-w-0 max-w-[1800px] snap-x snap-mandatory justify-between gap-6 overflow-x-auto px-4 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 [&::-webkit-scrollbar]:hidden"
+      class="container m-auto flex snap-x snap-mandatory justify-between gap-6 overflow-x-auto px-4 pt-10 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-0 [&::-webkit-scrollbar]:hidden"
     >
       @for (category of CATEGORIES; track $index) {
         <a
           [routerLink]="['/search']"
           [queryParams]="{ animal: category.animal }"
           [class]="category.color"
-          class="relative flex h-60 w-60 flex-none snap-center flex-col-reverse rounded-[20px] p-3"
+          class="relative flex h-60 w-[236px] flex-none snap-center flex-col-reverse rounded-[20px] p-3"
         >
           <app-image
             [src]="category.icon"
@@ -120,6 +120,25 @@
             <img src="/icons/home/arrow_right.svg" loading="lazy" />
           </div>
         </a>
+      }
+    </div>
+  </div>
+
+  <div class="space-y-12">
+    <div class="flex justify-between">
+      <h1 class="text-2xl font-bold sm:text-4xl">ახალი განცხადებები</h1>
+      <a
+        routerLink="/search"
+        class="hidden rounded-2xl bg-yellow-200 px-4 py-3 font-medium sm:block"
+        >ყველას ნახვა (550)</a
+      >
+    </div>
+
+    <div
+      class="-mr-4 flex snap-x snap-mandatory justify-between gap-4 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-6 [&::-webkit-scrollbar]:hidden"
+    >
+      @for (item of [].constructor(4); track $index) {
+        <app-post-card class="snap-center" />
       }
     </div>
   </div>

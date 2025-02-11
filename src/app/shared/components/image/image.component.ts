@@ -10,6 +10,7 @@ export class ImageComponent {
   @Input() width?: string = '200';
   @Input() height?: string = '200';
   @Input() loading?: string;
+  @Input() customClass: string = '';
   @Input() alt?: string;
 
   imageLoaded = false;
