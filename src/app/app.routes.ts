@@ -40,7 +40,7 @@ export const routes: Routes = [
           ).then((m) => m.OrganizationsComponent),
       },
       {
-        path: 'add-org',
+        path: 'organizations/add',
         loadComponent: () =>
           import('./shared/components/profile/add-org/add-org.component').then(
             (m) => m.AddOrgComponent,

@@ -20,11 +20,11 @@ export class ProfileSidebarComponent {
   TABS = TABS;
 
   ngOnInit() {
-    this.activeTab = this.router.url;
+    this.activeTab = this.urlPaths[1];
 
     this.router.events.subscribe((e) => {
       if (e instanceof NavigationEnd) {
-        this.activeTab = this.router.url;
+        this.activeTab = this.urlPaths[1];
       }
     });
   }
@@ -34,10 +34,14 @@ export class ProfileSidebarComponent {
   }
 
   get label() {
-    return this.TABS.find((tab) => tab.url === this.router.url)?.label || '';
+    return this.TABS.find((tab) => tab.url === this.urlPaths[1])?.label || '';
   }
 
   get icon() {
-    return this.TABS.find((tab) => tab.url === this.router.url)?.icon;
+    return this.TABS.find((tab) => tab.url === this.urlPaths[1])?.icon;
+  }
+
+  get urlPaths() {
+    return this.router.url.split('/').filter((segment) => segment);
   }
 }
