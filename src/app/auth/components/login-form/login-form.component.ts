@@ -70,6 +70,11 @@ export class LoginFormComponent {
           this.authService.login(response.token, true);
         },
         error: (response: HttpErrorResponse) => {
+          if (response.status == 500) {
+            this.formError = 'AUTH.ERROR.unforseen';
+            return;
+          }
+
           this.formError = response.error.message;
         },
       });
