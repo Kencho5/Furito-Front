@@ -130,7 +130,7 @@ export class RegisterFormComponent {
           this.authService.login(response.token, false);
         },
         error: (response: HttpErrorResponse) => {
-          if (response.status == 500) {
+          if (!response.error.message) {
             this.formError.set('AUTH.ERROR.unforseen');
             return;
           }
