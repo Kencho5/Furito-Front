@@ -23,6 +23,7 @@ import {
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '@auth/services/auth.service';
 import { finalize } from 'rxjs';
+import { SendCodeService } from '@auth/services/send-code.service';
 
 @Component({
   selector: 'app-register-form',
@@ -39,7 +40,10 @@ import { finalize } from 'rxjs';
   templateUrl: './register-form.component.html',
 })
 export class RegisterFormComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    public sendCodeService: SendCodeService,
+  ) {}
 
   passwordMatchValidator: ValidatorFn = (control: AbstractControl) => {
     const password = control.get('password')?.value;
@@ -55,6 +59,11 @@ export class RegisterFormComponent {
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required]),
+      email_code: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(4),
+      ]),
       phone: new FormControl('', [Validators.required]),
       phone_code: new FormControl('995', [Validators.required]),
       password: new FormControl('', [
@@ -74,8 +83,10 @@ export class RegisterFormComponent {
 
   submitted: boolean = false;
   showPassword: boolean = false;
+  showInput: boolean = false;
   termsChecked: boolean = false;
-  formError: string | null = null;
+  formError = signal<string>('');
+  codeError = signal<string>('');
   loading = signal<boolean>(false);
   success: boolean = false;
 
@@ -92,7 +103,7 @@ export class RegisterFormComponent {
       return;
     }
 
-    this.formError = null;
+    this.formError.set('');
     this.loading.set(true);
 
     const formValue = this.registerForm.value;
@@ -120,11 +131,11 @@ export class RegisterFormComponent {
         },
         error: (response: HttpErrorResponse) => {
           if (response.status == 500) {
-            this.formError = 'AUTH.ERROR.unforseen';
+            this.formError.set('AUTH.ERROR.unforseen');
             return;
           }
 
-          this.formError = response.error.message;
+          this.formError.set(response.error.message);
         },
       });
   }
@@ -132,15 +143,31 @@ export class RegisterFormComponent {
   handleErrors() {
     for (const control in this.registerForm.controls) {
       if (this.registerForm.get(control)?.errors) {
-        this.formError = `AUTH.ERROR.FORM.${control}`;
+        this.formError.set(`AUTH.ERROR.FORM.${control}`);
         break;
       }
-      this.formError = '';
+      this.formError.set('');
     }
 
     if (this.registerForm.errors?.['passwordMismatch']) {
-      this.formError = 'AUTH.ERROR.FORM.password_mismatch';
+      this.formError.set('AUTH.ERROR.FORM.password_mismatch');
       return;
     }
+  }
+
+  verifyEmailCode() {
+    const form = this.registerForm.controls;
+
+    this.sendCodeService
+      .verifyEmailCode(form.email.value!, form.email_code.value!)
+      ?.subscribe({
+        next: () => {
+          this.codeError.set('');
+          this.registerForm.controls.email_code.disable();
+        },
+        error: (response: HttpErrorResponse) => {
+          this.codeError.set(response.error.message);
+        },
+      });
   }
 }

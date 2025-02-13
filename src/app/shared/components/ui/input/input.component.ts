@@ -9,7 +9,7 @@ import { SharedModule } from '@shared/shared.module';
 })
 export class InputComponent {
   @Input() control = new FormControl();
-  @Input() type!: string;
+  @Input() type: string = 'text';
   @Input() placeholder!: string;
   @Input() error?: boolean;
   @Input() customClass: string = '';

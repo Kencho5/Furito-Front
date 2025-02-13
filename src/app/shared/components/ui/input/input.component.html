@@ -4,9 +4,10 @@
   [formControl]="control"
   [class]="customClass"
   class="h-11 w-full rounded-2xl border px-3.5 py-2.5 text-sm outline-none placeholder:font-normal placeholder:text-neutral-400 sm:text-base"
-  [ngClass]="
-    error
-      ? 'border-orange-500'
-      : 'border-neutral-200 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400'
-  "
+  [ngClass]="{
+    'border-orange-500': error,
+    'border-neutral-200 focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400':
+      !error,
+    'cursor-not-allowed': control.disabled,
+  }"
 />

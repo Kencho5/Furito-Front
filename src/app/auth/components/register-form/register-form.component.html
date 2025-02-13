@@ -8,7 +8,7 @@
       <app-input
         class="w-full"
         [control]="registerForm.controls.name"
-        [type]="'text'"
+        type="text"
         [placeholder]="'AUTH.name' | translate"
         [error]="submitted && registerForm.controls.name.invalid"
       />
@@ -16,7 +16,7 @@
       <app-input
         class="w-full"
         [control]="registerForm.controls.surname"
-        [type]="'text'"
+        type="text"
         [placeholder]="'AUTH.surname' | translate"
         [error]="submitted && registerForm.controls.surname.invalid"
       />
@@ -25,15 +25,50 @@
     <div class="relative">
       <app-input
         [control]="registerForm.controls.email"
-        [type]="'email'"
+        type="email"
         [placeholder]="'AUTH.email' | translate"
-        [error]="submitted && registerForm.controls.email.invalid"
+        [error]="
+          submitted &&
+          registerForm.controls.email.invalid &&
+          codeError().includes('invalid_email')
+        "
       />
 
       <app-get-code
         class="absolute right-1.5 top-1/2 -translate-y-1/2"
+        type="email"
+        [value]="registerForm.controls.email.value!"
+        (showInputChange)="showInput = $event"
+        (error)="codeError.set($event)"
       ></app-get-code>
     </div>
+
+    @if (showInput && !codeError().includes("invalid_email")) {
+      <div class="relative">
+        <app-input
+          [control]="registerForm.controls.email_code"
+          type="number"
+          [placeholder]="'AUTH.email_code' | translate"
+          [error]="
+            (submitted && registerForm.controls.email_code.invalid) ||
+            codeError().includes('invalid_code')
+          "
+          (input)="verifyEmailCode()"
+        />
+
+        @if (registerForm.controls.email_code.disabled) {
+          <img
+            src="/icons/auth/check_green.svg"
+            class="absolute right-3 top-1/2 -translate-y-1/2"
+          />
+        }
+      </div>
+    }
+    @if (codeError()) {
+      <app-error-message>
+        {{ codeError() | translate }}
+      </app-error-message>
+    }
 
     <div class="flex flex-col justify-between gap-4 sm:flex-row">
       <app-combobox
@@ -54,7 +89,7 @@
         <app-input
           [customClass]="'rounded-l-none'"
           [control]="registerForm.controls.phone"
-          [type]="'number'"
+          type="number"
           [placeholder]="'AUTH.phone' | translate"
           [error]="submitted && registerForm.controls.phone.invalid"
         />
@@ -126,9 +161,9 @@
       </p>
     </div>
 
-    @if (formError) {
+    @if (formError()) {
       <app-error-message>
-        {{ formError | translate }}
+        {{ formError() | translate }}
       </app-error-message>
     }
 

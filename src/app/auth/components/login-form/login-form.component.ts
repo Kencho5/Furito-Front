@@ -41,8 +41,8 @@ export class LoginFormComponent {
   });
   showPassword: boolean = false;
   submitted: boolean = false;
-  loading: WritableSignal<boolean> = signal(false);
-  formError: string | null = null;
+  loading = signal<boolean>(false);
+  formError = signal<string>('');
 
   onSubmit(): void {
     this.handleErrors();
@@ -52,7 +52,7 @@ export class LoginFormComponent {
       return;
     }
 
-    this.formError = null;
+    this.formError.set('');
     this.loading.set(true);
 
     const credentials = this.loginForm.value as LoginFields;
@@ -71,11 +71,11 @@ export class LoginFormComponent {
         },
         error: (response: HttpErrorResponse) => {
           if (response.status == 500) {
-            this.formError = 'AUTH.ERROR.unforseen';
+            this.formError.set('AUTH.ERROR.unforseen');
             return;
           }
 
-          this.formError = response.error.message;
+          this.formError.set(response.error.message);
         },
       });
   }
@@ -83,10 +83,10 @@ export class LoginFormComponent {
   handleErrors() {
     for (const control in this.loginForm.controls) {
       if (this.loginForm.get(control)?.errors) {
-        this.formError = `AUTH.ERROR.FORM.${control}`;
+        this.formError.set(`AUTH.ERROR.FORM.${control}`);
         break;
       }
-      this.formError = '';
+      this.formError.set('');
     }
   }
 }
