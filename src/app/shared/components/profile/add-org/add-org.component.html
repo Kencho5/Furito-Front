@@ -13,22 +13,47 @@
 
   <form
     class="space-y-6 [&>*:last-child]:gap-3 [&>*]:flex [&>*]:flex-col [&>*]:gap-5 [&>*]:sm:flex-row [&>*]:sm:gap-14"
+    (ngSubmit)="onSubmit($event)"
   >
     <div>
       <h1 class="w-80 text-base font-semibold sm:text-lg">ორგანიზაციის ლოგო</h1>
 
-      <div class="flex items-center gap-4">
-        <img
-          src="/icons/profile/upload-circle.svg"
-          class="w-[54px] sm:w-auto"
-        />
-        <div>
-          <h1 class="text-base sm:text-lg">ატვირთვა</h1>
-          <p class="subtext space-y-0.5 text-sm">
-            PNG ან JPG (მაქს. 800x400px)
-          </p>
+      <div class="flex items-center justify-between gap-4 sm:w-[512px]">
+        <div
+          class="flex cursor-pointer items-center gap-4"
+          (click)="logoInput.click()"
+        >
+          <img
+            src="/icons/profile/upload-circle.svg"
+            class="max-w-[54px] rounded-full sm:max-w-[74px]"
+            #logoImage
+          />
+          <div>
+            <h1 class="text-base sm:text-lg">ატვირთვა</h1>
+            <p class="subtext space-y-0.5 text-sm">
+              PNG ან JPG (მაქს. 800x400px)
+            </p>
+          </div>
         </div>
+
+        @if (hasLogo()) {
+          <button
+            type="button"
+            class="flex items-center justify-center gap-1.5 text-sm text-yellow-500"
+            (click)="deleteLogo()"
+          >
+            <img src="/icons/profile/delete.svg" />
+            წაშლა
+          </button>
+        }
       </div>
+      <input
+        type="file"
+        accept="image/*"
+        #logoInput
+        hidden
+        (change)="onFilesChange()"
+      />
     </div>
 
     <div class="-mx-8 h-px bg-neutral-100"></div>
@@ -42,7 +67,11 @@
       </div>
 
       <div class="sm:w-[512px]">
-        <app-input placeholder="მაგ. 98313476" />
+        <app-input
+          placeholder="მაგ. 98313476"
+          [control]="addForm.controls.org_code"
+          [error]="submitted && addForm.controls.org_code.invalid"
+        />
       </div>
     </div>
 
@@ -52,7 +81,11 @@
       <h1 class="w-80 text-base font-semibold sm:text-lg">მისამართი</h1>
 
       <div class="sm:w-[512px]">
-        <app-input placeholder="მაგ. ჭავჭავაძის 5" />
+        <app-input
+          placeholder="მაგ. ჭავჭავაძის 5"
+          [control]="addForm.controls.address"
+          [error]="submitted && addForm.controls.address.invalid"
+        />
       </div>
     </div>
 
@@ -65,7 +98,7 @@
 
       <div class="flex gap-3 sm:w-[512px]">
         <app-combobox
-          class="w-20"
+          class="w-[90px] sm:min-w-[100px]"
           [items]="orgTypes"
           [selectedValue]="'LLC'"
           [searchPlaceholder]="'...'"
@@ -73,7 +106,12 @@
             'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
           "
         />
-        <app-input placeholder="მაგ. Zoomart" class="w-full" />
+        <app-input
+          placeholder="მაგ. Zoomart"
+          [control]="addForm.controls.org_name"
+          [error]="submitted && addForm.controls.org_name.invalid"
+          class="w-full"
+        />
       </div>
     </div>
 
@@ -83,7 +121,11 @@
       <h1 class="w-80 text-base font-semibold sm:text-lg">ელ. ფოსტა</h1>
 
       <div class="sm:w-[512px]">
-        <app-input placeholder="მაგ. youremail@gmail.com" />
+        <app-input
+          placeholder="მაგ. youremail@gmail.com"
+          [control]="addForm.controls.email"
+          [error]="submitted && addForm.controls.email.invalid"
+        />
       </div>
     </div>
 
@@ -110,6 +152,8 @@
             [customClass]="'rounded-l-none'"
             type="number"
             [placeholder]="'AUTH.phone' | translate"
+            [control]="addForm.controls.phone"
+            [error]="submitted && addForm.controls.phone.invalid"
           />
         </div>
       </div>
@@ -117,9 +161,15 @@
 
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
+    @if (formError()) {
+      <app-error-message>
+        {{ formError() | translate }}
+      </app-error-message>
+    }
+
     <div class="text-sm sm:text-base">
       <button
-        type="button"
+        type="submit"
         class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"
       >
         დამატება
