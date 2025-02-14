@@ -40,7 +40,11 @@
 body {
   overscroll-behavior-y: none;
   background-color: #f6f6f6;
-  margin-top: 72px;
+  margin-top: 80px;
+
+  @media screen and (max-width: 640px) {
+    margin-top: 72px;
+  }
 }
 
 @layer utilities {

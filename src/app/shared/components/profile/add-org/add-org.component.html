@@ -1,4 +1,4 @@
-<div class="space-y-6 p-4 px-5 sm:space-y-12 sm:p-8">
+<div class="space-y-6 p-4 sm:space-y-12 sm:p-8">
   <div class="space-y-6">
     <button
       type="button"
@@ -67,6 +67,7 @@
       <div class="sm:w-[512px]">
         <app-input
           placeholder="მაგ. 98313476"
+          type="number"
           [control]="addForm.controls.org_code"
           [error]="submitted && addForm.controls.org_code.invalid"
         />
