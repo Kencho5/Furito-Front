@@ -76,18 +76,15 @@ export class AddOrgComponent {
 
   onFilesChange() {
     const files = this.logoInput.nativeElement.files;
+    if (files![0].size > 100 * 1024 * 1024) return;
 
-    if (files) {
-      for (const file of files) {
-        this.compressService
-          .compressImage(file, 0.85)
-          .then((compressedImage) => {
-            this.addForm.controls.logo.setValue(compressedImage);
-            this.logoImage.nativeElement.src = compressedImage;
-            this.hasLogo.set(true);
-          });
-      }
-    }
+    this.compressService
+      .compressImage(files![0], 0.85)
+      .then((compressedImage) => {
+        this.addForm.controls.logo.setValue(compressedImage);
+        this.logoImage.nativeElement.src = compressedImage;
+        this.hasLogo.set(true);
+      });
   }
 
   deleteLogo() {
