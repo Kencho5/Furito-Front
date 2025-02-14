@@ -130,6 +130,7 @@ export class RegisterFormComponent {
           this.authService.login(response.token, false);
         },
         error: (response: HttpErrorResponse) => {
+          console.log(response);
           if (response.status == 429) {
             this.formError.set('AUTH.ERROR.limit');
             return;
