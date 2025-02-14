@@ -1,8 +1,20 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
+import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
+import { InputComponent } from '@shared/components/ui/input/input.component';
+import { SharedModule } from '@shared/shared.module';
+import { orgTypes } from '@utils/orgTypes';
+import { phoneCodes } from '@utils/phoneCodes';
 
 @Component({
   selector: 'app-add-org',
-  imports: [],
+  imports: [SharedModule, InputComponent, ComboboxComponent],
   templateUrl: './add-org.component.html',
 })
-export class AddOrgComponent {}
+export class AddOrgComponent {
+  constructor(public location: Location) {}
+
+  orgTypes: ComboboxItems[] = orgTypes;
+  phoneCodes: ComboboxItems[] = phoneCodes;
+}

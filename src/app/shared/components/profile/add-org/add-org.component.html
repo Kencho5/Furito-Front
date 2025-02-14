@@ -1,1 +1,115 @@
-<p>add-org works!</p>
+<div class="space-y-12 p-8">
+  <div class="space-y-6">
+    <button
+      type="button"
+      class="flex items-center gap-2 text-neutral-800"
+      (click)="location.back()"
+    >
+      <img src="/icons/profile/arrow-left.svg" />
+      უკან დაბრუნება
+    </button>
+    <h1 class="text-3xl font-bold">ორგანიზაციის დამატება</h1>
+  </div>
+
+  <form class="space-y-6 [&>*:last-child]:gap-3 [&>*]:flex [&>*]:gap-14">
+    <div>
+      <h1 class="w-80 text-lg font-semibold">ორგანიზაციის ლოგო</h1>
+
+      <div class="flex items-center gap-4">
+        <img src="/icons/profile/upload-circle.svg" />
+        <div>
+          <h1 class="text-lg">ატვირთვა</h1>
+          <p class="subtext space-y-0.5 text-sm">
+            PNG ან JPG (მაქს. 800x400px)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <div>
+        <h1 class="w-80 text-lg font-semibold">საიდენტიფიკაციო კოდი</h1>
+        <p class="subtext text-sm">თქვენი ორგანიზაციის იდენთიფიკატორი</p>
+      </div>
+
+      <div class="w-[512px]">
+        <app-input placeholder="მაგ. 98313476" />
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <h1 class="w-80 text-lg font-semibold">მისამართი</h1>
+
+      <div class="w-[512px]">
+        <app-input placeholder="მაგ. ჭავჭავაძის 5" />
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <h1 class="w-80 text-lg font-semibold">ორგანიზაციის დასახელება</h1>
+
+      <div class="flex w-[512px] gap-3">
+        <app-combobox
+          [items]="orgTypes"
+          [selectedValue]="'LLC'"
+          [searchPlaceholder]="'...'"
+          [customClass]="
+            'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
+          "
+        />
+        <app-input placeholder="მაგ. Zoomart" class="w-full" />
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <h1 class="w-80 text-lg font-semibold">მობილურის ნომერი</h1>
+
+      <div class="w-[512px]">
+        <app-combobox
+          class="absolute w-[90px] sm:w-[100px]"
+          [customClass]="
+            'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base border-r-0'
+          "
+          [items]="phoneCodes"
+          [selectedValue]="'995'"
+          [searchPlaceholder]="'...'"
+        ></app-combobox>
+
+        <div
+          class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]"
+        >
+          <app-input
+            [customClass]="'rounded-l-none'"
+            type="number"
+            [placeholder]="'AUTH.phone' | translate"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <button
+        type="button"
+        class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"
+      >
+        დამატება
+      </button>
+      <button
+        type="button"
+        class="flex h-[44px] items-center justify-center rounded-2xl border border-neutral-200 px-[18px] py-2.5 font-bold"
+      >
+        გაუქმება
+      </button>
+    </div>
+  </form>
+</div>
