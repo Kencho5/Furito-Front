@@ -65,6 +65,7 @@
 
       <div class="flex gap-3 sm:w-[512px]">
         <app-combobox
+          class="w-20"
           [items]="orgTypes"
           [selectedValue]="'LLC'"
           [searchPlaceholder]="'...'"
@@ -100,7 +101,7 @@
           [items]="phoneCodes"
           [selectedValue]="'995'"
           [searchPlaceholder]="'...'"
-        ></app-combobox>
+        />
 
         <div
           class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]"
@@ -116,7 +117,7 @@
 
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
-    <div>
+    <div class="text-sm sm:text-base">
       <button
         type="button"
         class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"

@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
 import { InputComponent } from '@shared/components/ui/input/input.component';
@@ -14,6 +15,11 @@ import { phoneCodes } from '@utils/phoneCodes';
 })
 export class AddOrgComponent {
   constructor(public location: Location) {}
+
+  addForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   orgTypes: ComboboxItems[] = orgTypes;
   phoneCodes: ComboboxItems[] = phoneCodes;
