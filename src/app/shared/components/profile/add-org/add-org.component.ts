@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { SendCodeService } from '@auth/services/send-code.service';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
+import { AddOrgFields } from '@core/modules/interfaces/organizations';
+import { AddOrgService } from '@core/services/add-org.service';
 import { CompressImageService } from '@core/services/compress-image.service';
 import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
 import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
@@ -37,6 +39,7 @@ export class AddOrgComponent {
     public location: Location,
     private compressService: CompressImageService,
     private sendCodeService: SendCodeService,
+    private addOrgService: AddOrgService,
   ) {}
   @ViewChild('logoInput') logoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('logoImage') logoImage!: ElementRef<HTMLImageElement>;
@@ -68,14 +71,17 @@ export class AddOrgComponent {
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    this.handleErrors();
+    //this.handleErrors();
+    //
+    //if (this.addForm.invalid) {
+    //  this.submitted = true;
+    //  return;
+    //}
+    //
+    //this.formError.set('');
 
-    if (this.addForm.invalid) {
-      this.submitted = true;
-      return;
-    }
-
-    this.formError.set('');
+    const data = this.addForm.value as AddOrgFields;
+    this.addOrgService.addOrg(data).subscribe();
   }
 
   handleErrors() {
