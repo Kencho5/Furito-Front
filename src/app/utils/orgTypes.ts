@@ -1,10 +1,10 @@
 export const orgTypes = [
-  { value: 'LLC', label: 'შპს' },
-  { value: 'JLC', label: 'სპს' },
-  { value: 'IE', label: 'იმ' },
-  { value: 'GP', label: 'კს' },
-  { value: 'JSC', label: 'სს' },
-  { value: 'Coop', label: 'კოოპ' },
-  { value: 'NPO', label: 'აიპ' },
-  { value: 'LEPL', label: 'სსიპ' },
+  { value: 'llc', label: 'შპს' },
+  { value: 'jlc', label: 'სპს' },
+  { value: 'ie', label: 'იმ' },
+  { value: 'gp', label: 'კს' },
+  { value: 'jsc', label: 'სს' },
+  { value: 'coop', label: 'კოოპ' },
+  { value: 'npo', label: 'აიპ' },
+  { value: 'lepl', label: 'სსიპ' },
 ];

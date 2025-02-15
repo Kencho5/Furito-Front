@@ -28,8 +28,7 @@
         type="email"
         [placeholder]="'AUTH.email' | translate"
         [error]="
-          submitted &&
-          registerForm.controls.email.invalid &&
+          (submitted && registerForm.controls.email.invalid) ||
           codeError().includes('invalid_email')
         "
       />

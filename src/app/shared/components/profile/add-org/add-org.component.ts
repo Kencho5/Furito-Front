@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import {
   FormControl,
@@ -7,10 +8,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { SendCodeService } from '@auth/services/send-code.service';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import { CompressImageService } from '@core/services/compress-image.service';
 import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
 import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
+import { GetCodeComponent } from '@shared/components/ui/get-code/get-code.component';
 import { InputComponent } from '@shared/components/ui/input/input.component';
 import { SharedModule } from '@shared/shared.module';
 import { orgTypes } from '@utils/orgTypes';
@@ -25,6 +28,7 @@ import { phoneCodes } from '@utils/phoneCodes';
     ComboboxComponent,
     ReactiveFormsModule,
     ErrorMessageComponent,
+    GetCodeComponent,
   ],
   templateUrl: './add-org.component.html',
 })
@@ -32,6 +36,7 @@ export class AddOrgComponent {
   constructor(
     public location: Location,
     private compressService: CompressImageService,
+    private sendCodeService: SendCodeService,
   ) {}
   @ViewChild('logoInput') logoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('logoImage') logoImage!: ElementRef<HTMLImageElement>;
@@ -40,8 +45,15 @@ export class AddOrgComponent {
     logo: new FormControl('', [Validators.required]),
     org_code: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
+    org_type: new FormControl('llc', [Validators.required]),
     org_name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
+    email_code: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(4),
+    ]),
+    phone_code: new FormControl('995', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
   });
 
@@ -49,7 +61,9 @@ export class AddOrgComponent {
   phoneCodes: ComboboxItems[] = phoneCodes;
 
   submitted: boolean = false;
+  showInput: boolean = false;
   formError = signal<string>('');
+  codeError = signal<string>('');
   hasLogo = signal<boolean>(false);
 
   onSubmit(event: Event): void {
@@ -92,5 +106,21 @@ export class AddOrgComponent {
     this.addForm.controls.logo.reset();
     this.logoInput.nativeElement.value = '';
     this.hasLogo.set(false);
+  }
+
+  verifyEmailCode() {
+    const form = this.addForm.controls;
+
+    this.sendCodeService
+      .verifyEmailCode(form.email.value!, form.email_code.value!)
+      ?.subscribe({
+        next: () => {
+          this.codeError.set('');
+          this.addForm.controls.email_code.disable();
+        },
+        error: (response: HttpErrorResponse) => {
+          this.codeError.set(response.error.message);
+        },
+      });
   }
 }

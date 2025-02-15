@@ -99,7 +99,8 @@
         <app-combobox
           class="w-[90px] sm:min-w-[100px]"
           [items]="orgTypes"
-          [selectedValue]="'LLC'"
+          [selectedValue]="'llc'"
+          (selectedValueChange)="addForm.controls.org_type.setValue($event)"
           [searchPlaceholder]="'...'"
           [customClass]="
             'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
@@ -119,12 +120,54 @@
     <div>
       <h1 class="w-80 text-base font-semibold sm:text-lg">ელ. ფოსტა</h1>
 
-      <div class="sm:w-[512px]">
-        <app-input
-          placeholder="მაგ. youremail@gmail.com"
-          [control]="addForm.controls.email"
-          [error]="submitted && addForm.controls.email.invalid"
-        />
+      <div class="flex flex-col gap-4">
+        <div class="relative sm:w-[512px]">
+          <app-input
+            placeholder="მაგ. youremail@gmail.com"
+            [control]="addForm.controls.email"
+            [error]="
+              (submitted && addForm.controls.email.invalid) ||
+              codeError().includes('invalid_email')
+            "
+            (input)="verifyEmailCode()"
+          />
+
+          <app-get-code
+            class="absolute right-1.5 top-1/2 -translate-y-1/2"
+            type="email"
+            [value]="addForm.controls.email.value!"
+            (showInputChange)="showInput = $event"
+            (error)="codeError.set($event)"
+          ></app-get-code>
+        </div>
+
+        @if (showInput && !codeError().includes("invalid_email")) {
+          <div class="relative">
+            <app-input
+              [control]="addForm.controls.email_code"
+              type="number"
+              [placeholder]="'AUTH.email_code' | translate"
+              [error]="
+                (submitted && addForm.controls.email_code.invalid) ||
+                codeError().includes('invalid_code')
+              "
+              (input)="verifyEmailCode()"
+            />
+
+            @if (addForm.controls.email_code.disabled) {
+              <img
+                src="/icons/auth/check_green.svg"
+                class="absolute right-3 top-1/2 -translate-y-1/2"
+              />
+            }
+          </div>
+        }
+
+        @if (codeError()) {
+          <app-error-message>
+            {{ codeError() | translate }}
+          </app-error-message>
+        }
       </div>
     </div>
 
@@ -141,6 +184,7 @@
           "
           [items]="phoneCodes"
           [selectedValue]="'995'"
+          (selectedValueChange)="addForm.controls.phone_code.setValue($event)"
           [searchPlaceholder]="'...'"
         />
 
