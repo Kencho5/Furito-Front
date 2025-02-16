@@ -75,6 +75,7 @@ export class AddOrgComponent {
   formError = signal<string>('');
   codeError = signal<string>('');
   hasLogo = signal<boolean>(false);
+  emailVerified: boolean = false;
   fileName: string = 'ORGS.FORM.add';
 
   onSubmit(event: Event): void {
@@ -165,6 +166,7 @@ export class AddOrgComponent {
         next: () => {
           this.codeError.set('');
           this.addForm.controls.email_code.disable();
+          this.emailVerified = true;
         },
         error: (response: HttpErrorResponse) => {
           this.codeError.set(response.error.message);

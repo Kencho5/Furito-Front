@@ -3,7 +3,7 @@
   class="flex h-[32px] items-center justify-center rounded-xl bg-neutral-100 px-3 py-1.5 text-sm disabled:cursor-not-allowed disabled:text-neutral-500"
   [ngClass]="loading() ? 'animate-pulse' : ''"
   (click)="toggle()"
-  [disabled]="timer() || loading()"
+  [disabled]="timer() || loading() || verified"
 >
   @if (!loading()) {
     {{ "AUTH.get_code" | translate }}

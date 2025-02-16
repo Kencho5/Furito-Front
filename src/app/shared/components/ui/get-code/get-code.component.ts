@@ -20,6 +20,7 @@ export class GetCodeComponent {
 
   @Input() type!: string;
   @Input() value!: string;
+  @Input() verified!: boolean;
   @Output() showInputChange = new EventEmitter<boolean>();
   @Output() error = new EventEmitter<string>();
 
@@ -44,9 +45,14 @@ export class GetCodeComponent {
           this.timer.set(true);
         },
         error: (response: HttpErrorResponse) => {
+          let errorMessage = response.error.message;
+          if (response.status == 429) {
+            errorMessage = 'AUTH.ERROR.limit';
+          }
+
           this.timer.set(false);
           this.loading.set(false);
-          this.error.emit(response.error.message);
+          this.error.emit(errorMessage);
         },
       });
   }
@@ -54,7 +60,7 @@ export class GetCodeComponent {
   startTimer() {
     this.timer.set(true);
     this.seconds = timer(0, 1000).pipe(
-      map((n: number) => 60 - n),
+      map((n: number) => 1 - n),
       takeWhile((n) => n >= 0),
       finalize(() => {
         this.timer.set(false);

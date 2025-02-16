@@ -28,8 +28,10 @@
             class="h-[54px] w-[54px] rounded-full object-cover sm:h-[74px] sm:w-[74px]"
             #logoImage
           />
-          <div>
-            <h1 class="text-base sm:text-lg">{{ fileName | translate }}</h1>
+          <div class="max-w-[200px]">
+            <h1 class="truncate text-base sm:text-lg">
+              {{ fileName | translate }}
+            </h1>
             <p class="subtext space-y-0.5 text-sm">PNG ან JPG (მაქს. 50MB)</p>
           </div>
         </div>
@@ -137,6 +139,7 @@
             type="email"
             [value]="addForm.controls.email.value!"
             (showInputChange)="showInput = $event"
+            [verified]="emailVerified"
             (error)="codeError.set($event)"
           ></app-get-code>
         </div>
@@ -218,7 +221,7 @@
         [disabled]="loading()"
       >
         @if (!loading()) {
-          {{ "AUTH.register" | translate }}
+          {{ "ORGS.FORM.add" | translate }}
         } @else {
           <app-spinner
             [size]="28"
