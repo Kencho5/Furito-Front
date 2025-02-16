@@ -132,10 +132,10 @@ export class AddOrgComponent {
 
   onFilesChange() {
     const files = this.logoInput.nativeElement.files;
-    if (files![0].size > 100 * 1024 * 1024) return;
+    if (files![0].size > 50 * 1024 * 1024) return;
 
     this.compressService
-      .compressImage(files![0], 0.85)
+      .compressImage(files![0], 0.65)
       .then((compressedImage) => {
         this.addForm.controls.logo.setValue(compressedImage);
         this.logoImage.nativeElement.src = URL.createObjectURL(compressedImage);

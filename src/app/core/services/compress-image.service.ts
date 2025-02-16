@@ -9,8 +9,8 @@ export class CompressImageService {
   compressImage(
     file: File,
     quality: number,
-    maxWidth: number = 1200,
-    maxHeight: number = 1200,
+    maxWidth: number = 2000,
+    maxHeight: number = 2000,
   ): Promise<Blob> {
     return new Promise((resolve, reject) => {
       const img = new Image();
