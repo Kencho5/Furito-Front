@@ -8,6 +8,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SendCodeService } from '@auth/services/send-code.service';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import {
@@ -46,6 +47,7 @@ export class AddOrgComponent {
     private compressService: CompressImageService,
     private sendCodeService: SendCodeService,
     private addOrgService: AddOrgService,
+    private router: Router,
   ) {}
   @ViewChild('logoInput') logoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('logoImage') logoImage!: ElementRef<HTMLImageElement>;
@@ -53,9 +55,9 @@ export class AddOrgComponent {
   addForm = new FormGroup({
     logo: new FormControl<Blob | null>(null, [Validators.required]),
     org_code: new FormControl('', [Validators.required]),
-    address: new FormControl('', [Validators.required]),
     org_type: new FormControl('llc', [Validators.required]),
     org_name: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
     email_code: new FormControl('', [
       Validators.required,
@@ -115,8 +117,7 @@ export class AddOrgComponent {
   private uploadLogo(presignedUrl: string, logo: Blob): void {
     this.addOrgService.putLogo(presignedUrl, logo).subscribe({
       next: () => {
-        this.loading.set(false);
-        this.formError.set('');
+        this.router.navigate(['/profile/organizations']);
       },
       error: () => {
         this.loading.set(false);
@@ -128,7 +129,7 @@ export class AddOrgComponent {
   handleErrors() {
     for (const control in this.addForm.controls) {
       if (this.addForm.get(control)?.errors) {
-        this.formError.set(`AUTH.ERROR.FORM.${control}`);
+        this.formError.set(`ORGS.ERROR.${control}`);
         break;
       }
       this.formError.set('');

@@ -60,7 +60,7 @@ export class GetCodeComponent {
   startTimer() {
     this.timer.set(true);
     this.seconds = timer(0, 1000).pipe(
-      map((n: number) => 1 - n),
+      map((n: number) => 60 - n),
       takeWhile((n) => n >= 0),
       finalize(() => {
         this.timer.set(false);
