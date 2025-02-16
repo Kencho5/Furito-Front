@@ -7,7 +7,7 @@
 >
   @if (!loading()) {
     {{ "AUTH.get_code" | translate }}
-    @if (timer()) {
+    @if (timer() && !verified) {
       ({{ seconds | async }})
     }
   } @else {

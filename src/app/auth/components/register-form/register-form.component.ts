@@ -89,6 +89,7 @@ export class RegisterFormComponent {
   codeError = signal<string>('');
   loading = signal<boolean>(false);
   success: boolean = false;
+  emailVerified: boolean = false;
 
   toggleTerms(): void {
     this.termsChecked = !this.termsChecked;
@@ -164,6 +165,7 @@ export class RegisterFormComponent {
         next: () => {
           this.codeError.set('');
           this.registerForm.controls.email_code.disable();
+          this.emailVerified = true;
         },
         error: (response: HttpErrorResponse) => {
           this.codeError.set(response.error.message);

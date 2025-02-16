@@ -39,7 +39,8 @@
         [value]="registerForm.controls.email.value!"
         (showInputChange)="showInput = $event"
         (error)="codeError.set($event)"
-      ></app-get-code>
+        [verified]="emailVerified"
+      />
     </div>
 
     @if (showInput && !codeError().includes("invalid_email")) {
@@ -81,7 +82,7 @@
           registerForm.controls.phone_code.setValue($event)
         "
         [searchPlaceholder]="'...'"
-      ></app-combobox>
+      />
 
       <div class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]">
         <app-input
@@ -92,9 +93,7 @@
           [error]="submitted && registerForm.controls.phone.invalid"
         />
 
-        <app-get-code
-          class="absolute right-1.5 top-1/2 -translate-y-1/2"
-        ></app-get-code>
+        <app-get-code class="absolute right-1.5 top-1/2 -translate-y-1/2" />
       </div>
     </div>
 

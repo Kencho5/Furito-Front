@@ -141,7 +141,7 @@
             (showInputChange)="showInput = $event"
             [verified]="emailVerified"
             (error)="codeError.set($event)"
-          ></app-get-code>
+          />
         </div>
 
         @if (showInput && !codeError().includes("invalid_email")) {
