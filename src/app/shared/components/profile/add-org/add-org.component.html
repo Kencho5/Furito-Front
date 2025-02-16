@@ -77,20 +77,6 @@
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
     <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">მისამართი</h1>
-
-      <div class="sm:w-[512px]">
-        <app-input
-          placeholder="მაგ. ჭავჭავაძის 5"
-          [control]="addForm.controls.address"
-          [error]="submitted && addForm.controls.address.invalid"
-        />
-      </div>
-    </div>
-
-    <div class="-mx-8 h-px bg-neutral-100"></div>
-
-    <div>
       <h1 class="w-80 text-base font-semibold sm:text-lg">
         ორგანიზაციის დასახელება
       </h1>
@@ -111,6 +97,20 @@
           [control]="addForm.controls.org_name"
           [error]="submitted && addForm.controls.org_name.invalid"
           class="w-full"
+        />
+      </div>
+    </div>
+
+    <div class="-mx-8 h-px bg-neutral-100"></div>
+
+    <div>
+      <h1 class="w-80 text-base font-semibold sm:text-lg">მისამართი</h1>
+
+      <div class="sm:w-[512px]">
+        <app-input
+          placeholder="მაგ. ჭავჭავაძის 5"
+          [control]="addForm.controls.address"
+          [error]="submitted && addForm.controls.address.invalid"
         />
       </div>
     </div>
