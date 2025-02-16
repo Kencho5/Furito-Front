@@ -10,7 +10,10 @@ import {
 } from '@angular/forms';
 import { SendCodeService } from '@auth/services/send-code.service';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
-import { AddOrgFields } from '@core/modules/interfaces/organizations';
+import {
+  AddOrgFields,
+  AddOrgResponse,
+} from '@core/modules/interfaces/organizations';
 import { AddOrgService } from '@core/services/add-org.service';
 import { CompressImageService } from '@core/services/compress-image.service';
 import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
@@ -20,6 +23,7 @@ import { InputComponent } from '@shared/components/ui/input/input.component';
 import { SharedModule } from '@shared/shared.module';
 import { orgTypes } from '@utils/orgTypes';
 import { phoneCodes } from '@utils/phoneCodes';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-add-org',
@@ -45,7 +49,7 @@ export class AddOrgComponent {
   @ViewChild('logoImage') logoImage!: ElementRef<HTMLImageElement>;
 
   addForm = new FormGroup({
-    logo: new FormControl('', [Validators.required]),
+    logo: new FormControl<Blob | null>(null, [Validators.required]),
     org_code: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
     org_type: new FormControl('llc', [Validators.required]),
@@ -65,6 +69,7 @@ export class AddOrgComponent {
 
   submitted: boolean = false;
   showInput: boolean = false;
+  loading = signal<boolean>(false);
   formError = signal<string>('');
   codeError = signal<string>('');
   hasLogo = signal<boolean>(false);
@@ -79,9 +84,34 @@ export class AddOrgComponent {
     //}
     //
     //this.formError.set('');
+    //this.loading.set(true);
 
-    const data = this.addForm.value as AddOrgFields;
-    this.addOrgService.addOrg(data).subscribe();
+    const { logo, email_code, ...formData } = this.addForm.value;
+    this.addOrgService
+      .addOrg(formData as AddOrgFields)
+      .pipe(
+        finalize(() => {
+          this.submitted = true;
+        }),
+      )
+      .subscribe({
+        next: (response: AddOrgResponse) => {
+          this.addOrgService.putLogo(response.presigned_url, logo!).subscribe({
+            next: (res) => {
+              console.log(res);
+            },
+          });
+        },
+        error: (response: HttpErrorResponse) => {
+          this.loading.set(false);
+          if (response.status == 429) {
+            this.formError.set('AUTH.ERROR.limit');
+            return;
+          }
+
+          this.formError.set(response.error.message || 'AUTH.ERROR.unforseen');
+        },
+      });
   }
 
   handleErrors() {
@@ -102,7 +132,7 @@ export class AddOrgComponent {
       .compressImage(files![0], 0.85)
       .then((compressedImage) => {
         this.addForm.controls.logo.setValue(compressedImage);
-        this.logoImage.nativeElement.src = compressedImage;
+        this.logoImage.nativeElement.src = URL.createObjectURL(compressedImage);
         this.hasLogo.set(true);
       });
   }
