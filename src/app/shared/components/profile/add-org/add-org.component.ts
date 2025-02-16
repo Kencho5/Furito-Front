@@ -75,17 +75,18 @@ export class AddOrgComponent {
   formError = signal<string>('');
   codeError = signal<string>('');
   hasLogo = signal<boolean>(false);
+  fileName: string = 'ORGS.FORM.add';
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    //this.handleErrors();
-    //
-    //if (this.addForm.invalid) {
-    //  this.submitted = true;
-    //  return;
-    //}
-    //
-    //this.formError.set('');
+    this.handleErrors();
+
+    if (this.addForm.invalid) {
+      this.submitted = true;
+      return;
+    }
+
+    this.formError.set('');
     this.loading.set(true);
 
     const { logo, email_code, ...formData } = this.addForm.value;
@@ -112,7 +113,10 @@ export class AddOrgComponent {
 
   private uploadLogo(presignedUrl: string, logo: Blob): void {
     this.addOrgService.putLogo(presignedUrl, logo).subscribe({
-      next: () => this.loading.set(false),
+      next: () => {
+        this.loading.set(false);
+        this.formError.set('');
+      },
       error: () => {
         this.loading.set(false);
         this.formError.set('AUTH.ERROR.unforseen');
@@ -132,7 +136,8 @@ export class AddOrgComponent {
 
   onFilesChange() {
     const files = this.logoInput.nativeElement.files;
-    if (files![0].size > 50 * 1024 * 1024) return;
+    if (!files || files[0].size > 50 * 1024 * 1024) return;
+    this.fileName = files[0].name;
 
     this.compressService
       .compressImage(files![0], 0.65)
@@ -148,6 +153,7 @@ export class AddOrgComponent {
     this.addForm.controls.logo.reset();
     this.logoInput.nativeElement.value = '';
     this.hasLogo.set(false);
+    this.fileName = 'ORGS.FORM.add';
   }
 
   verifyEmailCode() {
