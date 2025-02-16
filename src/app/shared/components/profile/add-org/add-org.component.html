@@ -214,8 +214,18 @@
       <button
         type="submit"
         class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"
+        [ngClass]="loading() ? 'animate-pulse' : ''"
+        [disabled]="loading()"
       >
-        დამატება
+        @if (!loading()) {
+          {{ "AUTH.register" | translate }}
+        } @else {
+          <app-spinner
+            [size]="28"
+            [textColor]="'text-white'"
+            [fillColor]="'fill-orange-500'"
+          />
+        }
       </button>
       <button
         type="button"

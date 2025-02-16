@@ -20,6 +20,7 @@ import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.compo
 import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';
 import { GetCodeComponent } from '@shared/components/ui/get-code/get-code.component';
 import { InputComponent } from '@shared/components/ui/input/input.component';
+import { SpinnerComponent } from '@shared/components/ui/spinner/spinner.component';
 import { SharedModule } from '@shared/shared.module';
 import { orgTypes } from '@utils/orgTypes';
 import { phoneCodes } from '@utils/phoneCodes';
@@ -35,6 +36,7 @@ import { finalize } from 'rxjs';
     ReactiveFormsModule,
     ErrorMessageComponent,
     GetCodeComponent,
+    SpinnerComponent,
   ],
   templateUrl: './add-org.component.html',
 })
@@ -84,34 +86,38 @@ export class AddOrgComponent {
     //}
     //
     //this.formError.set('');
-    //this.loading.set(true);
+    this.loading.set(true);
 
     const { logo, email_code, ...formData } = this.addForm.value;
+    this.addOrganization(formData as AddOrgFields, logo!);
+  }
+
+  private addOrganization(formData: AddOrgFields, logo: Blob): void {
     this.addOrgService
-      .addOrg(formData as AddOrgFields)
+      .addOrg(formData)
       .pipe(
         finalize(() => {
           this.submitted = true;
         }),
       )
       .subscribe({
-        next: (response: AddOrgResponse) => {
-          this.addOrgService.putLogo(response.presigned_url, logo!).subscribe({
-            next: (res) => {
-              console.log(res);
-            },
-          });
-        },
+        next: (response: AddOrgResponse) =>
+          this.uploadLogo(response.presigned_url, logo),
         error: (response: HttpErrorResponse) => {
           this.loading.set(false);
-          if (response.status == 429) {
-            this.formError.set('AUTH.ERROR.limit');
-            return;
-          }
-
           this.formError.set(response.error.message || 'AUTH.ERROR.unforseen');
         },
       });
+  }
+
+  private uploadLogo(presignedUrl: string, logo: Blob): void {
+    this.addOrgService.putLogo(presignedUrl, logo).subscribe({
+      next: () => this.loading.set(false),
+      error: () => {
+        this.loading.set(false);
+        this.formError.set('AUTH.ERROR.unforseen');
+      },
+    });
   }
 
   handleErrors() {
