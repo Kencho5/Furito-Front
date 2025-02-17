@@ -174,4 +174,9 @@ export class AddOrgComponent {
         },
       });
   }
+
+  resetForm(): void {
+    this.addForm.reset();
+    this.deleteLogo();
+  }
 }
