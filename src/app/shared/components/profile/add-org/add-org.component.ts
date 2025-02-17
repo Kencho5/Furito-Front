@@ -15,7 +15,7 @@ import {
   AddOrgFields,
   AddOrgResponse,
 } from '@core/modules/interfaces/organizations';
-import { AddOrgService } from '@core/services/add-org.service';
+import { AddOrgService } from '@core/services/profile/add-org.service';
 import { CompressImageService } from '@core/services/compress-image.service';
 import { ComboboxComponent } from '@shared/components/ui/combobox/combobox.component';
 import { ErrorMessageComponent } from '@shared/components/ui/error-message/error-message.component';

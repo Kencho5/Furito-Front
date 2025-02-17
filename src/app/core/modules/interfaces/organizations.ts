@@ -11,3 +11,7 @@ export interface AddOrgFields {
 export interface AddOrgResponse {
   presigned_url: string;
 }
+
+export interface GetOrgsResponse {
+  presigned_url: string;
+}
