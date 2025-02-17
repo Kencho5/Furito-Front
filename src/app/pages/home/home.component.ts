@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
 import { ImageComponent } from '@shared/components/image/image.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +10,6 @@ import { PostCardComponent } from '@shared/components/post-card/post-card.compon
   selector: 'app-home',
   imports: [
     SharedModule,
-    TranslatePipe,
     ImageComponent,
     ReactiveFormsModule,
     PostCardComponent,

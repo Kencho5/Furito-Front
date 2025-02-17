@@ -30,7 +30,7 @@
           />
           <div class="max-w-[200px]">
             <h1 class="truncate text-base sm:text-lg">
-              {{ fileName | translate }}
+              {{ fileName | transloco }}
             </h1>
             <p class="subtext space-y-0.5 text-sm">PNG ან JPG (მაქს. 50MB)</p>
           </div>
@@ -149,7 +149,7 @@
             <app-input
               [control]="addForm.controls.email_code"
               type="number"
-              [placeholder]="'AUTH.email_code' | translate"
+              [placeholder]="'AUTH.email_code' | transloco"
               [error]="
                 (submitted && addForm.controls.email_code.invalid) ||
                 codeError().includes('invalid_code')
@@ -168,7 +168,7 @@
 
         @if (codeError()) {
           <app-error-message>
-            {{ codeError() | translate }}
+            {{ codeError() | transloco }}
           </app-error-message>
         }
       </div>
@@ -197,7 +197,7 @@
           <app-input
             [customClass]="'rounded-l-none'"
             type="number"
-            [placeholder]="'AUTH.phone' | translate"
+            [placeholder]="'AUTH.phone' | transloco"
             [control]="addForm.controls.phone"
             [error]="submitted && addForm.controls.phone.invalid"
           />
@@ -209,7 +209,7 @@
 
     @if (formError()) {
       <app-error-message>
-        {{ formError() | translate }}
+        {{ formError() | transloco }}
       </app-error-message>
     }
 
@@ -221,7 +221,7 @@
         [disabled]="loading()"
       >
         @if (!loading()) {
-          {{ "ORGS.FORM.add" | translate }}
+          {{ "ORGS.FORM.add" | transloco }}
         } @else {
           <app-spinner
             [size]="28"

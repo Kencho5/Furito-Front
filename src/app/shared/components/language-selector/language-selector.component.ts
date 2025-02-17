@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '@ui/dropdown/dropdown.component';
 import { LanguageService } from '@core/services/language.service';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-language-selector',
@@ -9,7 +10,12 @@ import { LanguageService } from '@core/services/language.service';
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent {
-  constructor(public languageService: LanguageService) {}
+  constructor(
+    public languageService: LanguageService,
+    private translate: TranslocoService,
+  ) {}
+
+  @ViewChild('dropdown') dropdown!: DropdownComponent;
 
   LANGUAGES = [
     { code: 'ge', label: 'ქართული', shortLabel: 'ქარ' },
@@ -24,5 +30,13 @@ export class LanguageSelectorComponent {
 
   public changeLanguage(lang: string) {
     this.languageService.setLanguage(lang);
+  }
+
+  toggle() {
+    this.dropdown.toggle();
+
+    this.translate
+      .load(this.languageService.currentLang == 'ge' ? 'en' : 'ge')
+      .subscribe();
   }
 }

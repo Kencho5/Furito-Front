@@ -25,21 +25,21 @@
         class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
       >
         <img src="/icons/userMenuProfile.svg" />
-        {{ "NAV.MENU.profile" | translate }}
+        {{ "NAV.MENU.profile" | transloco }}
       </a>
       <a
         routerLink="/profile"
         class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
       >
         <img src="/icons/userMenuPic.svg" class="h-[18px] w-5" />
-        {{ "NAV.MENU.posts" | translate }}
+        {{ "NAV.MENU.posts" | transloco }}
       </a>
       <a
         routerLink="profile"
         class="flex items-center gap-3.5 p-4 transition hover:bg-neutral-50"
       >
         <img src="/icons/userMenuSuitcase.svg" />
-        {{ "NAV.MENU.services" | translate }}
+        {{ "NAV.MENU.services" | transloco }}
       </a>
     </div>
 
@@ -51,7 +51,7 @@
       (click)="authService.logout()"
     >
       <img src="/icons/logout.svg" />
-      {{ "NAV.MENU.logout" | translate }}
+      {{ "NAV.MENU.logout" | transloco }}
     </button>
   </div>
 </app-dropdown>

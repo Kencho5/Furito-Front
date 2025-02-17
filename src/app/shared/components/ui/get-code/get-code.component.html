@@ -6,7 +6,7 @@
   [disabled]="timer() || loading() || verified"
 >
   @if (!loading()) {
-    {{ "AUTH.get_code" | translate }}
+    {{ "AUTH.get_code" | transloco }}
     @if (timer() && !verified) {
       ({{ seconds | async }})
     }

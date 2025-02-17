@@ -13,7 +13,7 @@
     }"
     (click)="opened.set(!opened())"
   >
-    {{ selectedValue ? (itemLabel | translate) : placeholder }}
+    {{ selectedValue ? (itemLabel | transloco) : placeholder }}
 
     <img src="/icons/combobox/arrowsUpDown.svg" />
   </button>
@@ -62,7 +62,7 @@
                 [ngClass]="selectedValue == item.value ? 'visible' : 'hidden'"
               />
             </span>
-            {{ item.label | translate }}
+            {{ item.label | transloco }}
           </button>
         } @empty {
           <div class="flex items-center justify-center p-2 text-center text-sm">

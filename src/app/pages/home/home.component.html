@@ -2,13 +2,13 @@
   <div class="flex flex-col items-center justify-between xl:flex-row">
     <div class="relative space-y-5 text-center xl:text-left">
       <h1 class="text-4xl font-bold leading-tight xl:text-6xl">
-        {{ "HOME.main_text" | translate }} <br />
+        {{ "HOME.main_text" | transloco }} <br />
         <span class="font-bold text-orange-500">{{
-          "HOME.main_text_orange" | translate
+          "HOME.main_text_orange" | transloco
         }}</span>
       </h1>
       <p class="subtext max-w-[485px] xl:text-lg">
-        {{ "HOME.main_subtext" | translate }}
+        {{ "HOME.main_subtext" | transloco }}
       </p>
 
       <form [formGroup]="searchForm" (ngSubmit)="search()" class="space-y-6">
@@ -20,7 +20,7 @@
           <input
             type="text"
             formControlName="text"
-            [placeholder]="'HOME.search' | translate"
+            [placeholder]="'HOME.search' | transloco"
             class="h-[60px] w-full rounded-3xl border-[1.5px] border-yellow-300 px-1.5 py-2.5 pl-14 font-normal text-neutral-900 outline-none placeholder:text-neutral-400 sm:text-lg"
           />
         </div>
@@ -30,7 +30,7 @@
           value="ძებნა"
           class="flex h-[60px] w-full items-center justify-center rounded-3xl bg-yellow-400 px-5 py-3 font-bold sm:text-lg"
         >
-          {{ "HOME.submit" | translate }}
+          {{ "HOME.submit" | transloco }}
         </button>
       </form>
 
@@ -49,10 +49,10 @@
   <div class="space-y-12 py-16 text-center">
     <div class="space-y-5">
       <h1 class="text-2xl font-bold sm:text-4xl">
-        {{ "HOME.services" | translate }}
+        {{ "HOME.services" | transloco }}
       </h1>
       <p class="subtext text-base sm:text-lg">
-        {{ "HOME.services_subtext" | translate }}
+        {{ "HOME.services_subtext" | transloco }}
       </p>
     </div>
 
@@ -67,7 +67,7 @@
           </div>
           <div>
             <h1 class="font-semibold sm:text-lg">
-              {{ service.title | translate }}
+              {{ service.title | transloco }}
             </h1>
             <p class="subtext text-xs sm:text-sm">
               {{ service.subtext }}
@@ -83,10 +83,10 @@
   >
     <div class="m-auto max-w-72 space-y-5 sm:max-w-full">
       <h1 class="text-2xl font-bold sm:text-4xl">
-        {{ "HOME.categories" | translate }}
+        {{ "HOME.categories" | transloco }}
       </h1>
       <p class="subtext text-base sm:text-lg">
-        {{ "HOME.categories_subtext" | translate }}
+        {{ "HOME.categories_subtext" | transloco }}
       </p>
     </div>
 
@@ -112,7 +112,7 @@
           >
             <div class="text-left">
               <h1 class="font-semibold sm:text-lg">
-                {{ category.animal_translate | translate }}
+                {{ category.animal_translate | transloco }}
               </h1>
               <p class="subtext text-sm">20 განცხადება</p>
             </div>

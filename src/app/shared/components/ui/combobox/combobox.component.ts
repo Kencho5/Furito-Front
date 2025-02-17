@@ -10,7 +10,7 @@ import { SharedModule } from '@shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ComboboxItems } from '@core/modules/interfaces/comboboxItems';
 import { OutsideClickDirective } from '@core/directives/outside-click.directive';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-combobox',
@@ -18,7 +18,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './combobox.component.html',
 })
 export class ComboboxComponent {
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslocoService) {}
 
   @Input() selectedValue?: string;
   @Input() placeholder?: string;
@@ -35,7 +35,7 @@ export class ComboboxComponent {
   filteredItems = computed(() =>
     this.items.filter((item) =>
       this.translate
-        .instant(item.label)
+        .translate(item.label)
         .toLowerCase()
         .includes(this.searchValue().toLowerCase()),
     ),

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @NgModule({
-  imports: [RouterOutlet, RouterLink, CommonModule, TranslatePipe],
-  exports: [RouterOutlet, RouterLink, CommonModule, TranslatePipe],
+  imports: [RouterOutlet, RouterLink, CommonModule, TranslocoModule],
+  exports: [RouterOutlet, RouterLink, CommonModule, TranslocoModule],
 })
 export class SharedModule {}

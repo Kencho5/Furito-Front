@@ -1,6 +1,6 @@
 @if (!success) {
   <app-auth-form
-    [authTitle]="'AUTH.register' | translate"
+    [authTitle]="'AUTH.register' | transloco"
     [authForm]="registerForm"
     (submitForm)="onSubmit()"
   >
@@ -9,7 +9,7 @@
         class="w-full"
         [control]="registerForm.controls.name"
         type="text"
-        [placeholder]="'AUTH.name' | translate"
+        [placeholder]="'AUTH.name' | transloco"
         [error]="submitted && registerForm.controls.name.invalid"
       />
 
@@ -17,7 +17,7 @@
         class="w-full"
         [control]="registerForm.controls.surname"
         type="text"
-        [placeholder]="'AUTH.surname' | translate"
+        [placeholder]="'AUTH.surname' | transloco"
         [error]="submitted && registerForm.controls.surname.invalid"
       />
     </div>
@@ -26,7 +26,7 @@
       <app-input
         [control]="registerForm.controls.email"
         type="email"
-        [placeholder]="'AUTH.email' | translate"
+        [placeholder]="'AUTH.email' | transloco"
         [error]="
           (submitted && registerForm.controls.email.invalid) ||
           codeError().includes('invalid_email')
@@ -48,7 +48,7 @@
         <app-input
           [control]="registerForm.controls.email_code"
           type="number"
-          [placeholder]="'AUTH.email_code' | translate"
+          [placeholder]="'AUTH.email_code' | transloco"
           [error]="
             (submitted && registerForm.controls.email_code.invalid) ||
             codeError().includes('invalid_code')
@@ -66,7 +66,7 @@
     }
     @if (codeError()) {
       <app-error-message>
-        {{ codeError() | translate }}
+        {{ codeError() | transloco }}
       </app-error-message>
     }
 
@@ -89,7 +89,7 @@
           [customClass]="'rounded-l-none'"
           [control]="registerForm.controls.phone"
           type="number"
-          [placeholder]="'AUTH.phone' | translate"
+          [placeholder]="'AUTH.phone' | transloco"
           [error]="submitted && registerForm.controls.phone.invalid"
         />
 
@@ -103,7 +103,7 @@
           <app-input
             [control]="registerForm.controls.password"
             [type]="showPassword ? 'text' : 'password'"
-            [placeholder]="'AUTH.password' | translate"
+            [placeholder]="'AUTH.password' | transloco"
             [error]="submitted && registerForm.controls.password.invalid"
           />
 
@@ -113,7 +113,7 @@
           <app-input
             [control]="registerForm.controls.repeatPassword"
             [type]="showPassword ? 'text' : 'password'"
-            [placeholder]="'AUTH.repeat_password' | translate"
+            [placeholder]="'AUTH.repeat_password' | transloco"
             [error]="
               submitted &&
               (registerForm.controls.repeatPassword.invalid ||
@@ -135,7 +135,7 @@
           <img src="/icons/circleCheck.svg" width="18" height="18" />
         }
 
-        {{ "AUTH.password_requirement" | translate }}
+        {{ "AUTH.password_requirement" | transloco }}
       </p>
     </div>
 
@@ -151,16 +151,16 @@
       </div>
 
       <p class="subtext text-sm sm:text-base">
-        {{ "AUTH.agree" | translate }}
+        {{ "AUTH.agree" | transloco }}
         <a routerLink="/terms" class="text-neutral-900 underline">{{
-          "AUTH.terms" | translate
+          "AUTH.terms" | transloco
         }}</a>
       </p>
     </div>
 
     @if (formError()) {
       <app-error-message>
-        {{ formError() | translate }}
+        {{ formError() | transloco }}
       </app-error-message>
     }
 
@@ -171,7 +171,7 @@
       [disabled]="loading()"
     >
       @if (!loading()) {
-        {{ "AUTH.register" | translate }}
+        {{ "AUTH.register" | transloco }}
       } @else {
         <app-spinner
           [size]="28"
@@ -185,9 +185,9 @@
       routerLink="../login"
       class="text-center text-sm font-normal text-neutral-400"
     >
-      {{ "AUTH.have_account" | translate }}
+      {{ "AUTH.have_account" | transloco }}
       <span class="text-orange-500">
-        {{ "AUTH.login" | translate }}
+        {{ "AUTH.login" | transloco }}
       </span>
     </a>
   </app-auth-form>

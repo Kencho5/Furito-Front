@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { signal } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LanguageService {
-  constructor(private translate: TranslateService) {}
+  constructor(private translate: TranslocoService) {}
   private lang = signal(localStorage.getItem('lang') || 'ge');
 
   get currentLang() {
@@ -15,7 +15,7 @@ export class LanguageService {
 
   setLanguage(lang: string) {
     this.lang.set(lang);
-    this.translate.use(lang);
+    this.translate.setActiveLang(lang);
     localStorage.setItem('lang', lang);
   }
 }

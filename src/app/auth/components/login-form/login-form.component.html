@@ -1,12 +1,12 @@
 <app-auth-form
-  [authTitle]="'AUTH.login' | translate"
+  [authTitle]="'AUTH.login' | transloco"
   [authForm]="loginForm"
   (submitForm)="onSubmit()"
 >
   <app-input
     [control]="loginForm.controls.email"
     [type]="'email'"
-    [placeholder]="'AUTH.email' | translate"
+    [placeholder]="'AUTH.email' | transloco"
     [error]="submitted && loginForm.controls.email.invalid"
   />
 
@@ -14,7 +14,7 @@
     <app-input
       [control]="loginForm.controls.password"
       [type]="showPassword ? 'text' : 'password'"
-      [placeholder]="'AUTH.password' | translate"
+      [placeholder]="'AUTH.password' | transloco"
       [error]="submitted && loginForm.controls.password.invalid"
     />
 
@@ -23,13 +23,13 @@
 
   @if (formError()) {
     <app-error-message>
-      {{ formError() | translate }}
+      {{ formError() | transloco }}
     </app-error-message>
   }
 
   <div class="text-right text-sm text-neutral-900">
     <a routerLink="../reset-password">{{
-      "AUTH.reset_password" | translate
+      "AUTH.reset_password" | transloco
     }}</a>
   </div>
 
@@ -40,7 +40,7 @@
     [disabled]="loading()"
   >
     @if (!loading()) {
-      {{ "AUTH.submit" | translate }}
+      {{ "AUTH.submit" | transloco }}
     } @else {
       <app-spinner
         [size]="28"
@@ -54,9 +54,9 @@
     routerLink="../register"
     class="text-center text-sm font-normal text-neutral-400"
   >
-    {{ "AUTH.no_account" | translate }}
+    {{ "AUTH.no_account" | transloco }}
     <span class="text-orange-500">
-      {{ "AUTH.register" | translate }}
+      {{ "AUTH.register" | transloco }}
     </span>
   </a>
 </app-auth-form>
