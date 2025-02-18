@@ -11,8 +11,7 @@ import { environment } from '@environments/environment';
 export class OrgCardComponent {
   @Input() org!: AddOrgFields;
 
-  getLogoUrl(name: string, code: string): string {
-    const formattedName = name.replace(/ /g, '+');
-    return `${environment.orgLogosUrl}${formattedName}-${code}.jpg`;
+  getLogoUrl(id: number, code: string): string {
+    return `${environment.orgLogosUrl}${id}-${code}.jpg`;
   }
 }
