@@ -1,18 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ImageComponent } from '@shared/components/image/image.component';
 import { SharedModule } from '@shared/shared.module';
 import { EmptyOrgsComponent } from '../empty-orgs/empty-orgs.component';
 import { OrgsService } from '@core/services/profile/orgs.service';
+import { GetOrgsResponse } from '@core/modules/interfaces/organizations';
+import { finalize } from 'rxjs';
+import { OrgCardComponent } from '../org-card/org-card.component';
 
 @Component({
   selector: 'app-organizations',
-  imports: [SharedModule, ImageComponent, EmptyOrgsComponent],
+  imports: [SharedModule, ImageComponent, EmptyOrgsComponent, OrgCardComponent],
   templateUrl: './organizations.component.html',
 })
 export class OrganizationsComponent {
   constructor(private orgsService: OrgsService) {}
 
+  empty = signal<boolean>(false);
+  loading = signal<boolean>(true);
+  orgs?: GetOrgsResponse;
+
   ngOnInit() {
-    this.orgsService.getOrgs().subscribe();
+    this.orgsService
+      .getOrgs()
+      .pipe(
+        finalize(() => {
+          this.loading.set(false);
+        }),
+      )
+      .subscribe({
+        next: (res: GetOrgsResponse) => {
+          if (res.total == 0) this.empty.set(true);
+
+          this.orgs = res;
+        },
+        error: () => {
+          this.empty.set(true);
+        },
+      });
   }
 }

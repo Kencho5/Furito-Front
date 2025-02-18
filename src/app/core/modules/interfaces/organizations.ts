@@ -13,5 +13,6 @@ export interface AddOrgResponse {
 }
 
 export interface GetOrgsResponse {
-  presigned_url: string;
+  orgs: Array<AddOrgFields>;
+  total: number;
 }

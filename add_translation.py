@@ -1,7 +1,8 @@
 import json
 import sys
+import io
 
-sys.stdin.reconfigure(encoding="utf-8")
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8", errors="replace")
 
 
 def update_json(en_path, ge_path, key_path, en_value, ge_value):
@@ -39,8 +40,8 @@ def update_json(en_path, ge_path, key_path, en_value, ge_value):
 
 
 def main():
-    en_path = "public/i18n/en.json"
-    ge_path = "public/i18n/ge.json"
+    en_path = "src/assets/i18n/en.json"
+    ge_path = "src/assets/i18n/ge.json"
 
     try:
         while True:

@@ -22,6 +22,7 @@ export const appConfig: ApplicationConfig = {
         availableLangs: ['en', 'ge'],
         defaultLang: 'ge',
         reRenderOnLangChange: true,
+        prodMode: true,
       },
       loader: TranslocoHttpLoader,
     }),
