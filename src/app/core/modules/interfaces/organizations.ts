@@ -1,4 +1,5 @@
 export interface AddOrgFields {
+  id: number;
   email: string;
   org_code: string;
   org_type: string;
