@@ -171,6 +171,7 @@ export class AddOrgComponent {
         },
         error: (response: HttpErrorResponse) => {
           this.codeError.set(response.error.message);
+          this.addForm.controls.email_code.setErrors({ invalid: true });
         },
       });
   }
