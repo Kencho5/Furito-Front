@@ -15,9 +15,8 @@ import { OrgCardComponent } from '../org-card/org-card.component';
 export class OrganizationsComponent {
   constructor(private orgsService: OrgsService) {}
 
-  empty = signal<boolean>(false);
   loading = signal<boolean>(true);
-  orgs?: GetOrgsResponse;
+  orgs = signal<GetOrgsResponse | null>(null);
 
   ngOnInit() {
     this.orgsService
@@ -29,12 +28,7 @@ export class OrganizationsComponent {
       )
       .subscribe({
         next: (res: GetOrgsResponse) => {
-          if (res.total == 0) this.empty.set(true);
-
-          this.orgs = res;
-        },
-        error: () => {
-          this.empty.set(true);
+          this.orgs.set(res);
         },
       });
   }
