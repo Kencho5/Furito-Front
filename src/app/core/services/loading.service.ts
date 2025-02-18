@@ -17,18 +17,14 @@ export class LoadingService {
     this.router.events.subscribe((event) => {
       switch (true) {
         case event instanceof NavigationStart:
-          this.setLoading(true);
+          this.loading.set(true);
           break;
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError:
-          this.setLoading(false);
+          this.loading.set(false);
           break;
       }
     });
-  }
-
-  private setLoading(state: boolean) {
-    this.loading.set(state);
   }
 }
