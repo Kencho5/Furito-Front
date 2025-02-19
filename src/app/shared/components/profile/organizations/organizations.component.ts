@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { ImageComponent } from '@shared/components/image/image.component';
 import { SharedModule } from '@shared/shared.module';
 import { EmptyOrgsComponent } from '../empty-orgs/empty-orgs.component';
@@ -17,19 +17,12 @@ export class OrganizationsComponent {
 
   loading = signal<boolean>(true);
   orgs = signal<GetOrgsResponse | null>(null);
+  hasOrgs = computed(() => (this.orgs()?.total ?? 0) > 0);
 
   ngOnInit() {
     this.orgsService
       .getOrgs()
-      .pipe(
-        finalize(() => {
-          this.loading.set(false);
-        }),
-      )
-      .subscribe({
-        next: (res: GetOrgsResponse) => {
-          this.orgs.set(res);
-        },
-      });
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe((res: GetOrgsResponse) => this.orgs.set(res));
   }
 }
