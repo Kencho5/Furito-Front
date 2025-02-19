@@ -14,7 +14,7 @@ export class OrgsService {
     return this.http.post<GetOrgsResponse>(apiUrl('get-orgs'), {});
   }
 
-  disableOrg(id: number): Observable<void> {
-    return this.http.post<void>(apiUrl('disable-org'), { id });
+  toggleOrgStatus(id: number): Observable<void> {
+    return this.http.post<void>(apiUrl('toggle-org-status'), { id });
   }
 }

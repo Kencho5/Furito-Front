@@ -1,8 +1,9 @@
 import { Component, Input, signal } from '@angular/core';
-import { AddOrgFields } from '@core/modules/interfaces/organizations';
+import { Org } from '@core/modules/interfaces/organizations';
 import { ImageComponent } from '@shared/components/image/image.component';
 import { environment } from '@environments/environment';
 import { SharedModule } from '@shared/shared.module';
+import { OrgsService } from '@core/services/profile/orgs.service';
 
 @Component({
   selector: 'app-org-card',
@@ -10,11 +11,22 @@ import { SharedModule } from '@shared/shared.module';
   templateUrl: './org-card.component.html',
 })
 export class OrgCardComponent {
-  @Input() org!: AddOrgFields;
-  disabled = signal<boolean>(false);
+  constructor(private orgsService: OrgsService) {}
 
-  disableOrg() {
-    this.disabled.set(!this.disabled());
+  @Input() org!: Org;
+  enabled = signal<boolean>(false);
+
+  ngOnInit() {
+    this.enabled.set(this.org.enabled);
+  }
+
+  toggleOrgStatus() {
+    this.orgsService.toggleOrgStatus(this.org.id).subscribe({
+      next: () => {
+        this.enabled.set(!this.enabled());
+        this.org.enabled = this.enabled();
+      },
+    });
   }
 
   getLogoUrl(id: number, code: string): string {
