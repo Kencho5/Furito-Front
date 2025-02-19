@@ -14,8 +14,24 @@
         <p class="subtext text-sm">{{ org.org_code }}</p>
       </div>
     </div>
-    <div class="flex items-center gap-2">
-      <img src="/icons/profile/toggle-on.svg" width="36" height="20" />
+    <div class="relative flex items-center gap-2">
+      <button
+        type="button"
+        [ngClass]="[
+          'relative h-5 w-9 rounded-xl',
+          disabled() ? 'bg-neutral-300' : 'bg-orange-500',
+        ]"
+        (click)="disableOrg()"
+      >
+        <div
+          [ngClass]="[
+            'absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-white shadow-sm',
+            'transform transition-transform duration-200 ease-in-out',
+            disabled() ? 'translate-x-0.5' : 'translate-x-[18px]',
+          ]"
+        ></div>
+      </button>
+      <!--<img src="/icons/profile/toggle-on.svg" width="36" height="20" />-->
       <img src="/icons/profile/arrow-right.svg" width="20" height="20" />
     </div>
   </div>

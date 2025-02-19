@@ -1,5 +1,4 @@
 import { Component, computed, signal } from '@angular/core';
-import { ImageComponent } from '@shared/components/image/image.component';
 import { SharedModule } from '@shared/shared.module';
 import { EmptyOrgsComponent } from '../empty-orgs/empty-orgs.component';
 import { OrgsService } from '@core/services/profile/orgs.service';
@@ -9,7 +8,7 @@ import { OrgCardComponent } from '../org-card/org-card.component';
 
 @Component({
   selector: 'app-organizations',
-  imports: [SharedModule, ImageComponent, EmptyOrgsComponent, OrgCardComponent],
+  imports: [SharedModule, EmptyOrgsComponent, OrgCardComponent],
   templateUrl: './organizations.component.html',
 })
 export class OrganizationsComponent {

@@ -13,4 +13,8 @@ export class OrgsService {
   getOrgs(): Observable<GetOrgsResponse> {
     return this.http.post<GetOrgsResponse>(apiUrl('get-orgs'), {});
   }
+
+  disableOrg(id: number): Observable<void> {
+    return this.http.post<void>(apiUrl('disable-org'), { id });
+  }
 }
