@@ -1,5 +1,5 @@
 <div class="p-8">
-  @if (!hasOrgs() && !loading()) {
+  @if (orgs()?.total == 0) {
     @defer {
       <app-empty-orgs />
     }

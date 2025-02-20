@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { EmptyOrgsComponent } from '../empty-orgs/empty-orgs.component';
 import { OrgsService } from '@core/services/profile/orgs.service';
@@ -22,7 +22,6 @@ export class OrganizationsComponent {
 
   loading = signal<boolean>(true);
   orgs = signal<GetOrgsResponse | null>(null);
-  hasOrgs = computed(() => (this.orgs()?.total ?? 0) > 0);
 
   ngOnInit() {
     this.orgsService
