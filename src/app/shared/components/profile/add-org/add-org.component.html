@@ -6,9 +6,11 @@
       (click)="location.back()"
     >
       <img src="/icons/profile/arrow-left.svg" />
-      უკან დაბრუნება
+      {{ "404.back" | transloco }}
     </button>
-    <h1 class="text-xl font-bold sm:text-3xl">ორგანიზაციის დამატება</h1>
+    <h1 class="text-xl font-bold sm:text-3xl">
+      {{ "ORGS.FORM.add_org" | transloco }}
+    </h1>
   </div>
 
   <form
@@ -16,7 +18,9 @@
     (ngSubmit)="onSubmit($event)"
   >
     <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">ორგანიზაციის ლოგო</h1>
+      <h1 class="w-80 text-base font-semibold sm:text-lg">
+        {{ "ORGS.FORM.logo" | transloco }}
+      </h1>
 
       <div class="flex items-center justify-between gap-4 sm:w-[512px]">
         <div
@@ -32,7 +36,12 @@
             <h1 class="truncate text-base sm:text-lg">
               {{ fileName | transloco }}
             </h1>
-            <p class="subtext space-y-0.5 text-sm">PNG ან JPG (მაქს. 50MB)</p>
+            <p class="subtext space-y-0.5 text-sm">
+              PNG {{ "ORGS.FORM.or" | transloco }} JPG ({{
+                "ORGS.FORM.max" | transloco
+              }}
+              50MB)
+            </p>
           </div>
         </div>
 
@@ -43,7 +52,7 @@
             (click)="deleteLogo()"
           >
             <img src="/icons/profile/delete.svg" />
-            წაშლა
+            {{ "ORGS.FORM.delete" | transloco }}
           </button>
         }
       </div>
@@ -61,14 +70,16 @@
     <div>
       <div>
         <h1 class="w-80 text-base font-semibold sm:text-lg">
-          საიდენტიფიკაციო კოდი
+          {{ "ORGS.FORM.org_code" | transloco }}
         </h1>
-        <p class="subtext text-sm">თქვენი ორგანიზაციის იდენთიფიკატორი</p>
+        <p class="subtext text-sm">
+          {{ "ORGS.FORM.org_code_subtext" | transloco }}
+        </p>
       </div>
 
       <div class="sm:w-[512px]">
         <app-input
-          placeholder="მაგ. 98313476"
+          [placeholder]="'ORGS.FORM.org_code_subtext' | transloco"
           type="number"
           [control]="addForm.controls.org_code"
           [error]="submitted && addForm.controls.org_code.invalid"
@@ -80,7 +91,7 @@
 
     <div>
       <h1 class="w-80 text-base font-semibold sm:text-lg">
-        ორგანიზაციის დასახელება
+        {{ "ORGS.FORM.org_name" | transloco }}
       </h1>
 
       <div class="flex gap-3 sm:w-[512px]">
@@ -95,7 +106,7 @@
           "
         />
         <app-input
-          placeholder="მაგ. Zoomart"
+          [placeholder]="'ORGS.FORM.org_name' | transloco"
           [control]="addForm.controls.org_name"
           [error]="submitted && addForm.controls.org_name.invalid"
           class="w-full"
@@ -106,11 +117,13 @@
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
     <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">მისამართი</h1>
+      <h1 class="w-80 text-base font-semibold sm:text-lg">
+        {{ "ORGS.FORM.address" | transloco }}
+      </h1>
 
       <div class="sm:w-[512px]">
         <app-input
-          placeholder="მაგ. ჭავჭავაძის 5"
+          [placeholder]="'ORGS.FORM.address_ph' | transloco"
           [control]="addForm.controls.address"
           [error]="submitted && addForm.controls.address.invalid"
         />
@@ -120,7 +133,9 @@
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
     <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">ელ. ფოსტა</h1>
+      <h1 class="w-80 text-base font-semibold sm:text-lg">
+        {{ "ORGS.FORM.email" | transloco }}
+      </h1>
 
       <div class="flex flex-col gap-4">
         <div class="relative sm:w-[512px]">
@@ -177,7 +192,9 @@
     <div class="-mx-8 h-px bg-neutral-100"></div>
 
     <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">მობილურის ნომერი</h1>
+      <h1 class="w-80 text-base font-semibold sm:text-lg">
+        {{ "ORGS.FORM.phone" | transloco }}
+      </h1>
 
       <div class="sm:w-[512px]">
         <app-combobox
@@ -235,7 +252,7 @@
         class="flex h-[44px] items-center justify-center rounded-2xl border border-neutral-200 px-[18px] py-2.5 font-bold"
         (click)="resetForm()"
       >
-        გაუქმება
+        {{ "ORGS.FORM.cancel" | transloco }}
       </button>
     </div>
   </form>
