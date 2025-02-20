@@ -8,7 +8,9 @@ export class ToastService {
   toasts = signal<Toast[]>([]);
 
   add(title: string, subtext: string, duration = 2500, type: ToastType) {
+    const id = Date.now();
     const toast: Toast = {
+      id,
       title,
       subtext,
       duration,
@@ -18,18 +20,18 @@ export class ToastService {
 
     this.toasts.update((toasts) => [...toasts, toast]);
 
-    setTimeout(() => this.remove(0), duration);
+    setTimeout(() => this.remove(id), duration);
   }
 
-  remove(index: number) {
+  remove(id: number) {
     this.toasts.update((toasts) =>
-      toasts.map((toast, i) =>
-        i === index ? { ...toast, status: 'exiting' } : toast,
+      toasts.map((toast) =>
+        toast.id === id ? { ...toast, status: 'exiting' } : toast,
       ),
     );
 
     setTimeout(() => {
-      this.toasts.update((toasts) => toasts.filter((_, i) => i !== index));
+      this.toasts.update((toasts) => toasts.filter((toast) => toast.id !== id));
     }, 300);
   }
 }

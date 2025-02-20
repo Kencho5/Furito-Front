@@ -1,5 +1,5 @@
 <div class="fixed right-4 top-4 z-50 mt-[72px] space-y-2 sm:mt-[80px]">
-  @for (toast of toastService.toasts(); track $index) {
+  @for (toast of toastService.toasts(); track toast.id) {
     <div
       class="flex gap-3 rounded-xl border p-4 shadow-md"
       [ngClass]="{
