@@ -5,10 +5,16 @@ import { OrgsService } from '@core/services/profile/orgs.service';
 import { GetOrgsResponse } from '@core/modules/interfaces/organizations';
 import { finalize } from 'rxjs';
 import { OrgCardComponent } from '../org-card/org-card.component';
+import { OrgsSkeletonComponent } from '../orgs-skeleton/orgs-skeleton.component';
 
 @Component({
   selector: 'app-organizations',
-  imports: [SharedModule, EmptyOrgsComponent, OrgCardComponent],
+  imports: [
+    SharedModule,
+    EmptyOrgsComponent,
+    OrgCardComponent,
+    OrgsSkeletonComponent,
+  ],
   templateUrl: './organizations.component.html',
 })
 export class OrganizationsComponent {

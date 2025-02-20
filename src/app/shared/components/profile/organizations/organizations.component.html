@@ -3,6 +3,8 @@
     @defer {
       <app-empty-orgs />
     }
+  } @else if (loading()) {
+    <app-orgs-skeleton />
   } @else {
     <div class="mb-10 flex items-center justify-between">
       <h1 class="text-3xl font-bold">{{ orgs()?.total }} ორგანიზაცია</h1>
