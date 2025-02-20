@@ -169,6 +169,7 @@ export class RegisterFormComponent {
         },
         error: (response: HttpErrorResponse) => {
           this.codeError.set(response.error.message);
+          this.registerForm.controls.email_code.setErrors({ invalid: true });
         },
       });
   }
