@@ -3,6 +3,7 @@ import { LoadingService } from '@core/services/loading.service';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { ProfileSidebarComponent } from '@shared/components/profile/profile-sidebar/profile-sidebar.component';
 import { LoadingDotsComponent } from '@shared/components/ui/loading-dots/loading-dots.component';
+import { ToastComponent } from '@shared/components/ui/toast/toast.component';
 import { SharedModule } from '@shared/shared.module';
 
 @Component({
@@ -12,6 +13,7 @@ import { SharedModule } from '@shared/shared.module';
     NavbarComponent,
     ProfileSidebarComponent,
     LoadingDotsComponent,
+    ToastComponent,
   ],
   templateUrl: './profile-layout.component.html',
 })

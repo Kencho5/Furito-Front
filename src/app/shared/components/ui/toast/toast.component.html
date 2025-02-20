@@ -1,0 +1,23 @@
+<div class="fixed right-4 top-4 z-50 mt-[72px] space-y-2 sm:mt-[80px]">
+  @for (toast of toastService.toasts(); track $index) {
+    <div
+      class="flex gap-3 rounded-xl border p-4 shadow-md"
+      [ngClass]="{
+        'border-lime-300 bg-lime-50': toast.type === 'success',
+        'border-orange-300 bg-orange-50': toast.type === 'error',
+        'toast-enter': toast.status === 'entering',
+        'toast-exit': toast.status === 'exiting',
+      }"
+    >
+      <img src="/icons/toast/success.svg" class="h-10 w-10" />
+      <div>
+        <h1 class="text-sm font-semibold sm:text-base">
+          {{ toast.title | transloco }}
+        </h1>
+        <p class="subtext max-w-[220px] text-xs sm:max-w-[280px] sm:text-sm">
+          {{ toast.subtext | transloco }}
+        </p>
+      </div>
+    </div>
+  }
+</div>

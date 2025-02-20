@@ -26,6 +26,7 @@ import { SharedModule } from '@shared/shared.module';
 import { orgTypes } from '@utils/orgTypes';
 import { phoneCodes } from '@utils/phoneCodes';
 import { finalize } from 'rxjs';
+import { ToastService } from '@core/services/toast.service';
 
 @Component({
   selector: 'app-add-org',
@@ -48,6 +49,7 @@ export class AddOrgComponent {
     private sendCodeService: SendCodeService,
     private addOrgService: AddOrgService,
     private router: Router,
+    private toastService: ToastService,
   ) {}
   @ViewChild('logoInput') logoInput!: ElementRef<HTMLInputElement>;
   @ViewChild('logoImage') logoImage!: ElementRef<HTMLImageElement>;
@@ -118,6 +120,12 @@ export class AddOrgComponent {
     this.addOrgService.putLogo(presignedUrl, logo).subscribe({
       next: () => {
         this.router.navigate(['/profile/organizations']);
+        this.toastService.add(
+          'ORGS.TOAST.success',
+          'ORGS.TOAST.success_subtext',
+          3000,
+          'success',
+        );
       },
       error: () => {
         this.loading.set(false);
