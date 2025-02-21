@@ -18,7 +18,7 @@ export class ToastService {
       status: 'entering',
     };
 
-    this.toasts.update((toasts) => [...toasts, toast]);
+    this.toasts.update((toasts) => [toast, ...toasts]);
 
     setTimeout(() => this.remove(id), duration);
   }
