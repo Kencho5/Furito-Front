@@ -25,9 +25,10 @@ export class OrgCardComponent {
   }
 
   toggleOrgStatus() {
+    this.enabled.set(!this.enabled());
+
     this.orgsService.toggleOrgStatus(this.org.id).subscribe({
       next: () => {
-        this.enabled.set(!this.enabled());
         this.org.enabled = this.enabled();
         this.toastService.add(
           !this.enabled() ? 'ORGS.TOAST.disable' : 'ORGS.TOAST.enable',
@@ -36,6 +37,17 @@ export class OrgCardComponent {
             : 'ORGS.TOAST.enable_subtext',
           3000,
           'success',
+        );
+      },
+      error: () => {
+        this.enabled.set(false);
+        this.toastService.add(
+          !this.enabled() ? 'ORGS.TOAST.disable' : 'ORGS.TOAST.enable',
+          !this.enabled()
+            ? 'ORGS.TOAST.disable_subtext'
+            : 'ORGS.TOAST.enable_subtext',
+          3000,
+          'error',
         );
       },
     });
