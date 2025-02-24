@@ -9,7 +9,11 @@
         'toast-exit': toast.status === 'exiting',
       }"
     >
-      <img src="/icons/toast/success.svg" class="h-10 w-10" />
+      @if (toast.type == "success") {
+        <img src="/icons/toast/success.svg" class="h-10 w-10" />
+      } @else {
+        <img src="/icons/toast/error.svg" class="h-10 w-10" />
+      }
       <div>
         <h1 class="text-sm font-semibold sm:text-base">
           {{ toast.title | transloco }}
