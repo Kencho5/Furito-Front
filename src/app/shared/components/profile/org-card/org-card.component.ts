@@ -42,8 +42,8 @@ export class OrgCardComponent {
       error: () => {
         this.enabled.set(false);
         this.toastService.add(
-          'ORGS.TOAST.disable',
-          'ORGS.TOAST.disable_subtext',
+          'ORGS.TOAST.error',
+          'ORGS.TOAST.error_subtext',
           3000,
           'error',
         );
