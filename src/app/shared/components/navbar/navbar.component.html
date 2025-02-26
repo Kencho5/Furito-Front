@@ -42,15 +42,18 @@
         <button type="button">
           <img src="/icons/cart.svg" width="22" height="22" alt="Cart" />
         </button>
-        @defer {
-          <app-user-menu />
-        } @placeholder {
-          <app-spinner
-            [size]="22"
-            [textColor]="'text-white'"
-            [fillColor]="'fill-sky-500'"
-          />
-        }
+
+        <div class="min-h-[22px] min-w-[22px]">
+          @defer {
+            <app-user-menu />
+          } @placeholder {
+            <app-spinner
+              [size]="22"
+              [textColor]="'text-white'"
+              [fillColor]="'fill-sky-500'"
+            />
+          }
+        </div>
       } @else {
         <a
           routerLink="/auth/login"
