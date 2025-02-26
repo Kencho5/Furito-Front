@@ -1,7 +1,7 @@
 <link rel="preload" href="/icons/search.svg" as="image" />
 <link rel="preload" href="/icons/close.svg" as="image" />
 
-<div class="relative">
+<div class="relative w-full">
   <button
     [class]="customClass"
     type="button"
@@ -21,7 +21,7 @@
   @if (opened()) {
     <div
       (outsideClick)="opened.set(false)"
-      class="absolute z-10 mt-2 w-full rounded-2xl border border-neutral-100 bg-white text-sm shadow-md sm:text-base"
+      class="absolute z-10 mt-2 w-full min-w-[100px] max-w-full rounded-2xl border border-neutral-100 bg-white text-sm shadow-md sm:text-base"
     >
       <div
         class="flex items-center justify-between border-b border-neutral-300"
@@ -31,7 +31,7 @@
           autoFocus
           type="text"
           [placeholder]="searchPlaceholder"
-          class="w-full rounded-t-md py-2 pl-1 pr-0 outline-none"
+          class="w-full rounded-t-md py-2 pl-1 pr-0 text-sm outline-none sm:text-base"
           [(ngModel)]="searchValue"
         />
         <div class="mr-3 flex-shrink-0">
@@ -50,7 +50,7 @@
         @for (item of filteredItems(); track item.value) {
           <button
             type="button"
-            class="mx-auto mt-1 flex w-full items-center rounded-md px-2 py-2 text-center font-normal transition-colors hover:bg-neutral-50"
+            class="mx-auto mt-1 flex w-full items-center rounded-md px-2 py-2 text-center text-sm font-normal transition-colors hover:bg-neutral-50 sm:text-base"
             [ngClass]="
               selectedValue == item.value ? 'bg-neutral-50 font-medium' : ''
             "
