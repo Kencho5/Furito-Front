@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import {
@@ -27,6 +26,7 @@ import { orgTypes } from '@utils/orgTypes';
 import { phoneCodes } from '@utils/phoneCodes';
 import { finalize } from 'rxjs';
 import { ToastService } from '@core/services/toast.service';
+import { ProfileFormComponent } from '../profile-form/profile-form.component';
 
 @Component({
   selector: 'app-add-org',
@@ -39,12 +39,12 @@ import { ToastService } from '@core/services/toast.service';
     ErrorMessageComponent,
     GetCodeComponent,
     SpinnerComponent,
+    ProfileFormComponent,
   ],
   templateUrl: './add-org.component.html',
 })
 export class AddOrgComponent {
   constructor(
-    public location: Location,
     private compressService: CompressImageService,
     private sendCodeService: SendCodeService,
     private addOrgService: AddOrgService,
@@ -82,8 +82,7 @@ export class AddOrgComponent {
   emailVerified: boolean = false;
   fileName: string = 'ORGS.FORM.add';
 
-  onSubmit(event: Event): void {
-    event.preventDefault();
+  onSubmit(): void {
     this.handleErrors();
 
     if (this.addForm.invalid) {

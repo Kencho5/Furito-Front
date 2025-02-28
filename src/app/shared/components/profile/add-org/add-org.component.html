@@ -1,259 +1,238 @@
-<div class="space-y-6 sm:space-y-12">
-  <div class="space-y-6">
-    <button
-      type="button"
-      class="flex items-center gap-2 text-neutral-800"
-      (click)="location.back()"
-    >
-      <img src="/icons/profile/arrow-left.svg" />
-      {{ "404.back" | transloco }}
-    </button>
-    <h1 class="text-xl font-bold sm:text-3xl">
-      {{ "ORGS.FORM.add_org" | transloco }}
+<app-profile-form [profileForm]="addForm" (submitForm)="onSubmit()">
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ "ORGS.FORM.logo" | transloco }}
     </h1>
+
+    <div class="flex items-center justify-between gap-4 sm:w-[512px]">
+      <div
+        class="flex cursor-pointer items-center gap-4"
+        (click)="logoInput.click()"
+      >
+        <img
+          src="/icons/profile/upload-circle.svg"
+          class="h-[54px] w-[54px] rounded-full object-cover sm:h-[74px] sm:w-[74px]"
+          #logoImage
+        />
+        <div class="max-w-[200px]">
+          <h1 class="truncate text-base sm:text-lg">
+            {{ fileName | transloco }}
+          </h1>
+          <p class="subtext space-y-0.5 text-sm">
+            PNG {{ "ORGS.FORM.or" | transloco }} JPG ({{
+              "ORGS.FORM.max" | transloco
+            }}
+            50MB)
+          </p>
+        </div>
+      </div>
+
+      @if (hasLogo()) {
+        <button
+          type="button"
+          class="flex items-center justify-center gap-1.5 text-sm text-yellow-500"
+          (click)="deleteLogo()"
+        >
+          <img src="/icons/profile/delete.svg" />
+          {{ "ORGS.FORM.delete" | transloco }}
+        </button>
+      }
+    </div>
+    <input
+      type="file"
+      accept="image/*"
+      #logoInput
+      hidden
+      (change)="onFilesChange()"
+    />
   </div>
 
-  <form
-    class="space-y-6 [&>*:last-child]:gap-3 [&>*]:flex [&>*]:flex-col [&>*]:gap-5 [&>*]:sm:gap-14 [&>*]:lg:flex-row"
-    (ngSubmit)="onSubmit($event)"
-  >
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <div>
     <div>
       <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.logo" | transloco }}
+        {{ "ORGS.FORM.org_code" | transloco }}
       </h1>
+      <p class="subtext text-sm">
+        {{ "ORGS.FORM.org_code_subtext" | transloco }}
+      </p>
+    </div>
 
-      <div class="flex items-center justify-between gap-4 sm:w-[512px]">
-        <div
-          class="flex cursor-pointer items-center gap-4"
-          (click)="logoInput.click()"
-        >
-          <img
-            src="/icons/profile/upload-circle.svg"
-            class="h-[54px] w-[54px] rounded-full object-cover sm:h-[74px] sm:w-[74px]"
-            #logoImage
-          />
-          <div class="max-w-[200px]">
-            <h1 class="truncate text-base sm:text-lg">
-              {{ fileName | transloco }}
-            </h1>
-            <p class="subtext space-y-0.5 text-sm">
-              PNG {{ "ORGS.FORM.or" | transloco }} JPG ({{
-                "ORGS.FORM.max" | transloco
-              }}
-              50MB)
-            </p>
-          </div>
-        </div>
-
-        @if (hasLogo()) {
-          <button
-            type="button"
-            class="flex items-center justify-center gap-1.5 text-sm text-yellow-500"
-            (click)="deleteLogo()"
-          >
-            <img src="/icons/profile/delete.svg" />
-            {{ "ORGS.FORM.delete" | transloco }}
-          </button>
-        }
-      </div>
-      <input
-        type="file"
-        accept="image/*"
-        #logoInput
-        hidden
-        (change)="onFilesChange()"
+    <div class="sm:w-[512px]">
+      <app-input
+        [placeholder]="'ORGS.FORM.org_code_subtext' | transloco"
+        type="number"
+        [control]="addForm.controls.org_code"
+        [error]="submitted && addForm.controls.org_code.invalid"
       />
     </div>
+  </div>
 
-    <div class="-mx-8 h-px bg-neutral-100"></div>
+  <div class="-mx-8 h-px bg-neutral-100"></div>
 
-    <div>
-      <div>
-        <h1 class="w-80 text-base font-semibold sm:text-lg">
-          {{ "ORGS.FORM.org_code" | transloco }}
-        </h1>
-        <p class="subtext text-sm">
-          {{ "ORGS.FORM.org_code_subtext" | transloco }}
-        </p>
-      </div>
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ "ORGS.FORM.org_name" | transloco }}
+    </h1>
 
-      <div class="sm:w-[512px]">
-        <app-input
-          [placeholder]="'ORGS.FORM.org_code_subtext' | transloco"
-          type="number"
-          [control]="addForm.controls.org_code"
-          [error]="submitted && addForm.controls.org_code.invalid"
-        />
-      </div>
+    <div class="flex gap-3 sm:w-[512px]">
+      <app-combobox
+        class="w-[90px] sm:min-w-[100px]"
+        [items]="orgTypes"
+        [selectedValue]="'llc'"
+        (selectedValueChange)="addForm.controls.org_type.setValue($event)"
+        [searchPlaceholder]="'...'"
+        [customClass]="
+          'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
+        "
+      />
+      <app-input
+        [placeholder]="'ORGS.FORM.org_name' | transloco"
+        [control]="addForm.controls.org_name"
+        [error]="submitted && addForm.controls.org_name.invalid"
+        class="w-full"
+      />
     </div>
+  </div>
 
-    <div class="-mx-8 h-px bg-neutral-100"></div>
+  <div class="-mx-8 h-px bg-neutral-100"></div>
 
-    <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.org_name" | transloco }}
-      </h1>
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ "ORGS.FORM.address" | transloco }}
+    </h1>
 
-      <div class="flex gap-3 sm:w-[512px]">
-        <app-combobox
-          class="w-[90px] sm:min-w-[100px]"
-          [items]="orgTypes"
-          [selectedValue]="'llc'"
-          (selectedValueChange)="addForm.controls.org_type.setValue($event)"
-          [searchPlaceholder]="'...'"
-          [customClass]="
-            'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
+    <div class="sm:w-[512px]">
+      <app-input
+        [placeholder]="'ORGS.FORM.address_ph' | transloco"
+        [control]="addForm.controls.address"
+        [error]="submitted && addForm.controls.address.invalid"
+      />
+    </div>
+  </div>
+
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ "ORGS.FORM.email" | transloco }}
+    </h1>
+
+    <div class="flex flex-col gap-4">
+      <div class="relative sm:w-[512px]">
+        <app-input
+          placeholder="example@gmail.com"
+          [control]="addForm.controls.email"
+          [error]="
+            (submitted && addForm.controls.email.invalid) ||
+            codeError().includes('invalid_email')
           "
+          (input)="verifyEmailCode()"
         />
-        <app-input
-          [placeholder]="'ORGS.FORM.org_name' | transloco"
-          [control]="addForm.controls.org_name"
-          [error]="submitted && addForm.controls.org_name.invalid"
-          class="w-full"
-        />
-      </div>
-    </div>
 
-    <div class="-mx-8 h-px bg-neutral-100"></div>
-
-    <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.address" | transloco }}
-      </h1>
-
-      <div class="sm:w-[512px]">
-        <app-input
-          [placeholder]="'ORGS.FORM.address_ph' | transloco"
-          [control]="addForm.controls.address"
-          [error]="submitted && addForm.controls.address.invalid"
+        <app-get-code
+          class="absolute right-1.5 top-1/2 -translate-y-1/2"
+          type="email"
+          [value]="addForm.controls.email.value!"
+          (showInputChange)="showInput = $event"
+          [verified]="emailVerified"
+          (error)="codeError.set($event)"
         />
       </div>
-    </div>
 
-    <div class="-mx-8 h-px bg-neutral-100"></div>
-
-    <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.email" | transloco }}
-      </h1>
-
-      <div class="flex flex-col gap-4">
-        <div class="relative sm:w-[512px]">
+      @if (showInput && !codeError().includes("invalid_email")) {
+        <div class="relative">
           <app-input
-            placeholder="example@gmail.com"
-            [control]="addForm.controls.email"
+            [control]="addForm.controls.email_code"
+            type="number"
+            [placeholder]="'AUTH.email_code' | transloco"
             [error]="
-              (submitted && addForm.controls.email.invalid) ||
-              codeError().includes('invalid_email')
+              (submitted && addForm.controls.email_code.invalid) ||
+              codeError().includes('invalid_code')
             "
             (input)="verifyEmailCode()"
           />
 
-          <app-get-code
-            class="absolute right-1.5 top-1/2 -translate-y-1/2"
-            type="email"
-            [value]="addForm.controls.email.value!"
-            (showInputChange)="showInput = $event"
-            [verified]="emailVerified"
-            (error)="codeError.set($event)"
-          />
-        </div>
-
-        @if (showInput && !codeError().includes("invalid_email")) {
-          <div class="relative">
-            <app-input
-              [control]="addForm.controls.email_code"
-              type="number"
-              [placeholder]="'AUTH.email_code' | transloco"
-              [error]="
-                (submitted && addForm.controls.email_code.invalid) ||
-                codeError().includes('invalid_code')
-              "
-              (input)="verifyEmailCode()"
+          @if (addForm.controls.email_code.disabled) {
+            <img
+              src="/icons/auth/check_green.svg"
+              class="absolute right-3 top-1/2 -translate-y-1/2"
             />
-
-            @if (addForm.controls.email_code.disabled) {
-              <img
-                src="/icons/auth/check_green.svg"
-                class="absolute right-3 top-1/2 -translate-y-1/2"
-              />
-            }
-          </div>
-        }
-
-        @if (codeError()) {
-          <app-error-message>
-            {{ codeError() | transloco }}
-          </app-error-message>
-        }
-      </div>
-    </div>
-
-    <div class="-mx-8 h-px bg-neutral-100"></div>
-
-    <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.phone" | transloco }}
-      </h1>
-
-      <div class="sm:w-[512px]">
-        <app-combobox
-          class="absolute w-[90px] sm:w-[100px]"
-          [customClass]="
-            'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base border-r-0'
-          "
-          [items]="phoneCodes"
-          [selectedValue]="'995'"
-          (selectedValueChange)="addForm.controls.phone_code.setValue($event)"
-          [searchPlaceholder]="'...'"
-        />
-
-        <div
-          class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]"
-        >
-          <app-input
-            [customClass]="'rounded-l-none'"
-            type="number"
-            [placeholder]="'AUTH.phone' | transloco"
-            [control]="addForm.controls.phone"
-            [error]="submitted && addForm.controls.phone.invalid"
-          />
+          }
         </div>
+      }
+
+      @if (codeError()) {
+        <app-error-message>
+          {{ codeError() | transloco }}
+        </app-error-message>
+      }
+    </div>
+  </div>
+
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ "ORGS.FORM.phone" | transloco }}
+    </h1>
+
+    <div class="sm:w-[512px]">
+      <app-combobox
+        class="absolute w-[90px] sm:w-[100px]"
+        [customClass]="
+          'rounded-r-none min-h-[44px] rounded-2xl border bg-white pl-3 pr-1.5 py-2.5 text-sm font-normal text-neutral-400 sm:text-base border-r-0'
+        "
+        [items]="phoneCodes"
+        [selectedValue]="'995'"
+        (selectedValueChange)="addForm.controls.phone_code.setValue($event)"
+        [searchPlaceholder]="'...'"
+      />
+
+      <div class="relative ml-auto w-[calc(100%-90px)] sm:w-[calc(100%-100px)]">
+        <app-input
+          [customClass]="'rounded-l-none'"
+          type="number"
+          [placeholder]="'AUTH.phone' | transloco"
+          [control]="addForm.controls.phone"
+          [error]="submitted && addForm.controls.phone.invalid"
+        />
       </div>
     </div>
+  </div>
 
-    <div class="-mx-8 h-px bg-neutral-100"></div>
+  <div class="-mx-8 h-px bg-neutral-100"></div>
 
-    @if (formError()) {
-      <app-error-message>
-        {{ formError() | transloco }}
-      </app-error-message>
-    }
+  @if (formError()) {
+    <app-error-message>
+      {{ formError() | transloco }}
+    </app-error-message>
+  }
 
-    <div class="text-sm sm:text-base">
-      <button
-        type="submit"
-        class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"
-        [ngClass]="loading() ? 'animate-pulse' : ''"
-        [disabled]="loading()"
-      >
-        @if (!loading()) {
-          {{ "ORGS.FORM.add" | transloco }}
-        } @else {
-          <app-spinner
-            [size]="28"
-            [textColor]="'text-white'"
-            [fillColor]="'fill-orange-500'"
-          />
-        }
-      </button>
-      <button
-        type="button"
-        class="flex h-[44px] items-center justify-center rounded-2xl border border-neutral-200 px-[18px] py-2.5 font-bold"
-        (click)="resetForm()"
-      >
-        {{ "ORGS.FORM.cancel" | transloco }}
-      </button>
-    </div>
-  </form>
-</div>
+  <div class="text-sm sm:text-base">
+    <button
+      type="submit"
+      class="flex h-[44px] items-center justify-center rounded-2xl bg-yellow-400 px-[18px] py-2.5 font-bold"
+      [ngClass]="loading() ? 'animate-pulse' : ''"
+      [disabled]="loading()"
+    >
+      @if (!loading()) {
+        {{ "ORGS.FORM.add" | transloco }}
+      } @else {
+        <app-spinner
+          [size]="28"
+          [textColor]="'text-white'"
+          [fillColor]="'fill-orange-500'"
+        />
+      }
+    </button>
+    <button
+      type="button"
+      class="flex h-[44px] items-center justify-center rounded-2xl border border-neutral-200 px-[18px] py-2.5 font-bold"
+      (click)="resetForm()"
+    >
+      {{ "ORGS.FORM.cancel" | transloco }}
+    </button>
+  </div>
+</app-profile-form>

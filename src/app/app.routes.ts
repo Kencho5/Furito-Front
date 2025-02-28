@@ -47,6 +47,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'organizations/edit',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/edit-org/edit-org.component'
+          ).then((m) => m.EditOrgComponent),
+      },
+      {
         path: 'info',
         loadComponent: () =>
           import(
