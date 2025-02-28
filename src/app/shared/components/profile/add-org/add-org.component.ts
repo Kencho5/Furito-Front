@@ -120,8 +120,8 @@ export class AddOrgComponent {
       next: () => {
         this.router.navigate(['/profile/organizations']);
         this.toastService.add(
-          'ORGS.TOAST.success',
-          'ORGS.TOAST.success_subtext',
+          'ORGS.TOAST.org_add_success',
+          'ORGS.TOAST.org_add_success_subtext',
           3000,
           'success',
         );

@@ -5,6 +5,7 @@ import { environment } from '@environments/environment';
 import { SharedModule } from '@shared/shared.module';
 import { OrgsService } from '@core/services/profile/orgs.service';
 import { ToastService } from '@core/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-org-card',
@@ -15,6 +16,7 @@ export class OrgCardComponent {
   constructor(
     private orgsService: OrgsService,
     private toastService: ToastService,
+    private router: Router,
   ) {}
 
   @Input() org!: Org;
@@ -53,5 +55,11 @@ export class OrgCardComponent {
 
   getLogoUrl(id: number, code: string): string {
     return `${environment.orgLogosUrl}${id}-${code}.jpg`;
+  }
+
+  edit(id: number) {
+    this.router.navigate(['/profile/organizations/edit'], {
+      queryParams: { id },
+    });
   }
 }
