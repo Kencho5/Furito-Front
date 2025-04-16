@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DropdownComponent } from '@ui/dropdown/dropdown.component';
 import { LanguageService } from '@core/services/language.service';

@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "^19.1.6",
     "@angular/router": "^19.1.6",
     "@jsverse/transloco": "^7.5.1",
-    "@ngx-translate/core": "^16.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
