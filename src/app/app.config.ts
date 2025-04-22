@@ -9,13 +9,16 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { provideTransloco } from '@jsverse/transloco';
 import { requestInterceptor } from '@core/interceptors/request.interceptor';
+import { responseInterceptor } from '@core/interceptors/response.interceptor';
 import { TranslocoHttpLoader } from '@utils/transloco-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideExperimentalZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([requestInterceptor])),
+    provideHttpClient(
+      withInterceptors([requestInterceptor, responseInterceptor]),
+    ),
     AuthGuard,
     provideTransloco({
       config: {
