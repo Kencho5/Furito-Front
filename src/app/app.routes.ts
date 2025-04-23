@@ -54,6 +54,27 @@ export const routes: Routes = [
           ).then((m) => m.EditOrgComponent),
       },
       {
+        path: 'services',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/my-services/my-services.component'
+          ).then((m) => m.MyServicesComponent),
+      },
+      {
+        path: 'posts',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/my-posts/my-posts.component'
+          ).then((m) => m.MyPostsComponent),
+      },
+      {
+        path: 'cards',
+        loadComponent: () =>
+          import(
+            './shared/components/profile/my-cards/my-cards.component'
+          ).then((m) => m.MyCardsComponent),
+      },
+      {
         path: 'info',
         loadComponent: () =>
           import(
