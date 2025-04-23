@@ -27,6 +27,7 @@ import { phoneCodes } from '@utils/phoneCodes';
 import { finalize } from 'rxjs';
 import { ToastService } from '@core/services/toast.service';
 import { ProfileFormComponent } from '../profile-form/profile-form.component';
+import { ProfileFormRowComponent } from '../profile-form-row/profile-form-row.component';
 
 @Component({
   selector: 'app-add-org',
@@ -40,6 +41,7 @@ import { ProfileFormComponent } from '../profile-form/profile-form.component';
     GetCodeComponent,
     SpinnerComponent,
     ProfileFormComponent,
+    ProfileFormRowComponent,
   ],
   templateUrl: './add-org.component.html',
 })

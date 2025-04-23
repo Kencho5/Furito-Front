@@ -1,0 +1,19 @@
+@if (subtext) {
+  <div>
+    <h1 class="w-80 text-base font-semibold sm:text-lg">
+      {{ label }}
+    </h1>
+
+    <p class="subtext text-sm">
+      {{ subtext }}
+    </p>
+  </div>
+} @else {
+  <h1 class="w-80 text-base font-semibold sm:text-lg">
+    {{ label }}
+  </h1>
+}
+
+<div class="sm:w-[512px]" [class]="contentClass">
+  <ng-content />
+</div>

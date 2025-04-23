@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingService } from '@core/services/loading.service';
 import { NavbarComponent } from '@shared/components/navbar/navbar.component';
 import { ProfileSidebarComponent } from '@shared/components/profile/profile-sidebar/profile-sidebar.component';
@@ -18,5 +19,12 @@ import { SharedModule } from '@shared/shared.module';
   templateUrl: './profile-layout.component.html',
 })
 export class ProfileLayoutComponent {
-  constructor(public loadingService: LoadingService) {}
+  constructor(
+    public loadingService: LoadingService,
+    private router: Router,
+  ) {}
+
+  get urlPaths() {
+    return this.router.url.split('/').filter((segment) => segment);
+  }
 }

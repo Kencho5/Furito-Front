@@ -1,43 +1,41 @@
 <app-profile-form [profileForm]="addForm" (submitForm)="onSubmit()">
-  <div>
-    <h1 class="w-80 text-base font-semibold sm:text-lg">
-      {{ "ORGS.FORM.logo" | transloco }}
-    </h1>
-
-    <div class="flex items-center justify-between gap-4 sm:w-[512px]">
-      <div
-        class="flex cursor-pointer items-center gap-4"
-        (click)="logoInput.click()"
-      >
-        <img
-          src="/icons/profile/upload-circle.svg"
-          class="h-[54px] w-[54px] rounded-full object-cover sm:h-[74px] sm:w-[74px]"
-          #logoImage
-        />
-        <div class="max-w-[200px]">
-          <h1 class="truncate text-base sm:text-lg">
-            {{ fileName | transloco }}
-          </h1>
-          <p class="subtext space-y-0.5 text-sm">
-            PNG {{ "ORGS.FORM.or" | transloco }} JPG ({{
-              "ORGS.FORM.max" | transloco
-            }}
-            50MB)
-          </p>
-        </div>
+  <app-profile-form-row
+    class="relative"
+    [label]="'ORGS.FORM.logo' | transloco"
+    [contentClass]="'flex items-center justify-between gap-4'"
+  >
+    <div
+      class="flex cursor-pointer items-center gap-4"
+      (click)="logoInput.click()"
+    >
+      <img
+        src="/icons/profile/upload-circle.svg"
+        class="h-[54px] w-[54px] rounded-full object-cover sm:h-[74px] sm:w-[74px]"
+        #logoImage
+      />
+      <div class="max-w-[200px]">
+        <h1 class="truncate text-base sm:text-lg">
+          {{ fileName | transloco }}
+        </h1>
+        <p class="subtext space-y-0.5 text-sm">
+          PNG {{ "ORGS.FORM.or" | transloco }} JPG ({{
+            "ORGS.FORM.max" | transloco
+          }}
+          50MB)
+        </p>
       </div>
-
-      @if (hasLogo()) {
-        <button
-          type="button"
-          class="flex items-center justify-center gap-1.5 text-sm text-yellow-500"
-          (click)="deleteLogo()"
-        >
-          <img src="/icons/profile/delete.svg" />
-          {{ "ORGS.FORM.delete" | transloco }}
-        </button>
-      }
     </div>
+
+    @if (hasLogo()) {
+      <button
+        type="button"
+        class="flex items-center justify-center gap-1.5 text-sm text-yellow-500"
+        (click)="deleteLogo()"
+      >
+        <img src="/icons/profile/delete.svg" />
+        {{ "ORGS.FORM.delete" | transloco }}
+      </button>
+    }
     <input
       type="file"
       accept="image/*"
@@ -45,131 +43,174 @@
       hidden
       (change)="onFilesChange()"
     />
-  </div>
+  </app-profile-form-row>
 
   <div class="-mx-8 h-px bg-neutral-100"></div>
 
-  <div>
-    <div>
-      <h1 class="w-80 text-base font-semibold sm:text-lg">
-        {{ "ORGS.FORM.org_code" | transloco }}
-      </h1>
-      <p class="subtext text-sm">
-        {{ "ORGS.FORM.org_code_subtext" | transloco }}
-      </p>
-    </div>
+  <app-profile-form-row
+    class="relative"
+    [label]="'ORGS.FORM.org_code' | transloco"
+    [subtext]="'ORGS.FORM.org_code_subtext' | transloco"
+  >
+    <app-input
+      [placeholder]="'ORGS.FORM.org_code_subtext' | transloco"
+      type="number"
+      [control]="addForm.controls.org_code"
+      [error]="submitted && addForm.controls.org_code.invalid"
+    />
+  </app-profile-form-row>
 
-    <div class="sm:w-[512px]">
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <app-profile-form-row
+    class="relative"
+    [label]="'ORGS.FORM.org_name' | transloco"
+    [contentClass]="'flex gap-3'"
+  >
+    <app-combobox
+      class="w-[90px] sm:min-w-[100px]"
+      [items]="orgTypes"
+      [selectedValue]="'llc'"
+      (selectedValueChange)="addForm.controls.org_type.setValue($event)"
+      [searchPlaceholder]="'...'"
+      [customClass]="
+        'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
+      "
+    />
+    <app-input
+      [placeholder]="'ORGS.FORM.org_name' | transloco"
+      [control]="addForm.controls.org_name"
+      [error]="submitted && addForm.controls.org_name.invalid"
+      class="w-full"
+    />
+  </app-profile-form-row>
+
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <app-profile-form-row
+    class="relative"
+    [label]="'ORGS.FORM.address' | transloco"
+  >
+    <app-input
+      [placeholder]="'ORGS.FORM.address_ph' | transloco"
+      [control]="addForm.controls.address"
+      [error]="submitted && addForm.controls.address.invalid"
+    />
+  </app-profile-form-row>
+
+  <div class="-mx-8 h-px bg-neutral-100"></div>
+
+  <app-profile-form-row
+    class="relative"
+    [label]="'ORGS.FORM.email' | transloco"
+    [contentClass]="'flex flex-col gap-4'"
+  >
+    <div class="relative sm:w-[512px]">
       <app-input
-        [placeholder]="'ORGS.FORM.org_code_subtext' | transloco"
-        type="number"
-        [control]="addForm.controls.org_code"
-        [error]="submitted && addForm.controls.org_code.invalid"
-      />
-    </div>
-  </div>
-
-  <div class="-mx-8 h-px bg-neutral-100"></div>
-
-  <div>
-    <h1 class="w-80 text-base font-semibold sm:text-lg">
-      {{ "ORGS.FORM.org_name" | transloco }}
-    </h1>
-
-    <div class="flex gap-3 sm:w-[512px]">
-      <app-combobox
-        class="w-[90px] sm:min-w-[100px]"
-        [items]="orgTypes"
-        [selectedValue]="'llc'"
-        (selectedValueChange)="addForm.controls.org_type.setValue($event)"
-        [searchPlaceholder]="'...'"
-        [customClass]="
-          'rounded-2xl border bg-white px-3.5 py-2.5 w-20 pr-2.5 text-sm sm:text-base font-normal text-neutral-400'
+        placeholder="example@gmail.com"
+        [control]="addForm.controls.email"
+        [error]="
+          (submitted && addForm.controls.email.invalid) ||
+          codeError().includes('invalid_email')
         "
+        (input)="verifyEmailCode()"
       />
-      <app-input
-        [placeholder]="'ORGS.FORM.org_name' | transloco"
-        [control]="addForm.controls.org_name"
-        [error]="submitted && addForm.controls.org_name.invalid"
-        class="w-full"
-      />
-    </div>
-  </div>
 
-  <div class="-mx-8 h-px bg-neutral-100"></div>
-
-  <div>
-    <h1 class="w-80 text-base font-semibold sm:text-lg">
-      {{ "ORGS.FORM.address" | transloco }}
-    </h1>
-
-    <div class="sm:w-[512px]">
-      <app-input
-        [placeholder]="'ORGS.FORM.address_ph' | transloco"
-        [control]="addForm.controls.address"
-        [error]="submitted && addForm.controls.address.invalid"
+      <app-get-code
+        class="absolute right-1.5 top-1/2 -translate-y-1/2"
+        type="email"
+        [value]="addForm.controls.email.value!"
+        (showInputChange)="showInput = $event"
+        [verified]="emailVerified"
+        (error)="codeError.set($event)"
       />
     </div>
-  </div>
 
-  <div class="-mx-8 h-px bg-neutral-100"></div>
-
-  <div>
-    <h1 class="w-80 text-base font-semibold sm:text-lg">
-      {{ "ORGS.FORM.email" | transloco }}
-    </h1>
-
-    <div class="flex flex-col gap-4">
-      <div class="relative sm:w-[512px]">
+    @if (showInput && !codeError().includes("invalid_email")) {
+      <div class="relative">
         <app-input
-          placeholder="example@gmail.com"
-          [control]="addForm.controls.email"
+          [control]="addForm.controls.email_code"
+          type="number"
+          [placeholder]="'AUTH.email_code' | transloco"
           [error]="
-            (submitted && addForm.controls.email.invalid) ||
-            codeError().includes('invalid_email')
+            (submitted && addForm.controls.email_code.invalid) ||
+            codeError().includes('invalid_code')
           "
           (input)="verifyEmailCode()"
         />
 
-        <app-get-code
-          class="absolute right-1.5 top-1/2 -translate-y-1/2"
-          type="email"
-          [value]="addForm.controls.email.value!"
-          (showInputChange)="showInput = $event"
-          [verified]="emailVerified"
-          (error)="codeError.set($event)"
-        />
-      </div>
-
-      @if (showInput && !codeError().includes("invalid_email")) {
-        <div class="relative">
-          <app-input
-            [control]="addForm.controls.email_code"
-            type="number"
-            [placeholder]="'AUTH.email_code' | transloco"
-            [error]="
-              (submitted && addForm.controls.email_code.invalid) ||
-              codeError().includes('invalid_code')
-            "
-            (input)="verifyEmailCode()"
+        @if (addForm.controls.email_code.disabled) {
+          <img
+            src="/icons/auth/check_green.svg"
+            class="absolute right-3 top-1/2 -translate-y-1/2"
           />
+        }
+      </div>
+    }
 
-          @if (addForm.controls.email_code.disabled) {
-            <img
-              src="/icons/auth/check_green.svg"
-              class="absolute right-3 top-1/2 -translate-y-1/2"
-            />
-          }
-        </div>
-      }
+    @if (codeError()) {
+      <app-error-message>
+        {{ codeError() | transloco }}
+      </app-error-message>
+    }
+  </app-profile-form-row>
 
-      @if (codeError()) {
-        <app-error-message>
-          {{ codeError() | transloco }}
-        </app-error-message>
-      }
-    </div>
-  </div>
+  <!--<div>-->
+  <!--  <h1 class="w-80 text-base font-semibold sm:text-lg">-->
+  <!--    {{ "ORGS.FORM.email" | transloco }}-->
+  <!--  </h1>-->
+  <!---->
+  <!--  <div class="flex flex-col gap-4">-->
+  <!--    <div class="relative sm:w-[512px]">-->
+  <!--      <app-input-->
+  <!--        placeholder="example@gmail.com"-->
+  <!--        [control]="addForm.controls.email"-->
+  <!--        [error]="-->
+  <!--          (submitted && addForm.controls.email.invalid) ||-->
+  <!--          codeError().includes('invalid_email')-->
+  <!--        "-->
+  <!--        (input)="verifyEmailCode()"-->
+  <!--      />-->
+  <!---->
+  <!--      <app-get-code-->
+  <!--        class="absolute right-1.5 top-1/2 -translate-y-1/2"-->
+  <!--        type="email"-->
+  <!--        [value]="addForm.controls.email.value!"-->
+  <!--        (showInputChange)="showInput = $event"-->
+  <!--        [verified]="emailVerified"-->
+  <!--        (error)="codeError.set($event)"-->
+  <!--      />-->
+  <!--    </div>-->
+  <!---->
+  <!--    @if (showInput && !codeError().includes("invalid_email")) {-->
+  <!--      <div class="relative">-->
+  <!--        <app-input-->
+  <!--          [control]="addForm.controls.email_code"-->
+  <!--          type="number"-->
+  <!--          [placeholder]="'AUTH.email_code' | transloco"-->
+  <!--          [error]="-->
+  <!--            (submitted && addForm.controls.email_code.invalid) ||-->
+  <!--            codeError().includes('invalid_code')-->
+  <!--          "-->
+  <!--          (input)="verifyEmailCode()"-->
+  <!--        />-->
+  <!---->
+  <!--        @if (addForm.controls.email_code.disabled) {-->
+  <!--          <img-->
+  <!--            src="/icons/auth/check_green.svg"-->
+  <!--            class="absolute right-3 top-1/2 -translate-y-1/2"-->
+  <!--          />-->
+  <!--        }-->
+  <!--      </div>-->
+  <!--    }-->
+  <!---->
+  <!--    @if (codeError()) {-->
+  <!--      <app-error-message>-->
+  <!--        {{ codeError() | transloco }}-->
+  <!--      </app-error-message>-->
+  <!--    }-->
+  <!--  </div>-->
+  <!--</div>-->
 
   <div class="-mx-8 h-px bg-neutral-100"></div>
 
